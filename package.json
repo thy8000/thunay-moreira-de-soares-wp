@@ -1,0 +1,15 @@
+{
+  "name": "thunay-moreira-de-soares-wp",
+  "version": "1.0.0",
+  "description": "Site pessoal feito com Wordpress.",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "test": "npm run test",
+    "start": "npx tailwindcss -i ./assets/css/_index.css -o ./assets/css/all.css --watch"
+  },
+  "author": "Thunay Moreira de Soares",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.3"
+  }
+}

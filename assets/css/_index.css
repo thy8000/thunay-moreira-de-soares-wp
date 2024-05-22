@@ -1,0 +1,9 @@
+@import url("./standarts/tailwind.css");
+
+.teste {
+    background-color: black;
+}
+
+.teste-2 {
+    @apply w-full h-[500px];
+}

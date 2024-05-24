@@ -1,0 +1,23 @@
+#services h1 {
+    transition: 1s all;
+}
+
+#services .services-content p {
+    transition: 1.2s all;
+}
+
+#services .services-box-1 {
+    transition: 1.3s all;
+}
+
+#services .services-box-2 {
+    transition: 1.6s all;
+}
+
+#services .services-box-3 {
+    transition: 1.9s all;
+}
+
+#services .services-box-4 {
+    transition: 2.2s all;
+}

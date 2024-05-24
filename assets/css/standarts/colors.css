@@ -1,0 +1,6 @@
+.bg-gradient-green-500 {
+    background: linear-gradient(90deg,
+            rgba(167, 207, 178, 1) 0%,
+            rgba(58, 122, 120, 1) 50%,
+            rgba(58, 123, 76, 1) 100%);
+}

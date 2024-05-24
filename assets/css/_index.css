@@ -1,9 +1,12 @@
 @import url("./standarts/tailwind.css");
+@import url("./standarts/colors.css");
+@import url("./standarts/containers.css");
+@import url("./standarts/fonts.css");
+@import url("./standarts/transitions.css");
 
-.teste {
-    background-color: black;
-}
-
-.teste-2 {
-    @apply w-full h-[500px];
-}
+@import url("./components/about-me.css");
+@import url("./components/experience.css");
+@import url("./components/projects.css");
+@import url("./components/services.css");
+@import url("./components/skills.css");
+@import url("./components/top-hero.css");

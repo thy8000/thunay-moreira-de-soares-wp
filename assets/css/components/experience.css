@@ -1,0 +1,19 @@
+#experience h2 {
+    transition: 1.5s all;
+}
+
+#experience h3 {
+    transition: 1.8s all;
+}
+
+#experience ol {
+    transition: 2.1s all
+}
+
+#experience .experience-1 {
+    transition: 2.5s all;
+}
+
+#experience .experience-2 {
+    transition: 2.8s all;
+}

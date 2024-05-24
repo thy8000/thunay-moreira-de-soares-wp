@@ -1,0 +1,33 @@
+.fade-in-slide {
+    opacity: 0;
+    transform: translateX(-200%);
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.fade-in {
+    transform: translateY(-20%);
+    opacity: 0;
+}
+
+.fade-in-2 {
+    transform: translateY(-5%);
+    opacity: 0;
+}
+
+.fade-in-3 {
+    opacity: 0;
+}
+
+.fade-in.show {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+.fade-in-2.show {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+.fade-in-3.show {
+    opacity: 1 !important;
+}

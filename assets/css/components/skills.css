@@ -1,0 +1,39 @@
+#skills h2 {
+    transition: 1s all;
+}
+
+#skills h3 {
+    transition: 1.1s all;
+}
+
+#skills h4 {
+    transition: 1.2s all;
+}
+
+#skills .skill-1 {
+    transition: 1.5s all;
+}
+
+#skills .skill-2 {
+    transition: 1.8s all;
+}
+
+#skills .skill-3 {
+    transition: 2.1s all;
+}
+
+#skills .skill-4 {
+    transition: 2.4s all;
+}
+
+#skills .skill-5 {
+    transition: 2.7s all;
+}
+
+#skills .skill-6 {
+    transition: 3s all;
+}
+
+#skills .skill-7 {
+    transition: 3.3s all;
+}

@@ -5,11 +5,16 @@
   "main": "tailwind.config.js",
   "scripts": {
     "test": "npm run test",
-    "start": "npx tailwindcss -i ./assets/css/_index.css -o ./assets/css/all.css --watch"
+    "start": "node minify.js &&npx tailwindcss -i ./assets/css/_index.css -o ./assets/css/all.css",
+    "js": "node minify.js",
+    "css": "npx tailwindcss -i ./assets/css/_index.css -o ./assets/css/all.css --watch"
   },
   "author": "Thunay Moreira de Soares",
   "license": "ISC",
   "devDependencies": {
     "tailwindcss": "^3.4.3"
+  },
+  "dependencies": {
+    "terser": "^5.31.0"
   }
 }

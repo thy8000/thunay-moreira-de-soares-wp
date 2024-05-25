@@ -17,4 +17,6 @@ get_template_part('pages/home/components/skills');
 
 get_template_part('pages/home/components/experience');
 
+get_template_part('pages/home/components/projects');
+
 get_template_part('components/footer');

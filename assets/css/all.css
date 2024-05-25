@@ -784,6 +784,10 @@ html {
   margin-left: 1.5rem;
 }
 
+.mt-16{
+  margin-top: 4rem;
+}
+
 .mt-2{
   margin-top: 0.5rem;
 }
@@ -895,6 +899,22 @@ html {
   display: none;
 }
 
+.aspect-\[300\/180\]{
+  aspect-ratio: 300/180;
+}
+
+.h-1{
+  height: 0.25rem;
+}
+
+.h-1\/2{
+  height: 50%;
+}
+
+.h-10{
+  height: 2.5rem;
+}
+
 .h-16{
   height: 4rem;
 }
@@ -915,6 +935,14 @@ html {
   height: 100vh;
 }
 
+.min-h-52{
+  min-height: 13rem;
+}
+
+.w-1{
+  width: 0.25rem;
+}
+
 .w-10{
   width: 2.5rem;
 }
@@ -925,6 +953,14 @@ html {
 
 .w-16{
   width: 4rem;
+}
+
+.w-3{
+  width: 0.75rem;
+}
+
+.w-3\.5{
+  width: 0.875rem;
 }
 
 .w-5{
@@ -967,16 +1003,16 @@ html {
   width: 100vw;
 }
 
-.w-1{
-  width: 0.25rem;
-}
-
 .max-w-\[1140px\]{
   max-width: 1140px;
 }
 
 .max-w-\[28rem\]{
   max-width: 28rem;
+}
+
+.max-w-prose{
+  max-width: 65ch;
 }
 
 .flex-shrink{
@@ -1047,6 +1083,10 @@ html {
 
 .transform-none{
   transform: none;
+}
+
+.cursor-pointer{
+  cursor: pointer;
 }
 
 .touch-auto{
@@ -1323,8 +1363,16 @@ html {
   grid-auto-flow: column dense;
 }
 
+.grid-cols-1{
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
 .grid-cols-2{
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-3{
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .flex-row{
@@ -1525,6 +1573,10 @@ html {
 
 .gap-4{
   gap: 1rem;
+}
+
+.gap-6{
+  gap: 1.5rem;
 }
 
 .gap-8{
@@ -2152,6 +2204,10 @@ html {
   padding: 0.75rem;
 }
 
+.p-5{
+  padding: 1.25rem;
+}
+
 .p-7{
   padding: 1.75rem;
 }
@@ -2160,14 +2216,29 @@ html {
   padding: 2rem;
 }
 
+.px-6{
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
 .px-\[10\%\]{
   padding-left: 10%;
   padding-right: 10%;
 }
 
+.py-10{
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
 .py-4{
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+
+.py-5{
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
 }
 
 .py-\[10\%\]{
@@ -2257,6 +2328,11 @@ html {
 .text-6xl{
   font-size: 3.75rem;
   line-height: 1;
+}
+
+.text-base{
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 
 .text-lg{
@@ -3096,6 +3172,11 @@ html {
   font-weight: 700;
 }
 
+.hover\:text-green-500:hover{
+  --tw-text-opacity: 1;
+  color: rgb(58 123 76 / var(--tw-text-opacity));
+}
+
 .before\:hover\:text-center:hover::before{
   content: var(--tw-content);
   text-align: center;
@@ -3149,6 +3230,10 @@ html {
 
   .lg\:grid-cols-2{
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-3{
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .lg\:flex-row{

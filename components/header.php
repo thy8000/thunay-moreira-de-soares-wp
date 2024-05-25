@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
     ?>
 </head>
 
-<body <?php body_class(); ?> class="bg-neutral-900">
+<body <?php body_class('bg-neutral-900'); ?>>
     <?php
 
     wp_body_open();

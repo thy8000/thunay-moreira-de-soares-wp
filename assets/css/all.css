@@ -915,6 +915,10 @@ html {
   width: 100vw;
 }
 
+.max-w-\[28rem\]{
+  max-width: 28rem;
+}
+
 .flex-shrink{
   flex-shrink: 1;
 }
@@ -1445,6 +1449,10 @@ html {
 
 .gap-12{
   gap: 3rem;
+}
+
+.gap-4{
+  gap: 1rem;
 }
 
 .gap-8{
@@ -2055,6 +2063,10 @@ html {
   padding: 0.75rem;
 }
 
+.p-8{
+  padding: 2rem;
+}
+
 .px-\[10\%\]{
   padding-left: 10%;
   padding-right: 10%;
@@ -2063,6 +2075,11 @@ html {
 .py-4{
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+
+.py-\[10\%\]{
+  padding-top: 10%;
+  padding-bottom: 10%;
 }
 
 .text-left{
@@ -2136,8 +2153,18 @@ html {
   line-height: 1;
 }
 
+.text-6xl{
+  font-size: 3.75rem;
+  line-height: 1;
+}
+
 .text-lg{
   font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.text-xl{
+  font-size: 1.25rem;
   line-height: 1.75rem;
 }
 
@@ -2221,6 +2248,10 @@ html {
   font-variant-numeric: var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction);
 }
 
+.leading-7{
+  line-height: 1.75rem;
+}
+
 .tracking-\[0\.5rem\]{
   letter-spacing: 0.5rem;
 }
@@ -2232,6 +2263,11 @@ html {
 .text-green-500{
   --tw-text-opacity: 1;
   color: rgb(58 123 76 / var(--tw-text-opacity));
+}
+
+.text-neutral-300{
+  --tw-text-opacity: 1;
+  color: rgb(212 212 212 / var(--tw-text-opacity));
 }
 
 .text-white{
@@ -2984,9 +3020,18 @@ html {
     max-width: 960px;
   }
 
+  .lg\:flex-row{
+    flex-direction: row;
+  }
+
   .lg\:px-\[3\%\]{
     padding-left: 3%;
     padding-right: 3%;
+  }
+
+  .lg\:py-\[5\%\]{
+    padding-top: 5%;
+    padding-bottom: 5%;
   }
 
   .lg\:text-start{

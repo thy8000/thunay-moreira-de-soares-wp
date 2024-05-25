@@ -915,8 +915,24 @@ html {
   width: 100vw;
 }
 
+.w-12{
+  width: 3rem;
+}
+
+.w-5{
+  width: 1.25rem;
+}
+
+.w-7{
+  width: 1.75rem;
+}
+
 .max-w-\[28rem\]{
   max-width: 28rem;
+}
+
+.max-w-\[1140px\]{
+  max-width: 1140px;
 }
 
 .flex-shrink{
@@ -1263,6 +1279,10 @@ html {
   grid-auto-flow: column dense;
 }
 
+.grid-cols-2{
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .flex-row{
   flex-direction: row;
 }
@@ -1457,6 +1477,10 @@ html {
 
 .gap-8{
   gap: 2rem;
+}
+
+.gap-20{
+  gap: 5rem;
 }
 
 .space-x-2 > :not([hidden]) ~ :not([hidden]){
@@ -2067,6 +2091,10 @@ html {
   padding: 2rem;
 }
 
+.p-7{
+  padding: 1.75rem;
+}
+
 .px-\[10\%\]{
   padding-left: 10%;
   padding-right: 10%;
@@ -2166,6 +2194,11 @@ html {
 .text-xl{
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.text-sm{
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 .font-bold{
@@ -3016,8 +3049,20 @@ html {
 }
 
 @media (min-width: 1024px){
+  .lg\:w-5\/12{
+    width: 41.666667%;
+  }
+
+  .lg\:w-7\/12{
+    width: 58.333333%;
+  }
+
   .lg\:max-w-\[960px\]{
     max-width: 960px;
+  }
+
+  .lg\:grid-cols-2{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .lg\:flex-row{

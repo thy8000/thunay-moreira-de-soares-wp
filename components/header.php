@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
     ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class(); ?> class="bg-neutral-900">
     <?php
 
     wp_body_open();
@@ -56,4 +56,4 @@ if (!defined('ABSPATH')) {
         </div>
     </header>
 
-    <main>
+    <main x-bind:class="displayMenu ? 'blur' : ''">

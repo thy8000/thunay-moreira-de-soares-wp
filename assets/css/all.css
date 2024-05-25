@@ -760,6 +760,14 @@ html {
   margin-right: auto;
 }
 
+.mb-1{
+  margin-bottom: 0.25rem;
+}
+
+.mb-4{
+  margin-bottom: 1rem;
+}
+
 .mt-2{
   margin-top: 0.5rem;
 }
@@ -875,6 +883,10 @@ html {
   height: 4rem;
 }
 
+.h-\[18px\]{
+  height: 18px;
+}
+
 .h-full{
   height: 100%;
 }
@@ -887,12 +899,32 @@ html {
   width: 2.5rem;
 }
 
+.w-12{
+  width: 3rem;
+}
+
 .w-16{
   width: 4rem;
 }
 
+.w-5{
+  width: 1.25rem;
+}
+
+.w-7{
+  width: 1.75rem;
+}
+
 .w-8{
   width: 2rem;
+}
+
+.w-\[20\%\]{
+  width: 20%;
+}
+
+.w-\[80\%\]{
+  width: 80%;
 }
 
 .w-\[this-is\\\\\]{
@@ -915,24 +947,12 @@ html {
   width: 100vw;
 }
 
-.w-12{
-  width: 3rem;
-}
-
-.w-5{
-  width: 1.25rem;
-}
-
-.w-7{
-  width: 1.75rem;
+.max-w-\[1140px\]{
+  max-width: 1140px;
 }
 
 .max-w-\[28rem\]{
   max-width: 28rem;
-}
-
-.max-w-\[1140px\]{
-  max-width: 1140px;
 }
 
 .flex-shrink{
@@ -1471,16 +1491,20 @@ html {
   gap: 3rem;
 }
 
+.gap-2{
+  gap: 0.5rem;
+}
+
+.gap-20{
+  gap: 5rem;
+}
+
 .gap-4{
   gap: 1rem;
 }
 
 .gap-8{
   gap: 2rem;
-}
-
-.gap-20{
-  gap: 5rem;
 }
 
 .space-x-2 > :not([hidden]) ~ :not([hidden]){
@@ -1799,6 +1823,10 @@ html {
   border-radius: 0.25rem;
 }
 
+.rounded-full{
+  border-radius: 9999px;
+}
+
 .rounded-b{
   border-bottom-right-radius: 0.25rem;
   border-bottom-left-radius: 0.25rem;
@@ -1951,6 +1979,11 @@ html {
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
+.bg-green-500{
+  --tw-bg-opacity: 1;
+  background-color: rgb(58 123 76 / var(--tw-bg-opacity));
+}
+
 .bg-neutral-800{
   --tw-bg-opacity: 1;
   background-color: rgb(38 38 38 / var(--tw-bg-opacity));
@@ -2087,12 +2120,12 @@ html {
   padding: 0.75rem;
 }
 
-.p-8{
-  padding: 2rem;
-}
-
 .p-7{
   padding: 1.75rem;
+}
+
+.p-8{
+  padding: 2rem;
 }
 
 .px-\[10\%\]{
@@ -2191,14 +2224,14 @@ html {
   line-height: 1.75rem;
 }
 
-.text-xl{
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-}
-
 .text-sm{
   font-size: 0.875rem;
   line-height: 1.25rem;
+}
+
+.text-xl{
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 }
 
 .font-bold{
@@ -2291,6 +2324,11 @@ html {
 
 .text-\[\#336699\]\/\[\.35\]{
   color: rgb(51 102 153 / .35);
+}
+
+.text-gray-300{
+  --tw-text-opacity: 1;
+  color: rgb(209 213 219 / var(--tw-text-opacity));
 }
 
 .text-green-500{

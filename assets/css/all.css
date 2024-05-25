@@ -671,6 +671,10 @@ html {
   inset: -0.25rem;
 }
 
+.-left-3{
+  left: -0.75rem;
+}
+
 .end-1{
   inset-inline-end: 0.25rem;
 }
@@ -760,12 +764,24 @@ html {
   margin-right: auto;
 }
 
+.-mt-2{
+  margin-top: -0.5rem;
+}
+
 .mb-1{
   margin-bottom: 0.25rem;
 }
 
 .mb-4{
   margin-bottom: 1rem;
+}
+
+.mb-6{
+  margin-bottom: 1.5rem;
+}
+
+.ml-6{
+  margin-left: 1.5rem;
 }
 
 .mt-2{
@@ -883,6 +899,10 @@ html {
   height: 4rem;
 }
 
+.h-5{
+  height: 1.25rem;
+}
+
 .h-\[18px\]{
   height: 18px;
 }
@@ -945,6 +965,10 @@ html {
 
 .w-screen{
   width: 100vw;
+}
+
+.w-1{
+  width: 0.25rem;
 }
 
 .max-w-\[1140px\]{
@@ -1923,6 +1947,10 @@ html {
   border-left-width: 1px;
 }
 
+.border-l-4{
+  border-left-width: 4px;
+}
+
 .border-r{
   border-right-width: 1px;
 }
@@ -2116,6 +2144,10 @@ html {
   padding: 0.25rem;
 }
 
+.p-12{
+  padding: 3rem;
+}
+
 .p-3{
   padding: 0.75rem;
 }
@@ -2141,6 +2173,14 @@ html {
 .py-\[10\%\]{
   padding-top: 10%;
   padding-bottom: 10%;
+}
+
+.pb-6{
+  padding-bottom: 1.5rem;
+}
+
+.pl-\[23px\]{
+  padding-left: 23px;
 }
 
 .text-left{
@@ -2240,6 +2280,10 @@ html {
 
 .font-medium{
   font-weight: 500;
+}
+
+.font-normal{
+  font-weight: 400;
 }
 
 .font-semibold{
@@ -3087,6 +3131,10 @@ html {
 }
 
 @media (min-width: 1024px){
+  .lg\:w-1\/2{
+    width: 50%;
+  }
+
   .lg\:w-5\/12{
     width: 41.666667%;
   }
@@ -3105,6 +3153,10 @@ html {
 
   .lg\:flex-row{
     flex-direction: row;
+  }
+
+  .lg\:flex-row-reverse{
+    flex-direction: row-reverse;
   }
 
   .lg\:px-\[3\%\]{

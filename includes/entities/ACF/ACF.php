@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class ACF
+class ACF_Register
 {
     function __construct($args = [])
     {
@@ -34,6 +34,14 @@ class ACF
             return false;
         }
 
-        acf_add_options_page($options);
+        if (empty($options['parent_slug'])) {
+            acf_add_options_page($options);
+
+            return true;
+        }
+
+        acf_add_options_sub_page($options);
+
+        return true;
     }
 }

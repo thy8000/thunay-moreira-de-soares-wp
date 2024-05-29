@@ -6,6 +6,8 @@ if (!defined('ABSPATH')) {
 
 class ACF_Register
 {
+    public $field_group = [];
+
     function __construct($args = [])
     {
         if (
@@ -21,7 +23,6 @@ class ACF_Register
     {
         $default_options = [
             'capability' => 'edit_posts',
-            'redirect'   => false,
         ];
 
         $options = wp_parse_args($options, $default_options);
@@ -43,5 +44,22 @@ class ACF_Register
         acf_add_options_sub_page($options);
 
         return true;
+    }
+
+    public function register_field_group(array $options = [])
+    {
+        $this->field_group = $options;
+
+        //
+    }
+
+    public function add_fields($options)
+    {
+        $this->field_group['fields'][] = $options;
+    }
+
+    public function register_field()
+    {
+        acf_add_local_field_group($this->field_group);
     }
 }

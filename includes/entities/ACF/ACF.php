@@ -62,4 +62,14 @@ class ACF_Register
     {
         acf_add_local_field_group($this->field_group);
     }
+
+    public function get_option_page_field($field_name)
+    {
+        return get_field($field_name, 'option');
+    }
+
+    public function get_field($field_name, $post_ID)
+    {
+        return get_field($field_name, $post_ID);
+    }
 }

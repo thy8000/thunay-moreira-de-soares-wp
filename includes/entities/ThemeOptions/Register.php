@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class ThemeOptions
+class ThemeOptionsRegister
 {
     function __construct()
     {
@@ -295,4 +295,4 @@ class ThemeOptions
     }
 }
 
-new ThemeOptions();
+new ThemeOptionsRegister();

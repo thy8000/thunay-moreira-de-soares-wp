@@ -25,8 +25,6 @@ class ThemeOptionsHome
 
     public function get_social_share()
     {
-        $output_HTML = "<ul>";
-
         $social_media_list = [
             'github' => $this->ACF->get_option_page_field('home_hero_github'),
             'linkedin' => $this->ACF->get_option_page_field('home_hero_linkedin'),
@@ -36,6 +34,8 @@ class ThemeOptionsHome
 
         // TODO: ARRUMAR CLASSES E IMAGENS, E IMPRIMIR NO COMPONENTE TOP HERO.
 
+        $output_HTML = '';
+
         foreach ($social_media_list as $social_slug => $social_media) {
             if (empty($social_media)) {
                 continue;
@@ -44,8 +44,10 @@ class ThemeOptionsHome
             $output_HTML .= "<li><a href='{$social_media}'><i class='fa-brands fa-{$social_slug}'></i></a></li>";
         }
 
-        $output_HTML .= "</ul>";
+        if (empty($output_HTML)) {
+            return;
+        }
 
-        debug($output_HTML);
+        return "<ul>" . $output_HTML . "</ul>";
     }
 }

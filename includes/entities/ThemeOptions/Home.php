@@ -48,24 +48,26 @@ class ThemeOptionsHome
             ],
         ];
 
-        $output_HTML = '';
+        $output = '';
 
-        foreach ($social_media_list as $social_media) {
+        $social_media_output = array_map(function ($social_media) {
             if (empty($social_media)) {
-                continue;
+                return '';
             }
 
-            $output_HTML .= <<<OUTPUT
+            return <<<OUTPUT
             <a class="flex justify-center items-center w-16 h-16 border-2 border-neutral-700 bg-neutral-800 rounded p-3 hover:border-green-500" href="{$social_media['link']}" target="_blank">
                 <img class="w-10" src="{$social_media['image']}" />
             </a>
             OUTPUT;
-        }
+        }, $social_media_list);
 
-        if (empty($output_HTML)) {
+        $output = implode('', array_filter($social_media_output));
+
+        if (empty($output)) {
             return;
         }
 
-        return "<div class='fade-in-3 transition duration-[4500ms] flex flex-wrap justify-center items-center gap-8'>" . $output_HTML . "</div>";
+        return "<div class='fade-in-3 transition duration-[4500ms] flex flex-wrap justify-center items-center gap-8'>" . $output . "</div>";
     }
 }

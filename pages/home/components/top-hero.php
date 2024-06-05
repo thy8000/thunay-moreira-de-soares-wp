@@ -12,7 +12,7 @@ debug($ThemeOptionsHome->get_social_share());
 
 ?>
 
-<section id="top-hero" class="top-hero w-full h-screen bg-no-repeat bg-cover bg-center before:content-[''] before:absolute before:inset-0 before:bg-black before:w-full before:h-full before:opacity-50" x-data="hero">
+<section id="top-hero" class="top-hero w-full h-screen bg-no-repeat bg-cover bg-center before:content-[''] before:absolute before:inset-0 before:bg-black before:w-full before:h-full before:opacity-50">
     <div class="custom-container relative flex flex-col items-center justify-center gap-12 w-full h-full">
         <?php
 

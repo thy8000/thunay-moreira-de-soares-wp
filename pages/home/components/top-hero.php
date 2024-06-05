@@ -38,14 +38,10 @@ debug($ThemeOptionsHome->get_social_share());
 
         }
 
-        ?>
+        if (!empty($ThemeOptionsHome->get_social_share())) {
+            echo $ThemeOptionsHome->get_social_share();
+        }
 
-        <div class="fade-in-3 transition duration-[4500ms] flex flex-wrap justify-center items-center gap-8">
-            <template x-for="social in socials" :key="social.ID">
-                <a class="flex justify-center items-center w-16 h-16 border-2 border-neutral-700 bg-neutral-800 rounded p-3 hover:border-green-500" x-bind:href="social.link" target="_blank">
-                    <img class="w-10" x-bind:src="social.image" />
-                </a>
-            </template>
-        </div>
+        ?>
     </div>
 </section>

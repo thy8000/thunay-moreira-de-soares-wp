@@ -26,28 +26,46 @@ class ThemeOptionsHome
     public function get_social_share()
     {
         $social_media_list = [
-            'github' => $this->ACF->get_option_page_field('home_hero_github'),
-            'linkedin' => $this->ACF->get_option_page_field('home_hero_linkedin'),
-            'email' => $this->ACF->get_option_page_field('home_hero_email'),
-            'curriculum' => $this->ACF->get_option_page_field('home_hero_curriculum'),
+            'github' => [
+                'link' => $this->ACF->get_option_page_field('home_hero_github'),
+                'image' => get_template_directory_uri() . '/assets/images/github.svg',
+            ],
+            'linkedin' => [
+                'link' => $this->ACF->get_option_page_field('home_hero_linkedin'),
+                'image' => get_template_directory_uri() . '/assets/images/linkedin.svg',
+            ],
+            'email' => [
+                'link' => $this->ACF->get_option_page_field('home_hero_email'),
+                'image' => get_template_directory_uri() . '/assets/images/mail.svg',
+            ],
+            'curriculum' => [
+                'link' => $this->ACF->get_option_page_field('home_hero_curriculum'),
+                'image' => get_template_directory_uri() . '/assets/images/cv.svg',
+            ],
+            'whatsapp' => [
+                'link' => $this->ACF->get_option_page_field('home_hero_whatsapp'),
+                'image' => get_template_directory_uri() . '/assets/images/whatsapp.svg',
+            ],
         ];
-
-        // TODO: ARRUMAR CLASSES E IMAGENS, E IMPRIMIR NO COMPONENTE TOP HERO.
 
         $output_HTML = '';
 
-        foreach ($social_media_list as $social_slug => $social_media) {
+        foreach ($social_media_list as $social_media) {
             if (empty($social_media)) {
                 continue;
             }
 
-            $output_HTML .= "<li><a href='{$social_media}'><i class='fa-brands fa-{$social_slug}'></i></a></li>";
+            $output_HTML .= <<<OUTPUT
+            <a class="flex justify-center items-center w-16 h-16 border-2 border-neutral-700 bg-neutral-800 rounded p-3 hover:border-green-500" href="{$social_media['link']}" target="_blank">
+                <img class="w-10" src="{$social_media['image']}" />
+            </a>
+            OUTPUT;
         }
 
         if (empty($output_HTML)) {
             return;
         }
 
-        return "<ul>" . $output_HTML . "</ul>";
+        return "<div class='fade-in-3 transition duration-[4500ms] flex flex-wrap justify-center items-center gap-8'>" . $output_HTML . "</div>";
     }
 }

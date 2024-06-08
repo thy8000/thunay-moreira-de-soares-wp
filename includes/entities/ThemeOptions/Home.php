@@ -70,4 +70,24 @@ class ThemeOptionsHome
 
         return "<div class='fade-in-3 transition duration-[4500ms] flex flex-wrap justify-center items-center gap-8'>" . $output . "</div>";
     }
+
+    public function get_about_me_photo()
+    {
+        return $this->ACF->get_option_page_field('home_about_me_photo');
+    }
+
+    public function get_about_me_name()
+    {
+        return $this->ACF->get_option_page_field('home_about_me_name');
+    }
+
+    public function get_about_me_job()
+    {
+        return $this->ACF->get_option_page_field('home_about_me_job');
+    }
+
+    public function get_about_me_description()
+    {
+        return $this->ACF->get_option_page_field('home_about_me_description');
+    }
 }

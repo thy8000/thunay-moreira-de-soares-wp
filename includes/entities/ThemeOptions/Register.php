@@ -36,6 +36,7 @@ class ThemeOptionsRegister
 
         $this->register_home_hero();
         $this->register_home_about_me();
+        $this->register_home_services();
     }
 
     public function register_home_hero()
@@ -266,7 +267,7 @@ class ThemeOptionsRegister
                     ],
                 ],
             ],
-            'menu_order' => 0,
+            'menu_order' => 1,
             'position' => 'normal',
             'style' => 'default',
             'label_placement' => 'top',
@@ -403,6 +404,188 @@ class ThemeOptionsRegister
         ]);
 
         $AboutMe->register_field();
+    }
+
+    public function register_home_services()
+    {
+        $Services = new ACF_Register();
+
+        $Services->register_field_group([
+            'key' => 'group_6668f7d156d3f',
+            'title' => 'Serviços',
+            'location' => [
+                [
+                    [
+                        'param' => 'options_page',
+                        'operator' => '==',
+                        'value' => 'theme-options-home',
+                    ],
+                ],
+            ],
+            'menu_order' => 2,
+            'position' => 'normal',
+            'style' => 'default',
+            'label_placement' => 'top',
+            'instruction_placement' => 'label',
+            'hide_on_screen' => '',
+            'active' => true,
+            'description' => '',
+            'show_in_rest' => 0,
+        ]);
+
+        $Services->add_fields([
+            [
+                'key' => 'field_6668f7d1b3ae2',
+                'label' => 'Texto',
+                'name' => '',
+                'aria-label' => '',
+                'type' => 'tab',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => [
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ],
+                'placement' => 'top',
+                'endpoint' => 0,
+            ],
+            [
+                'key' => 'field_6668f82ab3ae3',
+                'label' => 'Texto',
+                'name' => 'home_services_text',
+                'aria-label' => '',
+                'type' => 'textarea',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => [
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ],
+                'default_value' => '',
+                'maxlength' => '',
+                'rows' => '',
+                'placeholder' => '',
+                'new_lines' => 'wpautop',
+            ]
+        ]);
+
+        $Services->add_fields([
+            [
+                'key' => 'field_6668f867b3ae5',
+                'label' => 'Cards',
+                'name' => '',
+                'aria-label' => '',
+                'type' => 'tab',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => [
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ],
+                'placement' => 'top',
+                'endpoint' => 0,
+            ],
+            [
+                'key' => 'field_6668f885b3ae6',
+                'label' => 'Cards',
+                'name' => 'home_services_cards',
+                'aria-label' => '',
+                'type' => 'repeater',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => [
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ],
+                'layout' => 'table',
+                'pagination' => 0,
+                'min' => 0,
+                'max' => 0,
+                'collapsed' => '',
+                'button_label' => 'Add Row',
+                'rows_per_page' => 20,
+                'sub_fields' => [
+                    [
+                        'key' => 'field_6668f89db3ae7',
+                        'label' => 'Imagem',
+                        'name' => 'image',
+                        'aria-label' => '',
+                        'type' => 'image',
+                        'instructions' => '',
+                        'required' => 0,
+                        'conditional_logic' => 0,
+                        'wrapper' => [
+                            'width' => '',
+                            'class' => '',
+                            'id' => '',
+                        ],
+                        'return_format' => 'array',
+                        'library' => 'all',
+                        'min_width' => '',
+                        'min_height' => '',
+                        'min_size' => '',
+                        'max_width' => '',
+                        'max_height' => '',
+                        'max_size' => '',
+                        'mime_types' => '',
+                        'preview_size' => 'medium',
+                        'parent_repeater' => 'field_6668f885b3ae6',
+                    ],
+                    [
+                        'key' => 'field_6668f8b2b3ae8',
+                        'label' => 'Título',
+                        'name' => 'title',
+                        'aria-label' => '',
+                        'type' => 'text',
+                        'instructions' => '',
+                        'required' => 0,
+                        'conditional_logic' => 0,
+                        'wrapper' => [
+                            'width' => '',
+                            'class' => '',
+                            'id' => '',
+                        ],
+                        'default_value' => '',
+                        'maxlength' => '',
+                        'placeholder' => '',
+                        'prepend' => '',
+                        'append' => '',
+                        'parent_repeater' => 'field_6668f885b3ae6',
+                    ],
+                    [
+                        'key' => 'field_6668f8beb3ae9',
+                        'label' => 'Descrição',
+                        'name' => 'description',
+                        'aria-label' => '',
+                        'type' => 'textarea',
+                        'instructions' => '',
+                        'required' => 0,
+                        'conditional_logic' => 0,
+                        'wrapper' => [
+                            'width' => '',
+                            'class' => '',
+                            'id' => '',
+                        ],
+                        'default_value' => '',
+                        'maxlength' => '',
+                        'rows' => '',
+                        'placeholder' => '',
+                        'new_lines' => '',
+                        'parent_repeater' => 'field_6668f885b3ae6',
+                    ],
+                ],
+            ]
+        ]);
+
+        $Services->register_field();
     }
 }
 

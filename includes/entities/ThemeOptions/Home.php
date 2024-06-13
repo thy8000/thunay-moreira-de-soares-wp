@@ -90,4 +90,14 @@ class ThemeOptionsHome
     {
         return $this->ACF->get_option_page_field('home_about_me_description');
     }
+
+    public function get_services_text()
+    {
+        return $this->ACF->get_option_page_field('home_services_text');
+    }
+
+    public function get_services_cards()
+    {
+        return $this->ACF->get_option_page_field('home_services_cards');
+    }
 }

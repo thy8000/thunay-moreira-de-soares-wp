@@ -37,6 +37,7 @@ class ThemeOptionsRegister
         $this->register_home_hero();
         $this->register_home_about_me();
         $this->register_home_services();
+        $this->register_home_skills();
     }
 
     public function register_home_hero()
@@ -611,6 +612,164 @@ class ThemeOptionsRegister
         ]);
 
         $Services->register_field();
+    }
+
+    public function register_home_skills()
+    {
+
+        $Skills = new ACF_Register();
+
+        $Skills->register_field_group([
+            'key' => 'group_6672a40402c31',
+            'title' => 'Habilidades',
+            'location' => [
+                [
+                    [
+                        'param' => 'options_page',
+                        'operator' => '==',
+                        'value' => 'theme-options-home',
+                    ],
+                ],
+            ],
+            'menu_order' => 3,
+            'position' => 'normal',
+            'style' => 'default',
+            'label_placement' => 'top',
+            'instruction_placement' => 'label',
+            'hide_on_screen' => '',
+            'active' => true,
+            'description' => '',
+            'show_in_rest' => 0,
+        ]);
+
+        $Skills->add_fields([
+            [
+                'key' => 'field_6672a43fc8208',
+                'label' => 'Texto',
+                'name' => '',
+                'aria-label' => '',
+                'type' => 'tab',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => [
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ],
+                'placement' => 'top',
+                'endpoint' => 0,
+            ],
+            [
+                'key' => 'field_6672a404c8207',
+                'label' => 'Descrição',
+                'name' => 'home_skills_description',
+                'aria-label' => '',
+                'type' => 'textarea',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => [
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ],
+                'default_value' => '',
+                'maxlength' => '',
+                'rows' => '',
+                'placeholder' => '',
+                'new_lines' => '',
+            ],
+        ]);
+
+        $Skills->add_fields([
+            [
+                'key' => 'field_6672a452c8209',
+                'label' => 'Habilidades',
+                'name' => '',
+                'aria-label' => '',
+                'type' => 'tab',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => [
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ],
+                'placement' => 'top',
+                'endpoint' => 0,
+            ],
+            [
+                'key' => 'field_6672a466c820a',
+                'label' => 'Lista de habilidades',
+                'name' => 'home_skills_skills_list',
+                'aria-label' => '',
+                'type' => 'repeater',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => [
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ],
+                'layout' => 'table',
+                'pagination' => 0,
+                'min' => 0,
+                'max' => 0,
+                'collapsed' => '',
+                'button_label' => 'Add Row',
+                'rows_per_page' => 20,
+                'sub_fields' => [
+                    [
+                        'key' => 'field_6672a48dc820b',
+                        'label' => 'Nome',
+                        'name' => 'name',
+                        'aria-label' => '',
+                        'type' => 'text',
+                        'instructions' => '',
+                        'required' => 0,
+                        'conditional_logic' => 0,
+                        'wrapper' => [
+                            'width' => '',
+                            'class' => '',
+                            'id' => '',
+                        ],
+                        'default_value' => '',
+                        'maxlength' => '',
+                        'placeholder' => '',
+                        'prepend' => '',
+                        'append' => '',
+                        'parent_repeater' => 'field_6672a466c820a',
+                    ],
+                    [
+                        'key' => 'field_6672a49ac820c',
+                        'label' => 'Porcentagem',
+                        'name' => 'percent',
+                        'aria-label' => '',
+                        'type' => 'range',
+                        'instructions' => '',
+                        'required' => 0,
+                        'conditional_logic' => 0,
+                        'wrapper' => [
+                            'width' => '',
+                            'class' => '',
+                            'id' => '',
+                        ],
+                        'default_value' => '',
+                        'min' => '',
+                        'max' => '',
+                        'step' => '',
+                        'prepend' => '',
+                        'append' => '%',
+                        'parent_repeater' => 'field_6672a466c820a',
+                    ],
+                ],
+            ],
+        ]);
+
+        $Skills->register_field();
     }
 }
 

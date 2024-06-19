@@ -4,6 +4,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+$ThemeOptionsHome = new ThemeOptionsHome();
+
 ?>
 
 <section id="skills" x-data="skills">
@@ -13,9 +15,19 @@ if (!defined('ABSPATH')) {
                 Habilidades
             </h2>
 
-            <h3 class="fade-in text-gray-300 text-lg leading-7">
-                Conheça minha experiência acadêmica e meus conhecimentos técnicos.
-            </h3>
+            <?php
+
+            if (!empty($ThemeOptionsHome->get_skills_description())) {
+
+            ?>
+                <h3 class="fade-in text-gray-300 text-lg leading-7">
+                    <?php echo esc_html($ThemeOptionsHome->get_skills_description()) ?>
+                </h3>
+            <?php
+
+            }
+
+            ?>
         </div>
 
         <div class="flex">
@@ -26,21 +38,41 @@ if (!defined('ABSPATH')) {
                     </h4>
                 </div>
 
-                <div class="flex flex-col gap-4">
-                    <template x-for="skillList in skillsList" x-on:key="skillList.ID">
-                        <div class="fade-in flex flex-col gap-2" x-bind:class="`skill-${skillList.ID}`">
-                            <div class="flex">
-                                <h5 class="mb-1 text-lg font-semibold text-white font-poppins w-[80%]" x-text="skillList.name"></h5>
+                <?php
 
-                                <h6 class="flex justify-end w-[20%] text-neutral-300 text-sm font-bold font-poppins" x-text="skillList.level"></h6>
-                            </div>
+                if (!empty($ThemeOptionsHome->get_skills_list())) {
 
-                            <div class="w-full rounded-full h-[18px] mb-4">
-                                <div class="bg-green-500 bg-gradient-green-500 h-[18px] rounded-full" x-bind:style="`width: ${skillList.percent}%`"></div>
+                ?>
+                    <div class="flex flex-col gap-4">
+                        <?php
+
+                        foreach ($ThemeOptionsHome->get_skills_list() as $skill) {
+
+                        ?>
+                            <div class="fade-in flex flex-col gap-2">
+                                <div class="flex">
+                                    <h5 class="mb-1 text-lg font-semibold text-white font-poppins w-[80%]">
+                                        <?php echo esc_html($skill['name']) ?>
+                                    </h5>
+
+                                    <h6 class="flex justify-end w-[20%] text-neutral-300 text-sm font-bold font-poppins" x-text="getLevel(<?php echo esc_attr($skill['percent']); ?>)"></h6>
+                                </div>
+
+                                <div class="w-full rounded-full h-[18px] mb-4">
+                                    <div class="bg-green-500 bg-gradient-green-500 h-[18px] rounded-full" x-bind:style="`width: <?php echo esc_attr($skill['percent']); ?>%`"></div>
+                                </div>
                             </div>
-                        </div>
-                    </template>
-                </div>
+                        <?php
+
+                        }
+
+                        ?>
+                    </div>
+                <?php
+
+                }
+
+                ?>
             </div>
         </div>
     </div>

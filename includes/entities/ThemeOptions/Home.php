@@ -100,4 +100,14 @@ class ThemeOptionsHome
     {
         return $this->ACF->get_option_page_field('home_services_cards');
     }
+
+    public function get_skills_description()
+    {
+        return $this->ACF->get_option_page_field('home_skills_description');
+    }
+
+    public function get_skills_list()
+    {
+        return $this->ACF->get_option_page_field('home_skills_skills_list');
+    }
 }

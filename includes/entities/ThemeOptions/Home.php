@@ -110,4 +110,14 @@ class ThemeOptionsHome
     {
         return $this->ACF->get_option_page_field('home_skills_skills_list');
     }
+
+    public function get_experience_text()
+    {
+        return $this->ACF->get_option_page_field('home_experience_text');
+    }
+
+    public function get_experience_timeline()
+    {
+        return $this->ACF->get_option_page_field('home_experience_timeline');
+    }
 }

@@ -4,6 +4,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+$ThemeOptionsHome = new ThemeOptionsHome();
+
 ?>
 
 <section id="experience">
@@ -14,72 +16,63 @@ if (!defined('ABSPATH')) {
                     Experiência Profissional
                 </h2>
 
-                <h3 class="fade-in text-white text-lg leading-7">
-                    Explore minha jornada profissional como Desenvolvedor, onde
-                    busquei constantemente aprimorar minhas habilidades e contribuir
-                    de forma significativa para projetos inovadores em empresas
-                    incríveis.
-                </h3>
+                <?php
+
+                if (!empty($ThemeOptionsHome->get_experience_text())) {
+
+                ?>
+                    <h3 class="fade-in text-white text-lg leading-7"><?php echo esc_html($ThemeOptionsHome->get_experience_text()) ?></h3>
+                <?php
+
+                }
+
+                ?>
             </div>
 
             <div class="w-full lg:w-1/2">
                 <div class="p-12 bg-neutral-800 border border-neutral-700 rounded">
-                    <ol class="fade-in border-l-4 border-green-500">
-                        <li class="experience-1 fade-in">
-                            <div class="relative flex-start flex items-center">
-                                <div class="absolute -left-3 top-0 flex w-5 h-5 rounded-full bg-gradient-green-500"></div>
+                    <?php
 
-                                <div class="flex flex-col gap-2 pl-[23px]">
-                                    <h4 class="-mt-2 text-xl font-semibold text-white">
-                                        Desenvolvedor Back-End Júnior
-                                    </h4>
-                                    <h4 class="-mt-2 text-normal font-normal text-white">
-                                        IT9 Marketing Digital
-                                    </h4>
-                                </div>
-                            </div>
+                    if (!empty($ThemeOptionsHome->get_experience_timeline())) {
 
-                            <div class="mb-6 ml-6 pb-6">
-                                <a href="#" class="text-sm text-white">2019 - 2022</a>
-                                <p class="mb-4 mt-2 text-neutral-300">
-                                    Trabalhei como Desenvolvedor Back-End Júnior utilizando
-                                    o framework Wordpress. Meu trabalho consistia em criar
-                                    sites para clientes novos, realizar a manutenção de
-                                    sites para os clientes antigos, e criar novas soluções e
-                                    funcionalidades de acordo com a demanda e a necessidade
-                                    dos clientes.
-                                </p>
-                            </div>
-                        </li>
+                    ?>
+                        <ol class="fade-in border-l-4 border-green-500">
+                            <?php
 
-                        <li class="experience-2 fade-in">
-                            <div class="relative flex-start flex items-center">
-                                <div class="absolute -left-3 flex w-5 h-5 rounded-full bg-gradient-green-500"></div>
+                            foreach ($ThemeOptionsHome->get_experience_timeline() as $key => $experience) {
 
-                                <div class="flex flex-col gap-2 pl-[23px]">
-                                    <h4 class="-mt-2 text-xl font-semibold text-white">
-                                        Desenvolvedor Fullstack (Wordpress)
-                                    </h4>
+                            ?>
+                                <li class="experience-<?php echo esc_attr($key); ?> fade-in">
+                                    <div class="relative flex-start flex items-center">
+                                        <div class="absolute -left-3 top-0 flex w-5 h-5 rounded-full bg-gradient-green-500"></div>
 
-                                    <h4 class="-mt-2 text-normal font-normal text-white">
-                                        Buildbox IT Solutions
-                                    </h4>
-                                </div>
-                            </div>
-                            <div class="mb-6 ml-6 pb-6">
-                                <a href="#" class="text-sm text-white">2022 - Atualmente</a>
-                                <p class="mb-4 mt-2 text-neutral-300">
-                                    Atualmente trabalho como Desenvolvedor Fullstack
-                                    utilizando o framework Wordpress. Meu trabalho consiste
-                                    em criar sites para os clientes novos cujo o design seja
-                                    fiel ao protótipo elaborado pelos Designers. Também
-                                    realizo a manutenção dos sites de clientes antigos e
-                                    crio novas soluções de acordo com as necessidades e
-                                    demandas deles.
-                                </p>
-                            </div>
-                        </li>
-                    </ol>
+                                        <div class="flex flex-col gap-2 pl-[23px]">
+                                            <h4 class="-mt-2 text-xl font-semibold text-white">
+                                                <?php echo esc_html($experience['profission']); ?>
+                                            </h4>
+                                            <h4 class="-mt-2 text-normal font-normal text-white">
+                                                <?php echo esc_html($experience['company']); ?>
+                                            </h4>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-6 ml-6 pb-6">
+                                        <a href="#" class="text-sm text-white"><?php echo esc_html($experience['experience_time']); ?></a>
+
+                                        <p class="mb-4 mt-2 text-neutral-300"><?php echo esc_html($experience['job_description']); ?></p>
+                                    </div>
+                                </li>
+                            <?php
+
+                            }
+
+                            ?>
+                        </ol>
+                    <?php
+
+                    }
+
+                    ?>
                 </div>
             </div>
         </div>

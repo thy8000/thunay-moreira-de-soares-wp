@@ -38,6 +38,7 @@ class ThemeOptionsRegister
         $this->register_home_about_me();
         $this->register_home_services();
         $this->register_home_skills();
+        $this->register_home_experience();
     }
 
     public function register_home_hero()
@@ -770,6 +771,204 @@ class ThemeOptionsRegister
         ]);
 
         $Skills->register_field();
+    }
+
+    public function register_home_experience()
+    {
+        $Experience = new ACF_Register();
+
+        $Experience->register_field_group([
+            'key' => 'group_6674d37fa8b07',
+            'title' => 'Experiência',
+            'location' => [
+                [
+                    [
+                        'param' => 'options_page',
+                        'operator' => '==',
+                        'value' => 'theme-options-home',
+                    ],
+                ],
+            ],
+            'menu_order' => 4,
+            'position' => 'normal',
+            'style' => 'default',
+            'label_placement' => 'top',
+            'instruction_placement' => 'label',
+            'hide_on_screen' => '',
+            'active' => true,
+            'description' => '',
+            'show_in_rest' => 0,
+        ]);
+
+        $Experience->add_fields([
+            [
+                'key' => 'field_6674d37f8cb57',
+                'label' => 'Texto',
+                'name' => '',
+                'aria-label' => '',
+                'type' => 'tab',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => [
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ],
+                'placement' => 'top',
+                'endpoint' => 0,
+            ],
+            [
+                'key' => 'field_6674d39a8cb58',
+                'label' => 'Descrição',
+                'name' => 'home_experience_text',
+                'aria-label' => '',
+                'type' => 'textarea',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => [
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ],
+                'default_value' => '',
+                'maxlength' => '',
+                'rows' => '',
+                'placeholder' => '',
+                'new_lines' => '',
+            ]
+        ]);
+
+        $Experience->add_fields([
+            [
+                'key' => 'field_6674d3c58cb59',
+                'label' => 'Experiência',
+                'name' => '',
+                'aria-label' => '',
+                'type' => 'tab',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => [
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ],
+                'placement' => 'top',
+                'endpoint' => 0,
+            ],
+            [
+                'key' => 'field_6674d3dd8cb5a',
+                'label' => 'Timeline',
+                'name' => 'home_experience_timeline',
+                'aria-label' => '',
+                'type' => 'repeater',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => [
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ],
+                'layout' => 'table',
+                'pagination' => 0,
+                'min' => 0,
+                'max' => 0,
+                'collapsed' => '',
+                'button_label' => 'Add Row',
+                'rows_per_page' => 20,
+                'sub_fields' => [
+                    [
+                        'key' => 'field_6674d3f28cb5b',
+                        'label' => 'Profissão',
+                        'name' => 'profission',
+                        'aria-label' => '',
+                        'type' => 'text',
+                        'instructions' => '',
+                        'required' => 0,
+                        'conditional_logic' => 0,
+                        'wrapper' => [
+                            'width' => '',
+                            'class' => '',
+                            'id' => '',
+                        ],
+                        'default_value' => '',
+                        'maxlength' => '',
+                        'placeholder' => '',
+                        'prepend' => '',
+                        'append' => '',
+                        'parent_repeater' => 'field_6674d3dd8cb5a',
+                    ],
+                    [
+                        'key' => 'field_6674d4148cb5c',
+                        'label' => 'Empresa',
+                        'name' => 'company',
+                        'aria-label' => '',
+                        'type' => 'text',
+                        'instructions' => '',
+                        'required' => 0,
+                        'conditional_logic' => 0,
+                        'wrapper' => [
+                            'width' => '',
+                            'class' => '',
+                            'id' => '',
+                        ],
+                        'default_value' => '',
+                        'maxlength' => '',
+                        'placeholder' => '',
+                        'prepend' => '',
+                        'append' => '',
+                        'parent_repeater' => 'field_6674d3dd8cb5a',
+                    ],
+                    [
+                        'key' => 'field_6674d42e8cb5d',
+                        'label' => 'Tempo de experiência',
+                        'name' => 'experience_time',
+                        'aria-label' => '',
+                        'type' => 'text',
+                        'instructions' => '',
+                        'required' => 0,
+                        'conditional_logic' => 0,
+                        'wrapper' => [
+                            'width' => '',
+                            'class' => '',
+                            'id' => '',
+                        ],
+                        'default_value' => '',
+                        'maxlength' => '',
+                        'placeholder' => '',
+                        'prepend' => '',
+                        'append' => '',
+                        'parent_repeater' => 'field_6674d3dd8cb5a',
+                    ],
+                    [
+                        'key' => 'field_6674d4488cb5e',
+                        'label' => 'Descrição do trabalho',
+                        'name' => 'job_description',
+                        'aria-label' => '',
+                        'type' => 'textarea',
+                        'instructions' => '',
+                        'required' => 0,
+                        'conditional_logic' => 0,
+                        'wrapper' => [
+                            'width' => '',
+                            'class' => '',
+                            'id' => '',
+                        ],
+                        'default_value' => '',
+                        'maxlength' => '',
+                        'rows' => '',
+                        'placeholder' => '',
+                        'new_lines' => '',
+                        'parent_repeater' => 'field_6674d3dd8cb5a',
+                    ],
+                ],
+            ],
+        ]);
+
+        $Experience->register_field();
     }
 }
 

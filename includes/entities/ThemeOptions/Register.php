@@ -68,7 +68,7 @@ class ThemeOptionsRegister
             'show_in_rest' => 0,
         ]);
 
-        $Hero->add_fields([
+        $Hero->add_fields_group([
             [
                 'key' => 'field_66566f9e3d181',
                 'label' => 'Título e descrição',
@@ -128,7 +128,7 @@ class ThemeOptionsRegister
             ],
         ]);
 
-        $Hero->add_fields(
+        $Hero->add_fields_group(
             [
                 [
                     'key' => 'field_66566fb93d182',
@@ -280,7 +280,7 @@ class ThemeOptionsRegister
             'show_in_rest' => 0,
         ]);
 
-        $AboutMe->add_fields([
+        $AboutMe->add_fields_group([
             [
                 'key' => 'field_6663a611fcf32',
                 'label' => 'Foto',
@@ -325,7 +325,7 @@ class ThemeOptionsRegister
             ]
         ]);
 
-        $AboutMe->add_fields([
+        $AboutMe->add_fields_group([
             [
                 'key' => 'field_6663a669fcf34',
                 'label' => 'Informações',
@@ -435,7 +435,7 @@ class ThemeOptionsRegister
             'show_in_rest' => 0,
         ]);
 
-        $Services->add_fields([
+        $Services->add_fields_group([
             [
                 'key' => 'field_6668f7d1b3ae2',
                 'label' => 'Texto',
@@ -500,7 +500,7 @@ class ThemeOptionsRegister
             ],
         ]);
 
-        $Services->add_fields([
+        $Services->add_fields_group([
             [
                 'key' => 'field_6668f867b3ae5',
                 'label' => 'Cards',
@@ -643,7 +643,7 @@ class ThemeOptionsRegister
             'show_in_rest' => 0,
         ]);
 
-        $Skills->add_fields([
+        $Skills->add_fields_group([
             [
                 'key' => 'field_6672a43fc8208',
                 'label' => 'Texto',
@@ -683,7 +683,7 @@ class ThemeOptionsRegister
             ],
         ]);
 
-        $Skills->add_fields([
+        $Skills->add_fields_group([
             [
                 'key' => 'field_6672a452c8209',
                 'label' => 'Habilidades',
@@ -800,7 +800,7 @@ class ThemeOptionsRegister
             'show_in_rest' => 0,
         ]);
 
-        $Experience->add_fields([
+        $Experience->add_fields_group([
             [
                 'key' => 'field_6674d37f8cb57',
                 'label' => 'Texto',
@@ -840,7 +840,7 @@ class ThemeOptionsRegister
             ]
         ]);
 
-        $Experience->add_fields([
+        $Experience->add_fields_group([
             [
                 'key' => 'field_6674d3c58cb59',
                 'label' => 'Experiência',

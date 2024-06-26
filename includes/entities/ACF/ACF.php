@@ -49,11 +49,9 @@ class ACF_Register
     public function register_field_group(array $options = [])
     {
         $this->field_group = $options;
-
-        //
     }
 
-    public function add_fields($options)
+    public function add_fields_group($options)
     {
         $this->field_group['fields'][] = $options;
     }

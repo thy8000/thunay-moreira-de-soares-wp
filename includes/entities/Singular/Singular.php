@@ -119,4 +119,9 @@ class Singular
     {
         return get_the_terms($this->post, $taxonomy);
     }
+
+    public function get_custom_field($custom_field_slug)
+    {
+        return get_post_meta($this->ID, $custom_field_slug, true);
+    }
 }

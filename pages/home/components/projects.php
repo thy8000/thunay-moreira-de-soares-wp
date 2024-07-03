@@ -54,27 +54,38 @@ $projects_posts = Project_Utils::get_projects();
 
                     foreach ($projects_posts as $project) {
                         $Project = new Project($project);
+
                     ?>
-                        <div class="flex flex-col gap-8 p-5 bg-neutral-800 border border-neutral-700 rounded" x-show="tab === project.type || tab === 'all'">
+                        <div class="flex flex-col gap-8 p-5 bg-neutral-800 border border-neutral-700 rounded" x-show="tab === '<?php echo esc_attr($Project->get_project_category()); ?>' || tab === 'all'">
                             <div>
-                                <img class="w-full object-cover aspect-[300/180]" x-bind:src="project.image" />
+                                <img class="w-full object-cover aspect-[300/180]" src="<?php echo esc_url($Project->get_thumbnail_URL()); ?>" />
                             </div>
 
                             <div class="flex flex-col gap-6 min-h-52">
                                 <div class="flex flex-col gap-4 h-1/2">
-                                    <h3 class="text-white text-lg font-bold font-poppins" x-text="project.title"></h3>
+                                    <h3 class="text-white text-lg font-bold font-poppins"><?php esc_html_e($Project->get_title()); ?></h3>
 
                                     <div class="text-neutral-300">
-                                        <p x-text="project.description"></p>
+                                        <p><?php esc_html_e($Project->get_excerpt()); ?></p>
                                     </div>
                                 </div>
 
                                 <div class="flex gap-4 items-end h-1/2">
-                                    <a class="personal-projects__button py-4 px-6 border-2 border-green-500 rounded-full cursor-pointer text-white" target="_blank" x-bind:href="project.link1.link" x-text="project.link1.name">
-                                    </a>
+                                    <?php
 
-                                    <a class="personal-projects__button py-4 px-6 border-2 border-green-500 rounded-full cursor-pointer text-white" target="_blank" x-bind:href="project.link2.link" x-text="project.link2.name" x-show="project.link2.link !== ''">
-                                    </a>
+                                    if (!empty($Project->get_links())) {
+                                        foreach ($Project->get_links() as $link) {
+                                            if (!empty($link['url'])) {
+
+                                    ?>
+                                                <a class="personal-projects__button py-4 px-6 border-2 border-green-500 rounded-full cursor-pointer text-white" target="_blank" href="<?php echo esc_url($link['url']); ?>"><?php esc_html_e($link['text']); ?></a>
+                                    <?php
+
+                                            }
+                                        }
+                                    }
+
+                                    ?>
                                 </div>
                             </div>
                         </div>

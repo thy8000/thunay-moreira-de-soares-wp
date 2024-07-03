@@ -124,4 +124,9 @@ class Singular
     {
         return get_post_meta($this->ID, $custom_field_slug, true);
     }
+
+    public function get_slug()
+    {
+        return $this->post->post_name;
+    }
 }

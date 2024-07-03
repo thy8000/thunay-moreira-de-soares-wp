@@ -25,4 +25,17 @@ class Project extends Singular
 
         return $links;
     }
+
+    public function get_project_category()
+    {
+        $projects_category = get_the_terms($this->ID, 'project_category');
+
+        if (empty($projects_category)) {
+            return null;
+        }
+
+        $Project_Category = new Taxonomy($projects_category[0]->term_id);
+
+        return $Project_Category->get_slug();
+    }
 }

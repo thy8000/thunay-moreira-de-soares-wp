@@ -18,8 +18,6 @@ class GlobalOptions
         add_filter('upload_mimes', [$this, 'register_svg_support']);
 
         add_action('init', [$this, 'register_theme_support']);
-
-        add_action('init', [$this, 'register_menus']);
     }
 
     public function register_head_content()
@@ -43,15 +41,6 @@ class GlobalOptions
     public function register_theme_support()
     {
         add_theme_support('post-thumbnails');
-    }
-
-    public function register_menus()
-    {
-        register_nav_menus(
-            [
-                'home-menu' => __('Menu Principal', 'thunay'),
-            ]
-        );
     }
 }
 

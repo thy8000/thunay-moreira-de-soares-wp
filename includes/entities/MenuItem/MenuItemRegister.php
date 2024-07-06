@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class MenuRegister
+class MenuItemRegister
 {
     public function __construct()
     {
@@ -65,4 +65,4 @@ class MenuRegister
     }
 }
 
-new MenuRegister();
+new MenuItemRegister();

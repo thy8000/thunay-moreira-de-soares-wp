@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class MenuItems
+class MenuItem
 {
     private $ID = 0;
 

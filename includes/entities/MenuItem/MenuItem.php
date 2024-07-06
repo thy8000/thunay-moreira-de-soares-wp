@@ -6,17 +6,32 @@ if (!defined('ABSPATH')) {
 
 class MenuItem
 {
-    private $ID = 0;
+    private $menu_item;
 
-    public function __construct(int $ID)
+    public function __construct($menu_item)
     {
-        $this->ID = $ID;
+        $this->menu_item = $menu_item;
+    }
+
+    public function get_ID()
+    {
+        return $this->menu_item->ID;
+    }
+
+    public function get_title()
+    {
+        return $this->menu_item->post_title;
+    }
+
+    public function get_slug()
+    {
+        return $this->menu_item->post_name;
     }
 
     public function get_custom_field(string $field_slug)
     {
         $ACF_Register = new ACF_Register();
 
-        return $ACF_Register->get_field($field_slug, $this->ID);
+        return $ACF_Register->get_field($field_slug, $this->get_ID());
     }
 }

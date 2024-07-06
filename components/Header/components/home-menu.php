@@ -17,12 +17,10 @@ if (empty($menu_items)) {
     <?php
 
     foreach ($menu_items as $menu_item) {
-        $HomeMenuItems = new HomeMenuItems($menu_item->ID);
-
-        debug($HomeMenuItems->get_section_ID());
+        $MenuItem = new MenuItem($menu_item);
 
     ?>
-        <button id="<?php echo esc_attr($menu_item->post_name); ?>" class="font-semibold text-3xl text-white hover:scale-150 transition-all duration-500 ease-linear" x-on:click="goToElement('<?php esc_attr_e($HomeMenuItems->get_section_ID()); ?>')"><?php esc_html_e($menu_item->post_title); ?></button>
+        <button id="<?php echo esc_attr($MenuItem->get_slug()); ?>" class="font-semibold text-3xl text-white hover:scale-150 transition-all duration-500 ease-linear" x-on:click="goToElement('<?php esc_attr_e($MenuItem->get_custom_field('home_menu_element_ID')); ?>')"><?php esc_html_e($MenuItem->get_title()); ?></button>
     <?php
 
     }

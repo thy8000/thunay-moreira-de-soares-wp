@@ -8,7 +8,7 @@ $ThemeOptionsHome = new ThemeOptionsHome();
 
 ?>
 
-<section id="about-me" class="w-full">
+<section id="section-sobre-mim" class="w-full">
     <div class="custom-container py-[10%] lg:py-[5%]">
         <div class="flex justify-center items-center lg:flex-row flex-col gap-8 border border-neutral-700 rounded p-8 bg-neutral-800">
             <?php

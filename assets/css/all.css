@@ -2949,23 +2949,23 @@ html {
   opacity: 1 !important;
 }
 
-#about-me img.fade-in {
+#section-sobre-mim img.fade-in {
   transition: 1s all;
 }
 
-#about-me h2.fade-in {
+#section-sobre-mim h2.fade-in {
   transition: 1.2s all;
 }
 
-#about-me h3.fade-in {
+#section-sobre-mim h3.fade-in {
   transition: 1.3s all;
 }
 
-#about-me h4.fade-in {
+#section-sobre-mim h4.fade-in {
   transition: 1.4s all;
 }
 
-#about-me p.fade-in {
+#section-sobre-mim p.fade-in {
   transition: 1.5s all;
 }
 

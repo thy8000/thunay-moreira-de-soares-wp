@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class HomeMenuItems
+class MenuItems
 {
     private $ID = 0;
 
@@ -13,10 +13,10 @@ class HomeMenuItems
         $this->ID = $ID;
     }
 
-    public function get_section_ID()
+    public function get_custom_field(string $field_slug)
     {
         $ACF_Register = new ACF_Register();
 
-        return $ACF_Register->get_field('home_menu_element_ID', $this->ID);
+        return $ACF_Register->get_field($field_slug, $this->ID);
     }
 }

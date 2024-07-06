@@ -47,11 +47,15 @@ if (!defined('ABSPATH')) {
                     Menu
                 </h1>
 
-                <ul class="flex flex-col items-center gap-8">
-                    <template x-for="item in menuItems" x-on:key="item.ID">
-                        <button class="font-semibold text-3xl text-white hover:scale-150 transition-all duration-500 ease-linear" x-on:click="goToElement(item.element)" x-text="item.name"></button>
-                    </template>
-                </ul>
+                <?php
+
+                if (is_home()) {
+                    get_template_part('components/header/components/home-menu');
+                } else {
+                    get_template_part('components/header/components/page-menu');
+                }
+
+                ?>
             </div>
         </div>
     </header>

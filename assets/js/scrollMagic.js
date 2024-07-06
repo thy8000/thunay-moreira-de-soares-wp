@@ -16,10 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
     .addTo(scrollMagicController);
 
   scrollMagicScene = new ScrollMagic.Scene({
-    triggerElement: "#about-me .fade-in",
+    triggerElement: "#section-sobre-mim .fade-in",
     reverse: false,
   })
-    .setClassToggle("#about-me .fade-in", "show")
+    .setClassToggle("#section-sobre-mim .fade-in", "show")
     .addTo(scrollMagicController);
 
   scrollMagicScene = new ScrollMagic.Scene({

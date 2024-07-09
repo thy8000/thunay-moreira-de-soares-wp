@@ -31,11 +31,23 @@ if (!defined('ABSPATH')) {
                     <img class="w-8" x-bind:src="displayMenu ? '<?php echo get_template_directory_uri(); ?>/assets/images/close.svg' : '<?php echo get_template_directory_uri(); ?>/assets/images/hamburguer.svg'" />
                 </button>
 
-                <div>
-                    <span class="text-white text-lg font-poppins">
-                        Thunay Moreira de Soares
-                    </span>
-                </div>
+                <span class="text-white text-lg font-poppins">
+                    Thunay Moreira de Soares
+                </span>
+
+                <?php
+
+                if (is_page()) {
+
+                ?>
+                    <h1 class="text-white text-lg font-poppins">
+                        <?php esc_html_e(get_the_title()); ?>
+                    </h1>
+                <?php
+
+                }
+
+                ?>
             </div>
         </div>
 

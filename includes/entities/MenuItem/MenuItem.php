@@ -28,6 +28,11 @@ class MenuItem
         return $this->menu_item->post_name;
     }
 
+    public function get_link()
+    {
+        return $this->menu_item->url;
+    }
+
     public function get_custom_field(string $field_slug)
     {
         $ACF_Register = new ACF_Register();

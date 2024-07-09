@@ -16,6 +16,7 @@ class MenuRegister
         register_nav_menus(
             [
                 'home-menu' => __('Menu Home', 'thunay'),
+                'page-anime-list-menu' => __('Menu Lista de animes', 'thunay'),
             ]
         );
     }

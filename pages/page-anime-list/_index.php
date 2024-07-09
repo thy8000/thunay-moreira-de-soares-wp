@@ -13,6 +13,8 @@ get_template_part('components/header/_index');
 
     get_template_part('pages/page-anime-list/components/header-content');
 
+    get_template_part('pages/page-anime-list/components/search-forms');
+
     get_template_part('components/footer');
 
     ?>

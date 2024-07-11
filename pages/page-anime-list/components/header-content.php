@@ -15,13 +15,81 @@ if (!defined('ABSPATH')) {
         </div>
     </div>
 
-    <div class="mt-20 flex">
-        <div class="flex flex-col gap-4">
+    <div class="mt-20 flex flex-col lg:flex-row gap-4">
+        <div class="flex flex-col gap-4 w-full">
             <?php
 
             get_template_part('components/input/_index', null, [
                 'id'   => 'page-anime-list-search',
                 'label' => __('Pesquisar', 'thunay'),
+            ]);
+
+            ?>
+        </div>
+
+        <div class="flex flex-col gap-4 w-full">
+            <?php
+
+            get_template_part('components/input/_index', null, [
+                'id'   => 'page-anime-list-genre',
+                'label' => __('Gênero', 'thunay'),
+                'type' => 'select',
+                'options' => [
+                    'genero1' => 'Gênero 1',
+                    'genero2' => 'Gênero 2',
+                    'genero3' => 'Gênero 3',
+                ],
+            ]);
+
+            ?>
+        </div>
+
+        <div class="flex flex-col gap-4 w-full">
+            <?php
+
+            get_template_part('components/input/_index', null, [
+                'id'   => 'page-anime-list-year',
+                'label' => __('Ano', 'thunay'),
+                'type' => 'select',
+                'options' => [
+                    'ano1' => 'Ano 1',
+                    'ano2' => 'Ano 2',
+                    'ano3' => 'Ano 3',
+                ],
+            ]);
+
+            ?>
+        </div>
+
+        <div class="flex flex-col gap-4 w-full">
+            <?php
+
+            get_template_part('components/input/_index', null, [
+                'id'   => 'page-anime-list-season',
+                'label' => __('Temporada', 'thunay'),
+                'type' => 'select',
+                'options' => [
+                    'temporada1' => 'Temporada 1',
+                    'temporada2' => 'Temporada 2',
+                    'temporada3' => 'Temporada 3',
+                ],
+            ]);
+
+            ?>
+        </div>
+
+        <div class="flex flex-col gap-4 w-full">
+            <?php
+
+            get_template_part('components/input/_index', null, [
+                'id'   => 'page-anime-list-format',
+                'label' => __('Formato', 'thunay'),
+                'type' => 'select',
+                'options' => [
+                    'formato1' => 'Formato 1',
+                    'formato2' => 'Formato 2',
+                    'formato3' => 'Formato 3',
+                ],
             ]);
 
             ?>

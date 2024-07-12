@@ -12,3 +12,4 @@ require_once implode(DIRECTORY_SEPARATOR, [get_template_directory(), 'includes',
 require_once implode(DIRECTORY_SEPARATOR, [get_template_directory(), 'includes', 'entities', 'ThemeOptions', '_index.php']);
 require_once implode(DIRECTORY_SEPARATOR, [get_template_directory(), 'includes', 'entities', 'Menu', '_index.php']);
 require_once implode(DIRECTORY_SEPARATOR, [get_template_directory(), 'includes', 'entities', 'MenuItem', '_index.php']);
+require_once implode(DIRECTORY_SEPARATOR, [get_template_directory(), 'includes', 'entities', 'request', '_index.php']);

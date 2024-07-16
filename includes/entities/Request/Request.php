@@ -7,6 +7,8 @@ if (!defined('ABSPATH')) {
 class Request
 {
     private $request;
+    private $error;
+    private $response;
 
     public function __construct()
     {
@@ -34,11 +36,24 @@ class Request
             curl_setopt($this->request, CURLOPT_HTTPHEADER, $headers);
         }
 
-        $response = $this->execute();
+        $this->execute();
+
+        return $this->response;
     }
 
     private function execute()
     {
-        //TODO: EXECUTAR REQUEST E RETORNAR RESPONSE
+        $this->response = curl_exec($this->request);
+
+        $this->error = curl_error($this->request);
+
+        if ($this->error) {
+            throw new Exception("Erro ao fazer request: {$this->error}");
+        }
+    }
+
+    public function __destruct()
+    {
+        curl_close($this->request);
     }
 }

@@ -4,6 +4,10 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+$AniList = new AniList();
+
+$genres = $AniList->get_genres();
+
 ?>
 
 <section>
@@ -34,11 +38,7 @@ if (!defined('ABSPATH')) {
                 'id'   => 'page-anime-list-genre',
                 'label' => __('Gênero', 'thunay'),
                 'type' => 'select',
-                'options' => [
-                    'genero1' => 'Gênero 1',
-                    'genero2' => 'Gênero 2',
-                    'genero3' => 'Gênero 3',
-                ],
+                'options' => AniListUtils::getGenres($genres),
             ]);
 
             ?>

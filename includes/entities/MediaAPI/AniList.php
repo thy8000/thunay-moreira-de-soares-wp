@@ -4,11 +4,10 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class AniList
+class AniList implements MediaAPIInterface
 {
     private $api_url = "https://graphql.anilist.co";
     private $query;
-    private $variables;
     private $request;
 
     public function __construct()

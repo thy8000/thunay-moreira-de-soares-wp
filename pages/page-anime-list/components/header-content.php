@@ -4,9 +4,13 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-$AniList = new AniList();
+try {
+    $MediaAPI = MediaAPI::get_API('AniList');
 
-$genres = $AniList->get_genres();
+    $genres = $MediaAPI->get_genres();
+} catch (Exception $e) {
+    echo "Erro ao listar gêneros: ", $e->getMessage(), "\n";
+}
 
 ?>
 
@@ -38,7 +42,7 @@ $genres = $AniList->get_genres();
                 'id'   => 'page-anime-list-genre',
                 'label' => __('Gênero', 'thunay'),
                 'type' => 'select',
-                'options' => AniListUtils::getGenres($genres),
+                'options' => MediaAPIUtils::get_genres($genres),
             ]);
 
             ?>

@@ -4,9 +4,9 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class AniListUtils
+class MediaAPIUtils
 {
-    public static function getGenres(array $genres)
+    public static function get_genres(array $genres)
     {
         $_genres = [];
 

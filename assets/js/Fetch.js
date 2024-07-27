@@ -1,10 +1,14 @@
-class FetchAPI {
+class Fetch {
+  baseURL = "";
+
   constructor(baseURL) {
     this.baseURL = baseURL;
   }
 
   async request(endpoint, method = "GET", data = null, headers = {}) {
-    const url = "${this.baseURL}${endpoint}";
+    const url = `${this.baseURL}${endpoint}`;
+
+    console.log(url);
 
     const config = {
       method,

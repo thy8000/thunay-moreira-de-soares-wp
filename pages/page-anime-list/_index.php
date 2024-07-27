@@ -8,7 +8,7 @@ get_template_part('components/header/_index');
 
 ?>
 
-<div class="custom-container">
+<div class="page-anime-list custom-container">
     <?php
 
     get_template_part('pages/page-anime-list/components/header-content');

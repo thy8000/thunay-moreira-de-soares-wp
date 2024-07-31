@@ -1,5 +1,14 @@
 class MediaAPIInterface {
-  getGenres() {
+  apiURL = "";
+  request = "";
+
+  constructor() {
+    super();
+
+    this.request = new Fetch(this.apiURL);
+  }
+
+  async getGenres() {
     throw new Error("Metodo getTranslate precisa ser implementado");
   }
 }
@@ -14,13 +23,11 @@ class MediaAPI {
 
 class AniList extends MediaAPIInterface {
   apiURL = "https://graphql.anilist.co";
-  query = "";
   request = "";
+  query = "";
 
   constructor() {
     super();
-
-    this.request = new Fetch(this.apiURL);
   }
 
   async getGenres() {

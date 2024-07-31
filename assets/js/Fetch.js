@@ -11,7 +11,7 @@ class Fetch {
     console.log(url);
 
     const config = {
-      method,
+      method: method,
       headers: {
         "Content-Type": "application/json",
         ...headers,

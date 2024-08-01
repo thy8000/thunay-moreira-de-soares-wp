@@ -7,8 +7,8 @@ if (!defined('ABSPATH')) {
 class AniList implements MediaAPIInterface
 {
     private $api_url = "https://graphql.anilist.co";
-    private $query;
     private $request;
+    private $query;
 
     public function __construct()
     {
@@ -29,6 +29,8 @@ class AniList implements MediaAPIInterface
                 'query' => $this->query,
             ]
         );
+
+        $genres_list = $this->request->response;
 
         return $this->request->response['data']['GenreCollection'];
     }

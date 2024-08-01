@@ -14,3 +14,4 @@ require_once implode(DIRECTORY_SEPARATOR, [get_template_directory(), 'includes',
 require_once implode(DIRECTORY_SEPARATOR, [get_template_directory(), 'includes', 'entities', 'MenuItem', '_index.php']);
 require_once implode(DIRECTORY_SEPARATOR, [get_template_directory(), 'includes', 'entities', 'Request', '_index.php']);
 require_once implode(DIRECTORY_SEPARATOR, [get_template_directory(), 'includes', 'entities', 'MediaAPI', '_index.php']);
+require_once implode(DIRECTORY_SEPARATOR, [get_template_directory(), 'includes', 'entities', 'Translate', '_index.php']);

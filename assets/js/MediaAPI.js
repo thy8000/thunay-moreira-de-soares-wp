@@ -3,8 +3,6 @@ class MediaAPIInterface {
   request = "";
 
   constructor() {
-    super();
-
     this.request = new Fetch(this.apiURL);
   }
 

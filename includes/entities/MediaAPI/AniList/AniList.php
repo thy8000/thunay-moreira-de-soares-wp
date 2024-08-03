@@ -61,4 +61,48 @@ class AniList implements MediaAPIInterface
 
         return $this->request->response['data']['Page']['media'];
     }
+
+    public function get_season_popular(int $page = 1, int $per_page = 5)
+    {
+        $this->query = <<<QUERY
+            query getPopularThisSeason(\$season: MediaSeason!, \$seasonYear: Int!, \$page: Int!, \$perPage: Int!) {
+                Page(page: \$page, perPage: \$perPage) {
+                    media(season: \$season, seasonYear: \$seasonYear, sort: POPULARITY_DESC) {
+                        id
+                        title {
+                        romaji
+                        english
+                        native
+                        userPreferred
+                        }
+                        coverImage {
+                        extraLarge
+                        large
+                        medium
+                        }
+                        popularity
+                        format
+                        status
+                        season
+                        seasonYear
+                    }
+                }
+          }
+        QUERY;
+
+        $this->request->post(
+            $this->api_url,
+            [
+                'query' => $this->query,
+                'variables' => [
+                    'season' => AniList_Utils::get_current_season(),
+                    'seasonYear' => date('Y'),
+                    'page' => $page,
+                    'perPage' => $per_page,
+                ],
+            ]
+        );
+
+        return $this->request->response['data']['Page']['media'];
+    }
 }

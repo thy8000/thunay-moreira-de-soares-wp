@@ -13,6 +13,8 @@ $genres = $MediaAPI->get_genres();
 
 $trending_now = $MediaAPI->get_trending_now();
 
+$season_popular = $MediaAPI->get_season_popular();
+
 ?>
 
 <div class="page-anime-list custom-container">
@@ -116,6 +118,8 @@ $trending_now = $MediaAPI->get_trending_now();
 
         get_template_part('pages/page-anime-list/components/animes-list', null, [
             'title' => __('Popular this season', 'thunay'),
+            'data'  => $season_popular,
+            'view_more_link' => esc_url('/popular-this-season/'),
         ]);
 
         ?>

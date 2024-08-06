@@ -15,6 +15,8 @@ $trending_now = $MediaAPI->get_trending_now();
 
 $season_popular = $MediaAPI->get_season_popular();
 
+$upcoming_next_season = $MediaAPI->get_upcoming_next_season();
+
 ?>
 
 <div class="page-anime-list custom-container">
@@ -130,6 +132,8 @@ $season_popular = $MediaAPI->get_season_popular();
 
         get_template_part('pages/page-anime-list/components/animes-list', null, [
             'title' => __('Upcoming next season', 'thunay'),
+            'data'  => $upcoming_next_season,
+            'view_more_link' => esc_url('/upcoming-next-season/'),
         ]);
 
         ?>

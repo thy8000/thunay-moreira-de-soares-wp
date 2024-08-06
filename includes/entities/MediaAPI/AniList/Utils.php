@@ -6,26 +6,31 @@ if (!defined('ABSPATH')) {
 
 class AniList_Utils
 {
+    private static $seasons = ['WINTER', 'SPRING', 'SUMMER', 'FALL'];
+
     public static function get_current_season()
     {
-        $current_month_number = date('n');
+        $current_month = date('n');
 
-        switch ($current_month_number) {
-            case $current_month_number >= 1 && $current_month_number <= 3:
-                return 'WINTER';
-                break;
-            case $current_month_number >= 4 && $current_month_number <= 6:
-                return 'SPRING';
-                break;
-            case $current_month_number >= 7 && $current_month_number <= 9:
-                return 'SUMMER';
-                break;
-            case $current_month_number >= 10 && $current_month_number <= 12:
-                return 'FALL';
-                break;
-            default:
-                return 'WINTER';
-                break;
+        if ($current_month >= 1 && $current_month <= 3) {
+            return self::$seasons[0];
+        } elseif ($current_month >= 4 && $current_month <= 6) {
+            return self::$seasons[1];
+        } elseif ($current_month >= 7 && $current_month <= 9) {
+            return self::$seasons[2];
+        } else {
+            return self::$seasons[3];
         }
+    }
+
+    public static function get_next_season()
+    {
+        $current_season = self::get_current_season();
+
+        if (end(self::$seasons) === $current_season) {
+            return self::$seasons[0];
+        }
+
+        return self::$seasons[array_search($current_season, self::$seasons) + 1];
     }
 }

@@ -922,28 +922,12 @@ html {
   display: none;
 }
 
-.aspect-\[300\/180\]{
-  aspect-ratio: 300/180;
-}
-
-.aspect-\[2\/1\]{
-  aspect-ratio: 2/1;
-}
-
-.aspect-\[250\/280\]{
-  aspect-ratio: 250/280;
-}
-
-.aspect-\[200\/280\]{
-  aspect-ratio: 200/280;
-}
-
-.aspect-\[230\/300\]{
-  aspect-ratio: 230/300;
-}
-
 .aspect-\[230\/325\]{
   aspect-ratio: 230/325;
+}
+
+.aspect-\[300\/180\]{
+  aspect-ratio: 300/180;
 }
 
 .h-1{
@@ -970,28 +954,16 @@ html {
   height: 18px;
 }
 
+.h-auto{
+  height: auto;
+}
+
 .h-full{
   height: 100%;
 }
 
 .h-screen{
   height: 100vh;
-}
-
-.h-\[300px\]{
-  height: 300px;
-}
-
-.h-\[250px\]{
-  height: 250px;
-}
-
-.h-\[280px\]{
-  height: 280px;
-}
-
-.h-auto{
-  height: auto;
 }
 
 .min-h-52{
@@ -1012,6 +984,10 @@ html {
 
 .w-16{
   width: 4rem;
+}
+
+.w-20{
+  width: 5rem;
 }
 
 .w-3{
@@ -1050,32 +1026,16 @@ html {
   width: weird-and-invalid;
 }
 
+.w-auto{
+  width: auto;
+}
+
 .w-full{
   width: 100%;
 }
 
 .w-screen{
   width: 100vw;
-}
-
-.w-\[200px\]{
-  width: 200px;
-}
-
-.w-auto{
-  width: auto;
-}
-
-.w-\[calc\(20\%-5\%\)\]{
-  width: calc(20% - 5%);
-}
-
-.w-\[calc\(20\%-10\%\)\]{
-  width: calc(20% - 10%);
-}
-
-.w-20{
-  width: 5rem;
 }
 
 .max-w-\[1140px\]{
@@ -1674,20 +1634,12 @@ html {
   gap: 2rem;
 }
 
-.gap-\[1\%\]{
-  gap: 1%;
+.gap-14{
+  gap: 3.5rem;
 }
 
-.gap-\[5\%\]{
-  gap: 5%;
-}
-
-.gap-\[3\%\]{
-  gap: 3%;
-}
-
-.gap-\[2\%\]{
-  gap: 2%;
+.gap-16{
+  gap: 4rem;
 }
 
 .space-x-2 > :not([hidden]) ~ :not([hidden]){
@@ -3426,9 +3378,17 @@ html {
   .md\:max-w-\[720px\]{
     max-width: 720px;
   }
+
+  .md\:grid-cols-2{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (min-width: 1024px){
+  .lg\:flex{
+    display: flex;
+  }
+
   .lg\:w-1\/2{
     width: 50%;
   }
@@ -3453,12 +3413,20 @@ html {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .lg\:grid-cols-5{
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
   .lg\:flex-row{
     flex-direction: row;
   }
 
   .lg\:flex-row-reverse{
     flex-direction: row-reverse;
+  }
+
+  .lg\:gap-10{
+    gap: 2.5rem;
   }
 
   .lg\:px-\[3\%\]{
@@ -3483,6 +3451,11 @@ html {
   .lg\:text-6xl{
     font-size: 3.75rem;
     line-height: 1;
+  }
+
+  .lg\:text-base{
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
 }
 

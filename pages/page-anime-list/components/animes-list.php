@@ -22,7 +22,7 @@ if (!defined('ABSPATH')) {
     }
 
     ?>
-    <ul class="grid grid-cols-5 gap-10 mt-10">
+    <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-16 lg:gap-10 mt-10">
         <?php
 
         foreach ($args['data'] as $data) {

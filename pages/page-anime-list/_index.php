@@ -17,6 +17,8 @@ $season_popular = $MediaAPI->get_season_popular();
 
 $upcoming_next_season = $MediaAPI->get_upcoming_next_season();
 
+$all_time_popular = $MediaAPI->get_all_time_popular();
+
 ?>
 
 <div class="page-anime-list custom-container">
@@ -144,6 +146,8 @@ $upcoming_next_season = $MediaAPI->get_upcoming_next_season();
 
         get_template_part('pages/page-anime-list/components/animes-list', null, [
             'title' => __('All time popular', 'thunay'),
+            'data'  => $all_time_popular,
+            'view_more_link' => esc_url('/all-time-popular/'),
         ]);
 
         ?>

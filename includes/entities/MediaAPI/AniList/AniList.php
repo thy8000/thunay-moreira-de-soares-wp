@@ -149,4 +149,45 @@ class AniList implements MediaAPIInterface
 
         return $this->request->response['data']['Page']['media'];
     }
+
+    public function get_all_time_popular($page = 1, $per_page = 5)
+    {
+        $this->query = <<<QUERY
+            query getAllTimePopular(\$page: Int!, \$perPage: Int!) {
+                Page(page: \$page, perPage: \$perPage) {
+                    media(sort: POPULARITY_DESC) {
+                        id
+                        title {
+                            romaji
+                            english
+                            native
+                            userPreferred
+                        }
+                        trending
+                        format
+                        status
+                        coverImage {
+                            extraLarge
+                            large
+                            medium
+                            color
+                        }
+                    }
+                }
+            }
+        QUERY;
+
+        $this->request->post(
+            $this->api_url,
+            [
+                'query' => $this->query,
+                'variables' => [
+                    'page' => $page,
+                    'perPage' => $per_page
+                ],
+            ]
+        );
+
+        return $this->request->response['data']['Page']['media'];
+    }
 }

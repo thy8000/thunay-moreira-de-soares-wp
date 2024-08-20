@@ -4,15 +4,20 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class MediaAPI
+abstract class MediaAPICreator
 {
-    public static function get_API($type)
+    abstract public function create(): MediaAPIInterface;
+
+    public function get(): MediaAPIInterface
     {
-        switch ($type) {
-            case 'AniList':
-                return new AniList();
-            default:
-                throw new Exception(sprintf(esc_html__("Tipo de API '%s' não existe.", 'thunay'), $type));
-        }
+        return $this->create();
+    }
+}
+
+class AniListCreator extends MediaAPICreator
+{
+    public function create(): MediaAPIInterface
+    {
+        return new AniList();
     }
 }

@@ -6,8 +6,8 @@ if (!defined('ABSPATH')) {
 
 get_template_part('components/header/_index');
 
-
-$MediaAPI = MediaAPI::get_API('AniList');
+$MediaAPI = new AniListCreator();
+$MediaAPI = $MediaAPI->get();
 
 $genres = $MediaAPI->get_genres();
 

@@ -27,7 +27,7 @@ unset($args['label']);
 $attrs = '';
 
 foreach ($args as $key => $value) {
-    $attrs .= ' ' . $key . '="' . $value . '"';
+    $attrs .= ' ' . $key . '=' . $value . '';
 }
 
 if ($type === 'select') {

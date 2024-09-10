@@ -22,7 +22,7 @@ $all_time_popular = $MediaAPI->get_all_time_popular();
 ?>
 
 <div class="page-anime-list custom-container">
-    <section>
+    <section x-data="filter">
         <div class="flex flex-col">
             <div class="flex justify-center items-center flex-col gap-4 mt-20 bg-neutral-800 p-10 rounded-lg border border-neutral-700 w-full">
                 <h2 class="text-center text-3xl font-poppins font-semibold text-green-500"><?php esc_html_e('Plataforma de lista de animes', 'thunay'); ?></h2>
@@ -46,6 +46,7 @@ $all_time_popular = $MediaAPI->get_all_time_popular();
                 get_template_part('components/input/_index', null, [
                     'id'   => 'page-anime-list-search',
                     'label' => __('Search', 'thunay'),
+                    'x-model' => 'search'
                 ]);
 
                 ?>
@@ -103,59 +104,68 @@ $all_time_popular = $MediaAPI->get_all_time_popular();
                 ?>
             </div>
         </div>
+
+        <div class="flex">
+            <div class="flex bg-green-500">
+                <span>Search: </span>
+                <span x-text="search"></span>
+            </div>
+        </div>
     </section>
+</div>
 
-    <section class="py-10">
-        <?php
 
-        get_template_part('pages/page-anime-list/components/animes-list', null, [
-            'title' => __('Trending now', 'thunay'),
-            'data'  => $trending_now,
-            'view_more_link' => esc_url('/trending-now/'),
-        ]);
-
-        ?>
-    </section>
-
-    <section class="py-10">
-        <?php
-
-        get_template_part('pages/page-anime-list/components/animes-list', null, [
-            'title' => __('Popular this season', 'thunay'),
-            'data'  => $season_popular,
-            'view_more_link' => esc_url('/popular-this-season/'),
-        ]);
-
-        ?>
-    </section>
-
-    <section class="py-10">
-        <?php
-
-        get_template_part('pages/page-anime-list/components/animes-list', null, [
-            'title' => __('Upcoming next season', 'thunay'),
-            'data'  => $upcoming_next_season,
-            'view_more_link' => esc_url('/upcoming-next-season/'),
-        ]);
-
-        ?>
-    </section>
-
-    <section class="py-10">
-        <?php
-
-        get_template_part('pages/page-anime-list/components/animes-list', null, [
-            'title' => __('All time popular', 'thunay'),
-            'data'  => $all_time_popular,
-            'view_more_link' => esc_url('/all-time-popular/'),
-        ]);
-
-        ?>
-    </section>
-
+<section class="py-10">
     <?php
 
-    get_template_part('components/footer');
+    get_template_part('pages/page-anime-list/components/animes-list', null, [
+        'title' => __('Trending now', 'thunay'),
+        'data'  => $trending_now,
+        'view_more_link' => esc_url('/trending-now/'),
+    ]);
 
     ?>
+</section>
+
+<section class="py-10">
+    <?php
+
+    get_template_part('pages/page-anime-list/components/animes-list', null, [
+        'title' => __('Popular this season', 'thunay'),
+        'data'  => $season_popular,
+        'view_more_link' => esc_url('/popular-this-season/'),
+    ]);
+
+    ?>
+</section>
+
+<section class="py-10">
+    <?php
+
+    get_template_part('pages/page-anime-list/components/animes-list', null, [
+        'title' => __('Upcoming next season', 'thunay'),
+        'data'  => $upcoming_next_season,
+        'view_more_link' => esc_url('/upcoming-next-season/'),
+    ]);
+
+    ?>
+</section>
+
+<section class="py-10">
+    <?php
+
+    get_template_part('pages/page-anime-list/components/animes-list', null, [
+        'title' => __('All time popular', 'thunay'),
+        'data'  => $all_time_popular,
+        'view_more_link' => esc_url('/all-time-popular/'),
+    ]);
+
+    ?>
+</section>
+
+<?php
+
+get_template_part('components/footer');
+
+?>
 </div>

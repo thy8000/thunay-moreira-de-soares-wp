@@ -46,7 +46,8 @@ $all_time_popular = $MediaAPI->get_all_time_popular();
                 get_template_part('components/input/_index', null, [
                     'id'   => 'page-anime-list-search',
                     'label' => __('Search', 'thunay'),
-                    'x-model' => 'search'
+                    'x-model' => 'search',
+                    'x-on:keyup.debounce.700ms' => 'searchAnimes'
                 ]);
 
                 ?>
@@ -106,8 +107,8 @@ $all_time_popular = $MediaAPI->get_all_time_popular();
         </div>
 
         <div class="flex">
-            <div class="flex bg-green-500">
-                <span>Search: </span>
+            <div class="flex gap-2 bg-green-500 mt-6 p-2 rounded" x-show="search">
+                <span>Search:</span>
                 <span x-text="search"></span>
             </div>
         </div>
@@ -116,51 +117,59 @@ $all_time_popular = $MediaAPI->get_all_time_popular();
 
 
 <section class="py-10">
-    <?php
+    <div class="custom-container">
+        <?php
 
-    get_template_part('pages/page-anime-list/components/animes-list', null, [
-        'title' => __('Trending now', 'thunay'),
-        'data'  => $trending_now,
-        'view_more_link' => esc_url('/trending-now/'),
-    ]);
+        get_template_part('pages/page-anime-list/components/animes-list', null, [
+            'title' => __('Trending now', 'thunay'),
+            'data'  => $trending_now,
+            'view_more_link' => esc_url('/trending-now/'),
+        ]);
 
-    ?>
+        ?>
+    </div>
 </section>
 
 <section class="py-10">
-    <?php
+    <div class="custom-container">
+        <?php
 
-    get_template_part('pages/page-anime-list/components/animes-list', null, [
-        'title' => __('Popular this season', 'thunay'),
-        'data'  => $season_popular,
-        'view_more_link' => esc_url('/popular-this-season/'),
-    ]);
+        get_template_part('pages/page-anime-list/components/animes-list', null, [
+            'title' => __('Popular this season', 'thunay'),
+            'data'  => $season_popular,
+            'view_more_link' => esc_url('/popular-this-season/'),
+        ]);
 
-    ?>
+        ?>
+    </div>
 </section>
 
 <section class="py-10">
-    <?php
+    <div class="custom-container">
+        <?php
 
-    get_template_part('pages/page-anime-list/components/animes-list', null, [
-        'title' => __('Upcoming next season', 'thunay'),
-        'data'  => $upcoming_next_season,
-        'view_more_link' => esc_url('/upcoming-next-season/'),
-    ]);
+        get_template_part('pages/page-anime-list/components/animes-list', null, [
+            'title' => __('Upcoming next season', 'thunay'),
+            'data'  => $upcoming_next_season,
+            'view_more_link' => esc_url('/upcoming-next-season/'),
+        ]);
 
-    ?>
+        ?>
+    </div>
 </section>
 
 <section class="py-10">
-    <?php
+    <div class="custom-container">
+        <?php
 
-    get_template_part('pages/page-anime-list/components/animes-list', null, [
-        'title' => __('All time popular', 'thunay'),
-        'data'  => $all_time_popular,
-        'view_more_link' => esc_url('/all-time-popular/'),
-    ]);
+        get_template_part('pages/page-anime-list/components/animes-list', null, [
+            'title' => __('All time popular', 'thunay'),
+            'data'  => $all_time_popular,
+            'view_more_link' => esc_url('/all-time-popular/'),
+        ]);
 
-    ?>
+        ?>
+    </div>
 </section>
 
 <?php

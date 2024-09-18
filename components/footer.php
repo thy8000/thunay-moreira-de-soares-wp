@@ -8,7 +8,7 @@ if (!defined('ABSPATH')) {
 
 </main>
 
-<footer id="footer" class="bg-neutral-800 mt-16" x-data="hero">
+<footer id="footer" class="bg-neutral-800 mt-16">
     <div class="py-5">
         <div class="custom-container">
             <div class="flex justify-between items-center flex-col lg:flex-row gap-8 text-center lg:text-start">

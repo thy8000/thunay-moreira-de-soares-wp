@@ -1,0 +1,3 @@
+class AniList {
+  constructor() {}
+}

@@ -16,7 +16,10 @@ class RegisterAssets
     {
         wp_enqueue_style('all', get_theme_file_uri('assets/css/all.css'));
 
-        wp_enqueue_script('all', get_theme_file_uri('assets/js/all.min.js'), false);
+        wp_enqueue_script('all', get_theme_file_uri('assets/js/all.min.js'), false, null, [
+            'strategy' => 'defer',
+            'in_footer' => false,
+        ]);
     }
 
     public function localize_scripts()

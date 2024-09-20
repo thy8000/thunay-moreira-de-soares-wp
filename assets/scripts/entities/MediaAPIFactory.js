@@ -1,6 +1,6 @@
 class MediaAPICreator {
   get() {
-    throw new Error("Método não implementado");
+    return this.create();
   }
 }
 

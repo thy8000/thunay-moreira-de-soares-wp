@@ -3,8 +3,13 @@ document.addEventListener("alpine:init", () => {
     search: "",
     isEmpty: true,
 
-    searchAnimes() {
-      console.log(this.search);
+    async searchAnimes() {
+      var MediaAPI = new AniListCreator();
+      MediaAPI = MediaAPI.get();
+
+      var search = await MediaAPI.searchAnimes(this.search);
+
+      console.log(search);
     },
   }));
 });

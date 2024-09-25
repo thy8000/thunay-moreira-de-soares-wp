@@ -1,15 +1,16 @@
 document.addEventListener("alpine:init", () => {
-  Alpine.data("filter", () => ({
+  Alpine.data("animeList", () => ({
     search: "",
     isEmpty: true,
+    searchValue: "",
 
     async searchAnimes() {
       var MediaAPI = new AniListCreator();
       MediaAPI = MediaAPI.get();
 
-      var search = await MediaAPI.searchAnimes(this.search);
+      this.searchValue = await MediaAPI.searchAnimes(this.search);
 
-      console.log(search);
+      console.log(this.searchValue);
     },
   }));
 });

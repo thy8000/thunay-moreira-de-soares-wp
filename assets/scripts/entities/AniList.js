@@ -49,6 +49,6 @@ class AniList {
       },
     });
 
-    return request?.data ?? [];
+    return request?.data?.Page?.media ?? [];
   }
 }

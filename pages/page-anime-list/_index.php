@@ -47,8 +47,8 @@ $all_time_popular = $MediaAPI->get_all_time_popular();
                     get_template_part('components/input/_index', null, [
                         'id'   => 'page-anime-list-search',
                         'label' => __('Search', 'thunay'),
-                        'x-model' => 'search',
-                        'x-on:keyup.debounce.700ms' => 'searchAnimes'
+                        'x-model' => 'filterMap.search',
+                        'x-on:keyup.debounce.700ms' => 'filter'
                     ]);
 
                     ?>
@@ -62,6 +62,8 @@ $all_time_popular = $MediaAPI->get_all_time_popular();
                         'label' => __('Genre', 'thunay'),
                         'type' => 'select',
                         'options' => MediaAPIUtils::get_genres($genres),
+                        'x-model' => 'filterMap.genre', 
+                        'x-on:change' => 'filter'
                     ]);
 
                     ?>
@@ -75,6 +77,8 @@ $all_time_popular = $MediaAPI->get_all_time_popular();
                         'label' => __('Year', 'thunay'),
                         'type' => 'select',
                         'options' => MediaAPIUtils::get_years(1940, date('Y')),
+                        'x-model' => 'filterMap.year', 
+                        'x-on:change' => 'filter'
                     ]);
 
                     ?>
@@ -88,6 +92,8 @@ $all_time_popular = $MediaAPI->get_all_time_popular();
                         'label' => __('Season', 'thunay'),
                         'type' => 'select',
                         'options' => MediaAPIUtils::get_seasons(),
+                        'x-model' => 'filterMap.season', 
+                        'x-on:change' => 'filter'
                     ]);
 
                     ?>
@@ -101,6 +107,8 @@ $all_time_popular = $MediaAPI->get_all_time_popular();
                         'label' => __('Format', 'thunay'),
                         'type' => 'select',
                         'options' => MediaAPIUtils::get_formats(),
+                        'x-model' => 'filterMap.format', 
+                        'x-on:change' => 'filter'
                     ]);
 
                     ?>
@@ -108,16 +116,16 @@ $all_time_popular = $MediaAPI->get_all_time_popular();
             </div>
 
             <div class="flex">
-                <div class="flex gap-2 bg-green-500 mt-6 p-2 rounded" x-show="search">
+                <div class="flex gap-2 bg-green-500 mt-6 p-2 rounded" x-show="filterMap.search">
                     <span>Search:</span>
-                    <span x-text="search"></span>
+                    <span x-text="filterMap.search"></span>
                 </div>
             </div>
         </section>
     </div>
 
 
-    <section class="py-10" x-show="search == ''">
+    <section class="py-10" x-show="filterMap.search == ''">
         <div class="custom-container">
             <?php
 
@@ -131,7 +139,7 @@ $all_time_popular = $MediaAPI->get_all_time_popular();
         </div>
     </section>
 
-    <section class="py-10" x-show="search == ''">
+    <section class="py-10" x-show="filterMap.search == ''">
         <div class="custom-container">
             <?php
 
@@ -145,7 +153,7 @@ $all_time_popular = $MediaAPI->get_all_time_popular();
         </div>
     </section>
 
-    <section class="py-10" x-show="search == ''">
+    <section class="py-10" x-show="filterMap.search == ''">
         <div class="custom-container">
             <?php
 
@@ -159,7 +167,7 @@ $all_time_popular = $MediaAPI->get_all_time_popular();
         </div>
     </section>
 
-    <section class="py-10" x-show="search == ''">
+    <section class="py-10" x-show="filterMap.search == ''">
         <div class="custom-container">
             <?php
 

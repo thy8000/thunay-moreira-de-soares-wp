@@ -22,6 +22,7 @@ class AniList {
   }
 
   async searchAnimes(search) {
+    /*
     this.query = `
       query searchAnimes(\$search: String!) {
         Page(perPage: 20) {
@@ -50,5 +51,6 @@ class AniList {
     });
 
     return request?.data?.Page?.media ?? [];
+    */
   }
 }

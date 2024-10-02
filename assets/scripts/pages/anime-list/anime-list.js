@@ -1,16 +1,22 @@
-document.addEventListener("alpine:init", () => {
-  Alpine.data("animeList", () => ({
-    search: "",
-    isEmpty: true,
-    searchValue: "",
+document.addEventListener('alpine:init', () => {
+   Alpine.data('animeList', () => ({
+      isEmpty: true,
+      searchValue: '',
+      filterMap: {
+         search: '',
+         genres: [],
+         year: [],
+         season: [],
+         format: [],
+      },
 
-    async searchAnimes() {
-      var MediaAPI = new AniListCreator();
-      MediaAPI = MediaAPI.get();
+      filter() {
+         let formData = new FormData()
+         formData.append('filter', this.filterMap ?? '')
 
-      this.searchValue = await MediaAPI.searchAnimes(this.search);
+         let Fetch = new Fetch()
 
-      console.log(this.searchValue);
-    },
-  }));
-});
+         // TODO: IMPLEMENTAR AJAX VIA REST API
+      },
+   }))
+})

@@ -29,6 +29,7 @@ class RegisterAssets
             'globals',
             [
                 'siteURL' => get_theme_file_uri(),
+                'restAPI' => get_rest_url(),
             ]
         );
     }

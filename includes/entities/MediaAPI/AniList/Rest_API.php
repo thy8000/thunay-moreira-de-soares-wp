@@ -27,7 +27,7 @@ class AniList_Rest_API
 
    function validate_search_animes_callback($value, $request, $param)
    {
-      if (!is_string($value) || empty($value)) {
+      if (empty($value)) {
          return new WP_Error('rest_invalid_param', esc_html__('O parâmetro query deve ser uma string não vazia.'), ['status' => 400]);
       }
 
@@ -36,6 +36,9 @@ class AniList_Rest_API
 
    function search_animes($request)
    {
+      debug($request);
       // TODO: Implementar busca de animes via Graphql
    }
 }
+
+new AniList_Rest_API();

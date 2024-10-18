@@ -9,10 +9,13 @@ class AniList implements MediaAPIInterface
     private $api_url = "https://graphql.anilist.co";
     private $request;
     private $query;
+    private $query_builder;
 
     public function __construct()
     {
         $this->request = new Request();
+
+        $this->query_builder = new GraphQL_Query_Builder();
     }
 
     public function get_genres()
@@ -35,22 +38,17 @@ class AniList implements MediaAPIInterface
 
     public function get_trending_now(int $per_page = 5)
     {
-        $this->query = <<<QUERY
-            query getTrendingNow{
-                Page(page: 1, perPage: {$per_page}) {
-                    media(sort: TRENDING_DESC) {
-                        title {
-                            romaji
-                        }
-                        coverImage {
-                            extraLarge
-                            large
-                            medium
-                        }
-                    }
-                }
-            }
-        QUERY;
+        $this->query = $this->query_builder
+            ->set_query_name('getTrendingNow')
+            ->set_arguments([
+                'page' => 1,
+                'perPage' => $per_page
+            ])
+            ->add_field('media', [
+                'title { romaji }',
+                'coverImage { extraLarge large medium }'
+            ], ['sort' => 'TRENDING_DESC'])
+            ->build();
 
         $this->request->post(
             $this->api_url,
@@ -58,6 +56,8 @@ class AniList implements MediaAPIInterface
                 'query' => $this->query,
             ]
         );
+
+        $this->query_builder->reset();
 
         return $this->request->response['data']['Page']['media'];
     }

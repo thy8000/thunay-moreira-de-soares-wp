@@ -36,8 +36,11 @@ class AniList_Rest_API
 
    function search_animes($request)
    {
-      debug($request);
-      // TODO: Implementar busca de animes via Graphql
+      $filter = $request->get_param('filter');
+
+      if(AniList_Utils::is_filter_empty($filter)) {
+         return new WP_Error('rest_invalid_param', esc_html__('Filtros inválidos.'), ['status' => 400]);
+      }
    }
 }
 

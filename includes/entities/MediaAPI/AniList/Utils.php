@@ -33,4 +33,12 @@ class AniList_Utils
 
         return self::$seasons[array_search($current_season, self::$seasons) + 1];
     }
+
+    public static function is_filter_empty($filter) {
+        $filtered_values = array_filter($filter, function ($value) {
+            return !empty($value);
+        });
+
+        return empty($filtered_values);
+    }
 }

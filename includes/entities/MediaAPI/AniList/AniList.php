@@ -1,114 +1,116 @@
 <?php
 
 if (!defined('ABSPATH')) {
-    exit;
+   exit;
 }
 
 class AniList implements MediaAPIInterface
 {
-    private $api_url = "https://graphql.anilist.co";
-    private $request;
-    private $query;
-    private $query_builder;
+   private $api_url = "https://graphql.anilist.co";
+   private $request;
+   private $query;
+   private $query_builder;
 
-    public function __construct()
-    {
-        $this->request = new Request();
+   public function __construct()
+   {
+      $this->request = new Request();
 
-        $this->query_builder = new GraphQL_Query_Builder();
-    }
+      $this->query_builder = new GraphQL_Query_Builder();
+   }
 
-    public function get_genres()
-    {
-        $this->query = <<<QUERY
+   public function get_genres()
+   {
+      $this->query = <<<QUERY
             query getGenres {
                 GenreCollection
             }
         QUERY;
 
-        $this->request->post(
-            $this->api_url,
+      $this->request->post(
+         $this->api_url,
+         [
+            'query' => $this->query,
+         ]
+      );
+
+      return $this->request->response['data']['GenreCollection'];
+   }
+
+   public function get_trending_now(int $per_page = 5)
+   {
+      $this->query = $this->query_builder
+         ->set_query_name('getTrendingNow')
+         ->set_arguments([
+            'page' => 1,
+            'perPage' => $per_page
+         ])
+         ->add_field(
             [
-                'query' => $this->query,
+               'name' => 'media',
+               'fields' => [
+                  'title { romaji }',
+                  'coverImage { extraLarge large medium }'
+               ],
+               'arguments' => [
+                  'sort' => 'TRENDING_DESC'
+               ]
             ]
-        );
+         )
+         ->build();
 
-        return $this->request->response['data']['GenreCollection'];
-    }
+      $this->request->post(
+         $this->api_url,
+         [
+            'query' => $this->query,
+         ]
+      );
 
-    public function get_trending_now(int $per_page = 5)
-    {
-        $this->query = $this->query_builder
-            ->set_query_name('getTrendingNow')
-            ->set_arguments([
-                'page' => 1,
-                'perPage' => $per_page
-            ])
-            ->add_field('media', [
-                'title { romaji }',
-                'coverImage { extraLarge large medium }'
-            ], ['sort' => 'TRENDING_DESC'])
-            ->build();
+      return $this->request->response['data']['Page']['media'];
+   }
 
-        $this->request->post(
-            $this->api_url,
+   public function get_season_popular(int $page = 1, int $per_page = 5)
+   {
+      $this->query = $this->query_builder
+         ->set_query_name('getPopularThisSeason')
+         ->set_arguments([
+            'page' => $page,
+            'perPage' => $per_page
+         ])
+         ->add_field(
             [
-                'query' => $this->query,
+               'name' => 'media',
+               'fields' => [
+                  'id',
+                  'title { romaji english native userPreferred }',
+                  'coverImage { extraLarge large medium }',
+                  'popularity',
+                  'format',
+                  'status',
+                  'season',
+                  'seasonYear'
+               ],
+               'arguments' => [
+                  'season' => AniList_Utils::get_current_season(),
+                  'seasonYear' => (int) date('Y'),
+                  'sort' => 'POPULARITY_DESC'
+               ]
             ]
-        );
+         )
+         ->build();
 
-        $this->query_builder->reset();
+      $this->request->post(
+         $this->api_url,
+         [
+            'query' => $this->query,
+         ]
+      );
 
-        return $this->request->response['data']['Page']['media'];
-    }
+      return $this->request->response['data']['Page']['media'];
+   }
 
-    public function get_season_popular(int $page = 1, int $per_page = 5)
-    {
-        $this->query = <<<QUERY
-            query getPopularThisSeason(\$season: MediaSeason!, \$seasonYear: Int!, \$page: Int!, \$perPage: Int!) {
-                Page(page: \$page, perPage: \$perPage) {
-                    media(season: \$season, seasonYear: \$seasonYear, sort: POPULARITY_DESC) {
-                        id
-                        title {
-                        romaji
-                        english
-                        native
-                        userPreferred
-                        }
-                        coverImage {
-                        extraLarge
-                        large
-                        medium
-                        }
-                        popularity
-                        format
-                        status
-                        season
-                        seasonYear
-                    }
-                }
-          }
-        QUERY;
-
-        $this->request->post(
-            $this->api_url,
-            [
-                'query' => $this->query,
-                'variables' => [
-                    'season' => AniList_Utils::get_current_season(),
-                    'seasonYear' => date('Y'),
-                    'page' => $page,
-                    'perPage' => $per_page,
-                ],
-            ]
-        );
-
-        return $this->request->response['data']['Page']['media'];
-    }
-
-    public function get_upcoming_next_season(int $page = 1, int $per_page = 5)
-    {
-        $this->query = <<<QUERY
+   public function get_upcoming_next_season(int $page = 1, int $per_page = 5)
+   {
+      $this->query = <<<QUERY
             query getUpcomingNextSeason(\$season: MediaSeason!, \$seasonYear: Int!, \$page: Int!, \$perPage: Int!) {
                 Page(page: \$page, perPage: \$perPage) {
                     media(season: \$season, seasonYear: \$seasonYear, sort: POPULARITY_DESC) {
@@ -134,25 +136,25 @@ class AniList implements MediaAPIInterface
             }
         QUERY;
 
-        $this->request->post(
-            $this->api_url,
-            [
-                'query' => $this->query,
-                'variables' => [
-                    'season' => AniList_Utils::get_next_season(),
-                    'seasonYear' => date('Y'),
-                    'page' => $page,
-                    'perPage' => $per_page
-                ],
-            ]
-        );
+      $this->request->post(
+         $this->api_url,
+         [
+            'query' => $this->query,
+            'variables' => [
+               'season' => AniList_Utils::get_next_season(),
+               'seasonYear' => date('Y'),
+               'page' => $page,
+               'perPage' => $per_page
+            ],
+         ]
+      );
 
-        return $this->request->response['data']['Page']['media'];
-    }
+      return $this->request->response['data']['Page']['media'];
+   }
 
-    public function get_all_time_popular($page = 1, $per_page = 5)
-    {
-        $this->query = <<<QUERY
+   public function get_all_time_popular($page = 1, $per_page = 5)
+   {
+      $this->query = <<<QUERY
             query getAllTimePopular(\$page: Int!, \$perPage: Int!) {
                 Page(page: \$page, perPage: \$perPage) {
                     media(sort: POPULARITY_DESC) {
@@ -177,17 +179,17 @@ class AniList implements MediaAPIInterface
             }
         QUERY;
 
-        $this->request->post(
-            $this->api_url,
-            [
-                'query' => $this->query,
-                'variables' => [
-                    'page' => $page,
-                    'perPage' => $per_page
-                ],
-            ]
-        );
+      $this->request->post(
+         $this->api_url,
+         [
+            'query' => $this->query,
+            'variables' => [
+               'page' => $page,
+               'perPage' => $per_page
+            ],
+         ]
+      );
 
-        return $this->request->response['data']['Page']['media'];
-    }
+      return $this->request->response['data']['Page']['media'];
+   }
 }

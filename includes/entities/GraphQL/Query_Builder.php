@@ -6,7 +6,6 @@ class GraphQL_Query_Builder
    protected $arguments = [];
    protected $fields = [];
 
-   // Define o nome da consulta
    public function set_query_name(string $query_name)
    {
       $this->reset();
@@ -16,7 +15,6 @@ class GraphQL_Query_Builder
       return $this;
    }
 
-   // Define os argumentos da consulta
    public function set_arguments(array $arguments)
    {
       $this->arguments = $arguments;
@@ -24,13 +22,11 @@ class GraphQL_Query_Builder
       return $this;
    }
 
-   // Adiciona um campo, permitindo a estrutura com nome, argumentos e subcampos, agora com suporte a alias
    public function add_field($field)
    {
-      // Caso o formato seja o novo formato (array associativo)
       if (is_array($field) && isset($field['name'])) {
          $field_name = $field['name'];
-         $alias = isset($field['alias']) ? $field['alias'] . ': ' : ''; // Suporte a alias
+         $alias = isset($field['alias']) ? $field['alias'] . ': ' : '';
          $sub_fields = $field['fields'] ?? null;
          $field_arguments = $field['arguments'] ?? [];
 
@@ -41,7 +37,7 @@ class GraphQL_Query_Builder
 
             foreach ($field_arguments as $key => $value) {
                if (is_string($value) && !preg_match('/^[A-Z_]+$/', $value)) {
-                  $value = '"' . addslashes($value) . '"'; // Escapando strings corretamente
+                  $value = '"' . addslashes($value) . '"';
                }
 
                $args[] = "$key: $value";
@@ -59,7 +55,7 @@ class GraphQL_Query_Builder
          } else {
             $this->fields[] = "$alias$field_name$args_string";
          }
-      } else { // Caso o formato seja o antigo
+      } else { 
          $args_string = '';
          $field_name = $field;
          $sub_fields = null;
@@ -71,7 +67,6 @@ class GraphQL_Query_Builder
       return $this;
    }
 
-   // Reseta o estado da classe
    public function reset()
    {
       $this->query_name = null;
@@ -81,14 +76,13 @@ class GraphQL_Query_Builder
       return $this;
    }
 
-   // Constrói a string da consulta
    public function build(): string
    {
       $args = [];
 
       foreach ($this->arguments as $key => $value) {
          if (is_string($value)) {
-            $value = '"' . addslashes($value) . '"'; // Escapando strings corretamente
+            $value = '"' . addslashes($value) . '"';
          }
 
          $args[] = "$key: $value";
@@ -104,5 +98,16 @@ class GraphQL_Query_Builder
                 }
             }
         QUERY;
+   }
+
+   public function build_simple(): string 
+   {
+      $fields_string = implode("\n", $this->fields);
+
+      return <<<QUERY
+        query {$this->query_name} {
+            $fields_string
+        }
+      QUERY;
    }
 }

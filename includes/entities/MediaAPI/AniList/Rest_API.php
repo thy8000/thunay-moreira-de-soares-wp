@@ -6,8 +6,15 @@ if (!defined('ABSPATH')) {
 
 class AniList_Rest_API
 {
+   private $query_builder;
+   private $request;
+   private $api_url = 'https://graphql.anilist.co';
+
    function __construct()
    {
+      $this->query_builder = new GraphQL_Query_Builder();
+      $this->request = new Request();
+
       add_action('rest_api_init', [$this, 'custom_endpoints']);
    }
 
@@ -38,9 +45,40 @@ class AniList_Rest_API
    {
       $filter = $request->get_param('filter');
 
+      debug($filter);
+
       if(AniList_Utils::is_filter_empty($filter)) {
          return new WP_Error('rest_invalid_param', esc_html__('Filtros inválidos.'), ['status' => 400]);
       }
+      // TODO: REFAZER LÓGICA DO QUERY BUILDER
+      $query = $this->query_builder->set_query_name('searchAnimes')
+         ->set_arguments([
+            'search' => $filter['search'] ?? null,
+            'genre' => $filter['genre'] ?? null,
+            'startDate_like' => $filter['year'] ?? null,
+            'season' => $filter['season'] ?? null,
+            'format' => $filter['format'] ?? null,
+         ])
+         ->set_fields([
+            'name' => 'media',
+            'fields' => [
+               'id',
+               'title { romaji english native userPreferred }',
+               'coverImage { extraLarge large medium }',
+            ]
+         ])
+         ->build();
+
+         $this->request->post(
+            $this->api_url,
+            [
+               'query' => $query,
+            ]
+         );
+
+         debug($query);
+
+         return $this->request->response['data']['Page']['media'];
    }
 }
 

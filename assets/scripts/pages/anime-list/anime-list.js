@@ -5,10 +5,10 @@ document.addEventListener('alpine:init', () => {
       restAPI: globals.restAPI,
       filterMap: {
          search: '',
-         genres: [],
-         year: [],
-         season: [],
-         format: [],
+         genre: '',
+         year: '',
+         season: '',
+         format: '',
       },
 
       filter() {
@@ -19,11 +19,11 @@ document.addEventListener('alpine:init', () => {
 
          fetchInstance.post('/search/', {
             filter: {
-               search: this.filterMap.search ?? [],
-               genres: this.filterMap.genres ?? [],
-               year: this.filterMap.year ?? [],
-               season: this.filterMap.season ?? [],
-               format: this.filterMap.format ?? [],
+               search: this.filterMap.search ?? '',
+               genre: this.filterMap.genres ?? '',
+               year: this.filterMap.year ?? '',
+               season: this.filterMap.season ?? '',
+               format: this.filterMap.format ?? '',
             }
          })
          .then(response => {

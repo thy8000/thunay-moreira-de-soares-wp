@@ -22,7 +22,7 @@ class AniList implements MediaAPIInterface
    {
       $this->query = $this->query_builder
          ->set_query_name('getGenres')
-         ->add_field('GenreCollection')
+         ->set_fields('GenreCollection')
          ->build_simple();
 
       $this->request->post(
@@ -43,7 +43,7 @@ class AniList implements MediaAPIInterface
             'page' => 1,
             'perPage' => $per_page
          ])
-         ->add_field(
+         ->set_fields(
             [
                'name' => 'media',
                'fields' => [
@@ -75,7 +75,7 @@ class AniList implements MediaAPIInterface
             'page' => $page,
             'perPage' => $per_page
          ])
-         ->add_field(
+         ->set_fields(
             [
                'name' => 'media',
                'fields' => [
@@ -115,7 +115,7 @@ class AniList implements MediaAPIInterface
             'page' => $page,
             'perPage' => $per_page
          ])
-         ->add_field(
+         ->set_fields(
             [
                'name' => 'media',
                'fields' => [
@@ -155,7 +155,7 @@ class AniList implements MediaAPIInterface
             'page' => $page,
             'perPage' => $per_page
          ])
-         ->add_field(
+         ->set_fields(
             [
                'name' => 'media',
                'fields' => [

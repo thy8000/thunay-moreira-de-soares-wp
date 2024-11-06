@@ -1,5 +1,4 @@
 <?php
-// TODO: TERMINAR RESTANTE DO BUILDER
 
 if (!defined('ABSPATH')) {
    exit;
@@ -22,9 +21,9 @@ class AniList implements MediaAPIInterface
    public function get_genres()
    {
       $this->query = $this->query_builder
-         ->set_query('getGenres')
-         ->set_sub_fields(['GenreCollection'])
-         ->build();
+         ->set_query_name('getGenres')
+         ->set_fields('GenreCollection')
+         ->build_simple();
 
       $this->request->post(
          $this->api_url,
@@ -174,12 +173,12 @@ class AniList implements MediaAPIInterface
          )
          ->build();
 
-      $this->request->post(
-         $this->api_url,
-         [
-            'query' => $this->query,
-         ]
-      );
+         $this->request->post(
+            $this->api_url,
+            [
+               'query' => $this->query,
+            ]
+         );
 
       return $this->request->response['data']['Page']['media'];
    }

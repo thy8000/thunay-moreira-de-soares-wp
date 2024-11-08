@@ -39,23 +39,24 @@ class AniList implements MediaAPIInterface
    public function get_trending_now(int $per_page = 5)
    {
       $this->query = $this->query_builder
-         ->set_query_name('getTrendingNow')
-         ->set_arguments([
+         ->set_query('getTrendingNow')
+         ->set_object('Page', [
             'page' => 1,
             'perPage' => $per_page
          ])
-         ->set_fields(
-            [
-               'name' => 'media',
-               'fields' => [
-                  'title { romaji }',
-                  'coverImage { extraLarge large medium }'
-               ],
-               'arguments' => [
-                  'sort' => 'TRENDING_DESC'
-               ]
+         ->set_field('media', [
+            'sort' => 'TRENDING_DESC'
+         ])
+         ->set_sub_fields([
+            'title' => [
+               'romaji',
+            ],
+            'coverImage' => [
+               'extraLarge',
+               'large',
+               'medium'
             ]
-         )
+         ])
          ->build();
 
       $this->request->post(
@@ -71,31 +72,35 @@ class AniList implements MediaAPIInterface
    public function get_season_popular(int $page = 1, int $per_page = 5)
    {
       $this->query = $this->query_builder
-         ->set_query_name('getPopularThisSeason')
-         ->set_arguments([
+         ->set_query('getPopularThisSeason')
+         ->set_object('Page', [
             'page' => $page,
             'perPage' => $per_page
          ])
-         ->set_fields(
-            [
-               'name' => 'media',
-               'fields' => [
-                  'id',
-                  'title { romaji english native userPreferred }',
-                  'coverImage { extraLarge large medium }',
-                  'popularity',
-                  'format',
-                  'status',
-                  'season',
-                  'seasonYear'
-               ],
-               'arguments' => [
-                  'season' => AniList_Utils::get_current_season(),
-                  'seasonYear' => (int) date('Y'),
-                  'sort' => 'POPULARITY_DESC'
-               ]
-            ]
-         )
+         ->set_field('media', [
+            'season' => AniList_Utils::get_current_season(),
+            'seasonYear' => date('Y'),
+            'sort' => 'POPULARITY_DESC'
+         ])
+         ->set_sub_fields([
+            'id',
+            'title' => [
+               'romaji',
+               'english',
+               'native',
+               'userPreferred',
+            ],
+            'coverImage' => [
+               'extraLarge',
+               'large',
+               'medium',
+            ],
+            'popularity',
+            'format',
+            'status',
+            'season',
+            'seasonYear'
+         ])
          ->build();
 
       $this->request->post(
@@ -111,31 +116,35 @@ class AniList implements MediaAPIInterface
    public function get_upcoming_next_season(int $page = 1, int $per_page = 5)
    {
       $this->query = $this->query_builder
-         ->set_query_name('getUpcomingNextSeason')
-         ->set_arguments([
+         ->set_query('getUpcomingNextSeason')
+         ->set_object('Page', [
             'page' => $page,
             'perPage' => $per_page
          ])
-         ->set_fields(
-            [
-               'name' => 'media',
-               'fields' => [
-                  'id',
-                  'title { romaji english native userPreferred }',
-                  'coverImage { extraLarge large medium }',
-                  'popularity',
-                  'format',
-                  'status',
-                  'season',
-                  'seasonYear'
-               ],
-               'arguments' => [
-                  'season' => AniList_Utils::get_next_season(),
-                  'seasonYear' => (int) date('Y'),
-                  'sort' => 'POPULARITY_DESC'
-               ]
-            ]
-         )
+         ->set_field('media', [
+            'season' => AniList_Utils::get_next_season(),
+            'seasonYear' => date('Y'),
+            'sort' => 'POPULARITY_DESC'
+         ])
+         ->set_sub_fields([
+            'id',
+            'title' => [
+               'romaji',
+               'english',
+               'native',
+               'userPreferred'
+            ],
+            'coverImage' => [
+               'extraLarge',
+               'large',
+               'medium'
+            ],
+            'popularity',
+            'format',
+            'status',
+            'season',
+            'seasonYear'
+         ])
          ->build();
 
       $this->request->post(
@@ -148,6 +157,7 @@ class AniList implements MediaAPIInterface
       return $this->request->response['data']['Page']['media'];
    }
 
+   // TODO: ARRUMAR ALL TIME POPULAR
    public function get_all_time_popular($page = 1, $per_page = 5)
    {
       $this->query = $this->query_builder

@@ -1,5 +1,5 @@
 <?php
-// TODO: REFAZER LÓGICA DO QUERY BUILDER
+
 class GraphQL_Query_Builder
 {
    protected $query;
@@ -69,6 +69,8 @@ class GraphQL_Query_Builder
 
    public function set_sub_fields(array $fields)
    {
+      $this->query->sub_fields = "";
+
       foreach ($fields as $key => $field) {
          if (is_array($field)) {
             $this->query->sub_fields .= $key . " { ";

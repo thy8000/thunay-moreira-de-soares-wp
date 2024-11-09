@@ -1,5 +1,4 @@
 <?php
-// TODO: TERMINAR RESTANTE DO BUILDER
 
 if (!defined('ABSPATH')) {
    exit;
@@ -115,6 +114,8 @@ class AniList implements MediaAPIInterface
 
    public function get_upcoming_next_season(int $page = 1, int $per_page = 5)
    {
+      $season_and_year = AniList_Utils::get_next_season_and_year();
+
       $this->query = $this->query_builder
          ->set_query('getUpcomingNextSeason')
          ->set_object('Page', [
@@ -122,8 +123,8 @@ class AniList implements MediaAPIInterface
             'perPage' => $per_page
          ])
          ->set_field('media', [
-            'season' => AniList_Utils::get_next_season(),
-            'seasonYear' => date('Y'),
+            'season' => $season_and_year['season'],
+            'seasonYear' => $season_and_year['year'],
             'sort' => 'POPULARITY_DESC'
          ])
          ->set_sub_fields([
@@ -160,28 +161,36 @@ class AniList implements MediaAPIInterface
    // TODO: ARRUMAR ALL TIME POPULAR
    public function get_all_time_popular($page = 1, $per_page = 5)
    {
+      $season_and_year = AniList_Utils::get_next_season_and_year();
+
       $this->query = $this->query_builder
-         ->set_query_name('getAllTimePopular')
-         ->set_arguments([
+         ->set_query('getAllTimePopular')
+         ->set_object('Page', [
             'page' => $page,
             'perPage' => $per_page
          ])
-         ->set_fields(
-            [
-               'name' => 'media',
-               'fields' => [
-                  'id',
-                  'title { romaji english native userPreferred }',
-                  'trending',
-                  'format',
-                  'status',
-                  'coverImage { extraLarge large medium }',
-               ],
-               'arguments' => [
-                  'sort' => 'POPULARITY_DESC'
-               ]
-            ]
-         )
+         ->set_field('media', [
+            'sort' => 'POPULARITY_DESC'
+         ])
+         ->set_sub_fields([
+            'id',
+            'title' => [
+               'romaji',
+               'english',
+               'native',
+               'userPreferred'
+            ],
+            'coverImage' => [
+               'extraLarge',
+               'large',
+               'medium'
+            ],
+            'popularity',
+            'format',
+            'status',
+            'season',
+            'seasonYear'
+         ])
          ->build();
 
       $this->request->post(

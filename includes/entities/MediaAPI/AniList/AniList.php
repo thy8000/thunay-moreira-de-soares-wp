@@ -87,7 +87,6 @@ class AniList implements MediaAPIInterface
                'romaji',
                'english',
                'native',
-               'userPreferred',
             ],
             'coverImage' => [
                'extraLarge',
@@ -133,7 +132,6 @@ class AniList implements MediaAPIInterface
                'romaji',
                'english',
                'native',
-               'userPreferred'
             ],
             'coverImage' => [
                'extraLarge',
@@ -158,11 +156,8 @@ class AniList implements MediaAPIInterface
       return $this->request->response['data']['Page']['media'];
    }
 
-   // TODO: ARRUMAR ALL TIME POPULAR
    public function get_all_time_popular($page = 1, $per_page = 5)
    {
-      $season_and_year = AniList_Utils::get_next_season_and_year();
-
       $this->query = $this->query_builder
          ->set_query('getAllTimePopular')
          ->set_object('Page', [
@@ -178,7 +173,6 @@ class AniList implements MediaAPIInterface
                'romaji',
                'english',
                'native',
-               'userPreferred'
             ],
             'coverImage' => [
                'extraLarge',
@@ -201,5 +195,48 @@ class AniList implements MediaAPIInterface
       );
 
       return $this->request->response['data']['Page']['media'];
+   }
+
+   public function get_filter($args = [])
+   {
+      if (empty($args)) {
+         return;
+      }
+
+      $object_args = array_filter($args);
+
+      $this->query = $this->query_builder
+         ->set_query('getFilter')
+         ->set_object('Media', $object_args)
+         ->set_sub_fields([
+            'id',
+            'title' => [
+               'romaji',
+               'english',
+               'native',
+            ],
+            'coverImage' => [
+               'extraLarge',
+               'large',
+               'medium'
+            ],
+            'popularity',
+            'format',
+            'status',
+            'season',
+            'seasonYear'
+         ])
+         ->build();
+
+      debug($this->query);
+
+      $this->request->post(
+         $this->api_url,
+         [
+            'query' => $this->query,
+         ]
+      );
+
+      return $this->request->response;
    }
 }

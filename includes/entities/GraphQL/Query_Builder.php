@@ -41,7 +41,7 @@ class GraphQL_Query_Builder
          $this->query->object .= "(";
 
          foreach ($fields as $key => $field) {
-            $this->query->object .= "$key: $field, ";
+            $this->query->object .= "$key: \"$field\", ";
          }
 
          $this->query->object .= ") ";

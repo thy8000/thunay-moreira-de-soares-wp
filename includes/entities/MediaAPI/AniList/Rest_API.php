@@ -39,7 +39,11 @@ class AniList_Rest_API
    function validate_search_animes_callback($value, $request, $param)
    {
       if (empty($value)) {
-         return new WP_Error('rest_invalid_param', esc_html__('O parâmetro query deve ser uma string não vazia.'), ['status' => 400]);
+         return new WP_Error(
+            'rest_invalid_param',
+            esc_html__('O parâmetro query não pode estar vazio.', 'thunay'),
+            ['status' => 400]
+         );
       }
 
       return true;
@@ -55,9 +59,36 @@ class AniList_Rest_API
 
       $response = $this->media_api->get_filter($filter);
 
-      //TODO: TRATAR A RESPOSTA
+      if (empty($response)) {
+         return new WP_Error('rest_invalid_param', esc_html__('Não foi encontrado nenhum resultado de acordo com o resultado da sua pesquisa.'), ['status' => 404]);
+      }
 
-      debug($response);
+      $html = null;
+
+      ob_start();
+
+      foreach ($response as $media) {
+
+?>
+         <li>
+
+            <?php
+            get_template_part('components/anime-card-vertical', null, [
+               'data' => $media,
+            ]);
+            ?>
+
+         </li>
+
+<?php
+      }
+
+      $html .= ob_get_clean();
+
+      wp_send_json_success([
+         'content'       => $html,
+         'action'        => 'html',
+      ]);
    }
 }
 

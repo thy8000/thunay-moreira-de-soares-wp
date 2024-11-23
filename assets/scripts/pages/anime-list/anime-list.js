@@ -10,6 +10,7 @@ document.addEventListener('alpine:init', () => {
          season: '',
          format: '',
       },
+      searchListElement: document.querySelector('#anime-list-container'),
 
       filter() {
          let formData = new FormData()
@@ -17,21 +18,28 @@ document.addEventListener('alpine:init', () => {
 
          let fetchInstance = new Fetch(`${this.restAPI}anilist/api`)
 
-         fetchInstance.post('/search/', {
-            filter: {
-               search: this.filterMap.search ?? '',
-               genre: this.filterMap.genres ?? '',
-               year: this.filterMap.year ?? '',
-               season: this.filterMap.season ?? '',
-               format: this.filterMap.format ?? '',
-            }
-         })
-         .then(response => {
-           console.log(response);
-         })
-         .catch(error => {
-           console.error('Error while fetching:', error);
-         });
+         fetchInstance
+            .post('/search/', {
+               filter: {
+                  search: this.filterMap.search ?? '',
+                  genre: this.filterMap.genres ?? '',
+                  year: this.filterMap.year ?? '',
+                  season: this.filterMap.season ?? '',
+                  format: this.filterMap.format ?? '',
+               },
+               response_type: 'html',
+            })
+            .then((response) => {
+               if (response) {
+                  this.searchValue = response
+                  this.searchListElement.innerHTML = response
+               } else {
+                  console.warn('Nenhum conteúdo encontrado na resposta', response)
+               }
+            })
+            .catch((error) => {
+               console.error('Error while fetching:', error)
+            })
       },
    }))
 })

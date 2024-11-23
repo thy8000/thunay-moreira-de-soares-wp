@@ -52,6 +52,7 @@ class AniList_Rest_API
    function search_animes($request)
    {
       $filter = $request->get_param('filter');
+      $response_type = $request->get_param('response_type') ?? 'json';
 
       if (AniList_Utils::is_filter_empty($filter)) {
          return new WP_Error('rest_invalid_param', esc_html__('Filtros inválidos.'), ['status' => 400]);
@@ -63,32 +64,31 @@ class AniList_Rest_API
          return new WP_Error('rest_invalid_param', esc_html__('Não foi encontrado nenhum resultado de acordo com o resultado da sua pesquisa.'), ['status' => 404]);
       }
 
-      $html = null;
+      if ($response_type === 'html') {
+         $html = '';
 
-      ob_start();
+         ob_start();
 
-      foreach ($response as $media) {
-
+         foreach ($response as $media) {
 ?>
-         <li>
 
-            <?php
-            get_template_part('components/anime-card-vertical', null, [
-               'data' => $media,
-            ]);
-            ?>
-
-         </li>
+            <li>
+               <?php
+               get_template_part('components/anime-card-vertical', null, [
+                  'data' => $media,
+               ]);
+               ?>
+            </li>
 
 <?php
+         }
+
+         $html = ob_get_clean();
+
+         return new WP_REST_Response($html, 200);
       }
 
-      $html .= ob_get_clean();
-
-      wp_send_json_success([
-         'content'       => $html,
-         'action'        => 'html',
-      ]);
+      return new WP_Rest_Response($response, 200);
    }
 }
 

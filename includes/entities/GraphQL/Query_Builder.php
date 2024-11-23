@@ -41,10 +41,16 @@ class GraphQL_Query_Builder
          $this->query->object .= "(";
 
          foreach ($fields as $key => $field) {
-            if (is_string($field)) {
+            if (empty($field['type'])) {
                $this->query->object .= "$key: \"$field\", ";
+            } else if ($field['type'] === 'String') {
+               $field_value = $field['value'];
+
+               $this->query->object .= "$key: \"$field_value\", ";
             } else {
-               $this->query->object .= "$key: $field, ";
+               $field_value = $field['value'];
+
+               $this->query->object .= "$key: $field_value, ";
             }
          }
 
@@ -62,10 +68,16 @@ class GraphQL_Query_Builder
          $this->query->field .= "(";
 
          foreach ($fields as $key => $field) {
-            if (is_string($field)) {
+            if (empty($field['type']) || empty($field['value'])) {
                $this->query->field .= "$key: \"$field\", ";
+            } else if ($field['type'] === 'String') {
+               $field_value = $field['value'];
+
+               $this->query->field .= "$key: \"$field_value\", ";
             } else {
-               $this->query->field .= "$key: $field, ";
+               $field_value = $field['value'];
+
+               $this->query->field .= "$key: $field_value, ";
             }
          }
 

@@ -38,15 +38,23 @@ class AniList implements MediaAPIInterface
 
    public function get_trending_now(int $per_page = 5)
    {
-      //TODO: ARRUMAR BUILDER PARA ACEITAR STRINGS E INTS COM ASPAS OU SEM ASPAS SEM DAR ERRO
       $this->query = $this->query_builder
          ->set_query('getTrendingNow')
          ->set_object('Page', [
-            'page' => 1,
-            'perPage' => (int) $per_page
+            'page' => [
+               'value' => 1,
+               'type'  => 'Int',
+            ],
+            'perPage' => [
+               'value' => $per_page,
+               'type'  => 'Int',
+            ]
          ])
          ->set_field('media', [
-            'sort' => 'TRENDING_DESC'
+            'sort' => [
+               'value' => 'TRENDING_DESC',
+               'type'  => 'MediaSort',
+            ]
          ])
          ->set_sub_fields([
             'title' => [
@@ -76,13 +84,28 @@ class AniList implements MediaAPIInterface
       $this->query = $this->query_builder
          ->set_query('getPopularThisSeason')
          ->set_object('Page', [
-            'page' => $page,
-            'perPage' => (int) $per_page
+            'page' => [
+               'value' => $page,
+               'type'  => 'Int',
+            ],
+            'perPage' => [
+               'value' => $per_page,
+               'type'  => 'Int',
+            ]
          ])
          ->set_field('media', [
-            'season' => AniList_Utils::get_current_season(),
-            'seasonYear' => date('Y'),
-            'sort' => 'POPULARITY_DESC'
+            'season' => [
+               'value' => AniList_Utils::get_current_season(),
+               'type'  => 'MediaSeason',
+            ],
+            'seasonYear' => [
+               'value' => date('Y'),
+               'type'  => 'Int'
+            ],
+            'sort' => [
+               'value' => 'POPULARITY_DESC',
+               'type'  => 'MediaSort',
+            ]
          ])
          ->set_sub_fields([
             'id',
@@ -111,8 +134,6 @@ class AniList implements MediaAPIInterface
          ]
       );
 
-      debug($this->request->response);
-
       return $this->request->response['data']['Page']['media'];
    }
 
@@ -120,17 +141,31 @@ class AniList implements MediaAPIInterface
    {
       $season_and_year = AniList_Utils::get_next_season_and_year();
 
-      //TODO: ARRUMAR BUILDER PARA ACEITAR STRINGS E INTS COM ASPAS OU SEM ASPAS SEM DAR ERRO
       $this->query = $this->query_builder
          ->set_query('getUpcomingNextSeason')
          ->set_object('Page', [
-            'page' => $page,
-            'perPage' => (int) $per_page
+            'page' => [
+               'value' => $page,
+               'type' => 'Int'
+            ],
+            'perPage' => [
+               'value' => $per_page,
+               'type' => 'Int'
+            ]
          ])
          ->set_field('media', [
-            'season' => $season_and_year['season'],
-            'seasonYear' => $season_and_year['year'],
-            'sort' => 'POPULARITY_DESC'
+            'season' => [
+               'value' => $season_and_year['season'],
+               'type' => 'MediaSeason'
+            ],
+            'seasonYear' => [
+               'value' => $season_and_year['year'],
+               'type' => 'MediaSeason'
+            ],
+            'sort' => [
+               'value' => 'POPULARITY_DESC',
+               'type' => 'MediaSort'
+            ]
          ])
          ->set_sub_fields([
             'id',
@@ -164,15 +199,23 @@ class AniList implements MediaAPIInterface
 
    public function get_all_time_popular($page = 1, $per_page = 5)
    {
-      //TODO: ARRUMAR BUILDER PARA ACEITAR STRINGS E INTS COM ASPAS OU SEM ASPAS SEM DAR ERRO
       $this->query = $this->query_builder
          ->set_query('getAllTimePopular')
          ->set_object('Page', [
-            'page' => $page,
-            'perPage' => (int) $per_page
+            'page' => [
+               'value' => $page,
+               'type' => 'Int'
+            ],
+            'perPage' => [
+               'value' => $per_page,
+               'type' => 'Int'
+            ]
          ])
          ->set_field('media', [
-            'sort' => 'POPULARITY_DESC'
+            'sort' => [
+               'value' => 'POPULARITY_DESC',
+               'type' => 'MediaSort'
+            ]
          ])
          ->set_sub_fields([
             'id',
@@ -212,12 +255,17 @@ class AniList implements MediaAPIInterface
 
       $object_args = array_filter($args);
 
-      //TODO: ARRUMAR BUILDER PARA ACEITAR STRINGS E INTS COM ASPAS OU SEM ASPAS SEM DAR ERRO
       $this->query = $this->query_builder
          ->set_query('getFilter')
          ->set_object('Page', [
-            'page' => (int) 1,
-            'perPage' => (int) 50
+            'page' => [
+               'value' => 1,
+               'type'  => 'Int',
+            ],
+            'perPage' => [
+               'value' => 50,
+               'type'  => 'Int',
+            ]
          ])
          ->set_field('media', $object_args)
          ->set_sub_fields([

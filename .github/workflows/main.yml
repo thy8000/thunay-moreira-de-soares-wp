@@ -25,7 +25,7 @@ jobs:
         run: |
           echo "$HOSTGATOR_KEY" > /tmp/ssh_key
           chmod 600 /tmp/ssh_key
-          ssh -i /tmp/ssh_key -o StrictHostKeyChecking=no $HOSTGATOR_USER@$HOSTGATOR_HOST << 'EOF'
+          ssh -i /tmp/ssh_key -o StrictHostKeyChecking=no -o IdentitiesOnly=yes $HOSTGATOR_USER@$HOSTGATOR_HOST << 'EOF'
             cd wp-content/themes/thunay-moreira-de-soares-wp
             npm install
             npm run assets

@@ -1,6 +1,6 @@
 on: push
 name: 🚀 Deploy website with Build
-
+# TODO: ADD PLUGINS
 jobs:
   web-deploy:
     name: 🎉 Deploy on production

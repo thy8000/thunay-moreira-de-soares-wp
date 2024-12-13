@@ -1,33 +1,15 @@
-name: Deploy to prod
-
-on:
-  push:
-    branches:
-      - main
-
+on: push
+name: 🚀 Deploy website on FTP
 jobs:
-  deploy:
+  web-deploy:
+    name: 🎉 Deploy
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
-
-      - name: Set up Node JS
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-
-      - name: Deploy to Hostgator
-        env:
-          HOSTGATOR_HOST: ${{ secrets.HOSTGATOR_HOST }}
-          HOSTGATOR_USER: ${{ secrets.HOSTGATOR_USER }}
-          HOSTGATOR_KEY:  ${{ secrets.HOSTGATOR_KEY }}
-        run: |
-          rsync -avz --delete -e "ssh -i $HOSTGATOR_KEY" ./ $HOSTGATOR_USER@HOSTGATOR_HOST:public_html/wp-content/themes/thunay
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build assets
-        run: npm run assets
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v2.3.1
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@4.1.7
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}

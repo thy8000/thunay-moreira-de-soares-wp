@@ -1,16 +1,32 @@
 on: push
-name: 🚀 Deploy website on FTP
+name: 🚀 Deploy website with Build
+
 jobs:
   web-deploy:
-    name: 🎉 Deploy
+    name: 🎉 Deploy and Build
     runs-on: ubuntu-latest
     steps:
-    - name: 🚚 Get latest code
-      uses: actions/checkout@v2.3.1
-    - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-      with:
-        server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        server-dir: 'wp-content/themes/thunay-moreira-de-soares-wp/'
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v2.3.1
+
+      - name: 📂 Sync files via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: 'wp-content/themes/thunay-moreira-de-soares-wp/'
+
+      - name: 🛠️ Run npm commands on server
+        env:
+          HOSTGATOR_HOST: ${{ secrets.FTP_SERVER }}
+          HOSTGATOR_USER: ${{ secrets.SSH_USERNAME }}
+          HOSTGATOR_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          echo "$HOSTGATOR_KEY" > /tmp/ssh_key
+          chmod 600 /tmp/ssh_key
+          ssh -i /tmp/ssh_key -o StrictHostKeyChecking=no $HOSTGATOR_USER@$HOSTGATOR_HOST << 'EOF'
+            cd wp-content/themes/thunay-moreira-de-soares-wp
+            npm install
+            npm run assets
+          EOF

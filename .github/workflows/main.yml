@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  deploy: 
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,6 +17,14 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '14'
+
+      - name: Deploy to Hostgator
+        env:
+          HOSTGATOR_HOST: ${{ secrets.HOSTGATOR_HOST }}
+          HOSTGATOR_USER: ${{ secrets.HOSTGATOR_USER }}
+          HOSTGATOR_KEY:  ${{ secrets.HOSTGATOR_KEY }}
+        run: |
+          rsync -avz --delete -e "ssh -i $HOSTGATOR_KEY" ./ $HOSTGATOR_USER@HOSTGATOR_HOST:public_html/wp-content/themes/thunay
 
       - name: Install dependencies
         run: npm install

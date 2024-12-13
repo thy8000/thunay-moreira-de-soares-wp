@@ -6,7 +6,7 @@ jobs:
     name: 🎉 Deploy on production
     runs-on: ubuntu-latest
     steps:
-      - name: 🚚 Get latest code
+      - name: 🚚 Checkout repository
         uses: actions/checkout@v2.3.1
 
       - name: 📂 Sync files via FTP
@@ -17,16 +17,13 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: 'wp-content/themes/thunay-moreira-de-soares-wp/'
 
-      - name: 🛠️ Install packages and assets
-        env:
-          HOSTGATOR_HOST: ${{ secrets.FTP_SERVER }}
-          HOSTGATOR_USER: ${{ secrets.SSH_USERNAME }}
-          HOSTGATOR_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '21.x'
+
+      - name: Install dependencies
         run: |
-          echo "$HOSTGATOR_KEY" > /tmp/ssh_key
-          chmod 600 /tmp/ssh_key
-          ssh -i /tmp/ssh_key -o StrictHostKeyChecking=no -o IdentitiesOnly=yes $HOSTGATOR_USER@$HOSTGATOR_HOST << 'EOF'
-            cd wp-content/themes/thunay-moreira-de-soares-wp
-            npm install
-            npm run assets
-          EOF
+          cd 'wp-content/themes/thunay-moreira-de-soares-wp/'
+          npm install
+          npm run assets

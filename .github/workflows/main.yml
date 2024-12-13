@@ -3,7 +3,7 @@ name: 🚀 Deploy website with Build
 
 jobs:
   web-deploy:
-    name: 🎉 Deploy and Build
+    name: 🎉 Deploy on production
     runs-on: ubuntu-latest
     steps:
       - name: 🚚 Get latest code
@@ -17,7 +17,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: 'wp-content/themes/thunay-moreira-de-soares-wp/'
 
-      - name: 🛠️ Run npm commands on server
+      - name: 🛠️ Install packages and assets
         env:
           HOSTGATOR_HOST: ${{ secrets.FTP_SERVER }}
           HOSTGATOR_USER: ${{ secrets.SSH_USERNAME }}

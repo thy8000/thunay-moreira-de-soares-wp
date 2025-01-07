@@ -29,3 +29,8 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: 'wp-content/themes/thunay-moreira-de-soares-wp/'
+
+      - name: Download Plugins
+        run: |
+          curl -s -o advanced-custom-fields-pro.zip http://www.thunaymoreiradesoares.com.br/uploads/advanced-custom-fields-pro.zip
+          unzip advanced-custom-fields-pro.zip -d /var/www/html/wp-content/plugins/

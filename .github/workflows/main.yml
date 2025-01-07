@@ -42,4 +42,4 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: advanced-custom-fields-pro/
-          server-dir: 'wp-content/plugins/advanced-custom-fields-pro/'
+          server-dir: 'wp-content/plugins/'

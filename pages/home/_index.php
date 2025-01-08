@@ -1,11 +1,11 @@
 <?php
 
 if (!defined('ABSPATH')) {
-    exit;
+   exit;
 }
 
 
-get_template_part('components/header/_index');
+get_template_part('components/Header/_index');
 
 get_template_part('pages/home/components/top-hero');
 

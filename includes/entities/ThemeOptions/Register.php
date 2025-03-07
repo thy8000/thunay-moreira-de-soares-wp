@@ -8,165 +8,115 @@ class ThemeOptionsRegister
 {
    function __construct()
    {
-      //add_action('init', [$this, 'register_parent_page']);
-      //add_action('init', [$this, 'register_home_page']);
-
-      add_action('init', [$this, 'register_parent_page']);
-      add_action('init', [$this, 'register_home_page']);
+      add_action('acf/init', [$this, 'register_parent_page']);
+      add_action('acf/init', [$this, 'register_home_page']);
    }
 
    public function register_parent_page()
    {
-      if (!has_action('acf/init')) {
+      if (!function_exists('acf_add_options_page')) {
          return;
       }
 
       acf_add_options_page([
-         'page_title' => 'Opções do tema',
-         'menu_slug' => 'theme-options',
-         'position' => 2,
-         'redirect' => true,
+         'page_title' => __('Opções do Tema', 'thunay'),
+         'menu_title' => __('Opções do tema', 'thunay'),
+         'menu_slug'  => 'theme-options',
+         'redirect'   => true,
+         'position'   => 2,
       ]);
    }
 
    public function register_home_page()
    {
-      if (!has_action('acf/init')) {
+      if (!function_exists('acf_add_options_page')) {
          return;
       }
 
       acf_add_options_page([
-         'page_title'  => 'Home',
-         'menu_slug'   => 'theme-options-home',
+         'page_title' => __('Home', 'thunay'),
+         'menu_title' => __('Home', 'thunay'),
+         'menu_slug' => 'theme-options-home',
          'parent_slug' => 'theme-options',
-         'position'    => '',
-         'redirect'    => false,
       ]);
+
+      $this->register_home_hero();
+      $this->register_home_about_me();
+      $this->register_home_services();
+      $this->register_home_skills();
+      $this->register_home_experience();
    }
 
-   /*
-    public function register_parent_page()
-    {
-        $Parent_Page = new ACF_Register();
-        $Parent_Page->register_page([
-            'page_title' => __('Opções do tema', 'thunay'),
-            'menu_title' => __('Opções do tema', 'thunay'),
-            'menu_slug'  => 'theme-options',
-            'redirect'   => true,
-            'position'   => 2,
-        ]);
-    }
-*/
-   /*
-    public function register_home_page()
-    {
-        $Home_Page = new ACF_Register();
-        $Home_Page->register_page([
-            'page_title' => __('Home', 'thunay'),
-            'menu_title' => __('Home', 'thunay'),
-            'menu_slug' => 'theme-options-home',
-            'parent_slug' => 'theme-options',
-        ]);
-
-        $this->register_home_hero();
-        //$this->register_home_about_me();
-        //$this->register_home_services();
-        //$this->register_home_skills();
-        //$this->register_home_experience();
-    }
-*/
-   public function register_home_hero()
+   private function register_home_hero()
    {
-      $Hero = new ACF_Register();
+      if (!function_exists('acf_add_local_field_group')) {
+         return;
+      }
 
-      $Hero->register_field_group([
+      acf_add_local_field_group([
          'key' => 'group_66566babb591b',
-         'title' => 'Hero',
-         'location' => [
+         'title' => __('Hero', 'thunay'),
+         'fields' => [
             [
-               [
-                  'param' => 'options_page',
-                  'operator' => '==',
-                  'value' => 'theme-options-home',
+               'key' => 'field_66566f9e3d181',
+               'label' => __('Título e descrição', 'thunay'),
+               'name' => '',
+               'aria-label' => '',
+               'type' => 'tab',
+               'instructions' => '',
+               'required' => 0,
+               'conditional_logic' => 0,
+               'wrapper' => [
+                  'width' => '',
+                  'class' => '',
+                  'id' => '',
                ],
+               'placement' => 'top',
+               'endpoint' => 0,
             ],
-         ],
-         'menu_order' => 0,
-         'position' => 'normal',
-         'style' => 'default',
-         'label_placement' => 'top',
-         'instruction_placement' => 'label',
-         'hide_on_screen' => '',
-         'active' => true,
-         'description' => '',
-         'show_in_rest' => 0,
-      ]);
-
-      $Hero->add_fields_group([
-         [
-            'key' => 'field_66566f9e3d181',
-            'label' => 'Título e descrição',
-            'name' => '',
-            'aria-label' => '',
-            'type' => 'tab',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => 0,
-            'wrapper' => [
-               'width' => '',
-               'class' => '',
-               'id' => '',
+            [
+               'key' => 'field_66566bcfd24ff',
+               'label' => __('Título', 'thunay'),
+               'name' => 'home_hero_title',
+               'aria-label' => '',
+               'type' => 'textarea',
+               'instructions' => '',
+               'required' => 0,
+               'conditional_logic' => 0,
+               'wrapper' => [
+                  'width' => '',
+                  'class' => '',
+                  'id' => '',
+               ],
+               'default_value' => '',
+               'maxlength' => '',
+               'rows' => '',
+               'placeholder' => __('Thunay Moreira de Soares', 'thunay'),
+               'new_lines' => '',
             ],
-            'placement' => 'top',
-            'endpoint' => 0,
-         ],
-         [
-            'key' => 'field_66566bcfd24ff',
-            'label' => 'Título',
-            'name' => 'home_hero_title',
-            'aria-label' => '',
-            'type' => 'textarea',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => 0,
-            'wrapper' => [
-               'width' => '',
-               'class' => '',
-               'id' => '',
+            [
+               'key' => 'field_66566e93288f2',
+               'label' => __('Descrição', 'thunay'),
+               'name' => 'home_hero_description',
+               'aria-label' => '',
+               'type' => 'textarea',
+               'instructions' => '',
+               'required' => 0,
+               'conditional_logic' => 0,
+               'wrapper' => [
+                  'width' => '',
+                  'class' => '',
+                  'id' => '',
+               ],
+               'default_value' => '',
+               'maxlength' => '',
+               'rows' => '',
+               'placeholder' => __('Desenvolvedor Fullstack', 'thunay'),
+               'new_lines' => '',
             ],
-            'default_value' => '',
-            'maxlength' => '',
-            'rows' => '',
-            'placeholder' => 'Desenvolvedor Fullstack',
-            'new_lines' => '',
-         ],
-         [
-            'key' => 'field_66566e93288f2',
-            'label' => 'Descrição',
-            'name' => 'home_hero_description',
-            'aria-label' => '',
-            'type' => 'textarea',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => 0,
-            'wrapper' => [
-               'width' => '',
-               'class' => '',
-               'id' => '',
-            ],
-            'default_value' => '',
-            'maxlength' => '',
-            'rows' => '',
-            'placeholder' => 'Desenvolvedor Fullstack',
-            'new_lines' => '',
-         ],
-      ]);
-
-      $Hero->add_fields_group(
-         [
             [
                'key' => 'field_66566fb93d182',
-               'label' => 'Redes sociais',
+               'label' => __('Redes sociais', 'thunay'),
                'name' => '',
                'aria-label' => '',
                'type' => 'tab',
@@ -183,7 +133,7 @@ class ThemeOptionsRegister
             ],
             [
                'key' => 'field_66566fcc3d183',
-               'label' => 'Github',
+               'label' => __('Github', 'thunay'),
                'name' => 'home_hero_github',
                'aria-label' => '',
                'type' => 'text',
@@ -203,7 +153,7 @@ class ThemeOptionsRegister
             ],
             [
                'key' => 'field_66566fefd4a30',
-               'label' => 'Linkedin',
+               'label' => __('Linkedin', 'thunay'),
                'name' => 'home_hero_linkedin',
                'aria-label' => '',
                'type' => 'text',
@@ -223,7 +173,7 @@ class ThemeOptionsRegister
             ],
             [
                'key' => 'field_66566ffbd4a31',
-               'label' => 'E-mail',
+               'label' => __('E-mail', 'thunay'),
                'name' => 'home_hero_email',
                'aria-label' => '',
                'type' => 'text',
@@ -243,7 +193,7 @@ class ThemeOptionsRegister
             ],
             [
                'key' => 'field_6656700ed4a32',
-               'label' => 'Currículo',
+               'label' => __('Currículo', 'thunay'),
                'name' => 'home_hero_curriculum',
                'aria-label' => '',
                'type' => 'text',
@@ -263,7 +213,7 @@ class ThemeOptionsRegister
             ],
             [
                'key' => 'field_6656701bd4a33',
-               'label' => 'Whatsapp',
+               'label' => __('Whatsapp', 'thunay'),
                'name' => 'home_hero_whatsapp',
                'aria-label' => '',
                'type' => 'text',
@@ -280,20 +230,201 @@ class ThemeOptionsRegister
                'placeholder' => '',
                'prepend' => '',
                'append' => '',
-            ]
-         ]
-      );
-
-      $Hero->register_field();
+            ],
+            [
+               'key' => 'field_665676efbf8d8',
+               'label' => __('Imagem destacada', 'thunay'),
+               'name' => '',
+               'aria-label' => '',
+               'type' => 'tab',
+               'instructions' => '',
+               'required' => 0,
+               'conditional_logic' => 0,
+               'wrapper' => [
+                  'width' => '',
+                  'class' => '',
+                  'id' => '',
+               ],
+               'placement' => 'top',
+               'endpoint' => 0,
+            ],
+            [
+               'key' => 'field_665676be28d35',
+               'label' => __('Imagem', 'thunay'),
+               'name' => 'home_hero_featured_image',
+               'aria-label' => '',
+               'type' => 'image',
+               'instructions' => '',
+               'required' => 0,
+               'conditional_logic' => 0,
+               'wrapper' => [
+                  'width' => '',
+                  'class' => '',
+                  'id' => '',
+               ],
+               'return_format' => 'url',
+               'library' => 'all',
+               'min_width' => '',
+               'min_height' => '',
+               'min_size' => '',
+               'max_width' => '',
+               'max_height' => '',
+               'max_size' => '',
+               'mime_types' => '',
+               'preview_size' => 'medium',
+            ],
+         ],
+         'location' => [
+            [
+               [
+                  'param' => 'options_page',
+                  'operator' => '==',
+                  'value' => 'theme-options-home',
+               ],
+            ],
+         ],
+         'menu_order' => 0,
+         'position' => 'normal',
+         'style' => 'default',
+         'label_placement' => 'top',
+         'instruction_placement' => 'label',
+         'hide_on_screen' => '',
+         'active' => true,
+         'description' => '',
+         'show_in_rest' => 0,
+      ]);
    }
 
-   public function register_home_about_me()
+   private function register_home_about_me()
    {
-      $AboutMe = new ACF_Register();
+      if (!function_exists('acf_add_local_field_group')) {
+         return;
+      }
 
-      $AboutMe->register_field_group([
+      acf_add_local_field_group([
          'key' => 'group_6663a610e17bd',
-         'title' => 'Sobre mim',
+         'title' => __('Sobre mim', 'thunay'),
+         'fields' => [
+            [
+               'key' => 'field_6663a611fcf32',
+               'label' => __('Foto', 'thunay'),
+               'name' => '',
+               'aria-label' => '',
+               'type' => 'tab',
+               'instructions' => '',
+               'required' => 0,
+               'conditional_logic' => 0,
+               'wrapper' => [
+                  'width' => '',
+                  'class' => '',
+                  'id' => '',
+               ],
+               'placement' => 'top',
+               'endpoint' => 0,
+            ],
+            [
+               'key' => 'field_6663a64bfcf33',
+               'label' => __('Foto', 'thunay'),
+               'name' => 'home_about_me_photo',
+               'aria-label' => '',
+               'type' => 'image',
+               'instructions' => '',
+               'required' => 0,
+               'conditional_logic' => 0,
+               'wrapper' => [
+                  'width' => '',
+                  'class' => '',
+                  'id' => '',
+               ],
+               'return_format' => 'array',
+               'library' => 'all',
+               'min_width' => '',
+               'min_height' => '',
+               'min_size' => '',
+               'max_width' => '',
+               'max_height' => '',
+               'max_size' => '',
+               'mime_types' => '',
+               'preview_size' => 'medium',
+            ],
+            [
+               'key' => 'field_6663a669fcf34',
+               'label' => __('Informações', 'thunay'),
+               'name' => '',
+               'aria-label' => '',
+               'type' => 'tab',
+               'instructions' => '',
+               'required' => 0,
+               'conditional_logic' => 0,
+               'wrapper' => [
+                  'width' => '',
+                  'class' => '',
+                  'id' => '',
+               ],
+               'placement' => 'top',
+               'endpoint' => 0,
+            ],
+            [
+               'key' => 'field_6663a682fcf35',
+               'label' => __('Nome', 'thunay'),
+               'name' => 'home_about_me_name',
+               'aria-label' => '',
+               'type' => 'text',
+               'instructions' => '',
+               'required' => 0,
+               'conditional_logic' => 0,
+               'wrapper' => [
+                  'width' => '',
+                  'class' => '',
+                  'id' => '',
+               ],
+               'default_value' => '',
+               'maxlength' => '',
+               'placeholder' => '',
+               'prepend' => '',
+               'append' => '',
+            ],
+            [
+               'key' => 'field_6663a692fcf36',
+               'label' => __('Cargo', 'thunay'),
+               'name' => 'home_about_me_job',
+               'aria-label' => '',
+               'type' => 'text',
+               'instructions' => '',
+               'required' => 0,
+               'conditional_logic' => 0,
+               'wrapper' => [
+                  'width' => '',
+                  'class' => '',
+                  'id' => '',
+               ],
+               'default_value' => '',
+               'maxlength' => '',
+               'placeholder' => '',
+               'prepend' => '',
+               'append' => '',
+            ],
+            [
+               'key' => 'field_6663a6a1fcf37',
+               'label' => __('Descrição', 'thunay'),
+               'name' => 'home_about_me_description',
+               'aria-label' => '',
+               'type' => 'textarea',
+               'instructions' => '',
+               'required' => 0,
+               'conditional_logic' => 0,
+               'wrapper' => [
+                  'width' => '',
+                  'class' => '',
+                  'id' => '',
+               ],
+               'default_value' => '',
+               'maxlength' => '',
+               'rows' => '',
+               'placeholder' => '',
+               'new_lines' => '',
+            ],
+         ],
          'location' => [
             [
                [
@@ -303,7 +434,7 @@ class ThemeOptionsRegister
                ],
             ],
          ],
-         'menu_order' => 1,
+         'menu_order' => 0,
          'position' => 'normal',
          'style' => 'default',
          'label_placement' => 'top',
@@ -313,142 +444,190 @@ class ThemeOptionsRegister
          'description' => '',
          'show_in_rest' => 0,
       ]);
-
-      $AboutMe->add_fields_group([
-         [
-            'key' => 'field_6663a611fcf32',
-            'label' => 'Foto',
-            'name' => '',
-            'aria-label' => '',
-            'type' => 'tab',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => 0,
-            'wrapper' => [
-               'width' => '',
-               'class' => '',
-               'id' => '',
-            ],
-            'placement' => 'top',
-            'endpoint' => 0,
-         ],
-         [
-            'key' => 'field_6663a64bfcf33',
-            'label' => 'Foto',
-            'name' => 'home_about_me_photo',
-            'aria-label' => '',
-            'type' => 'image',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => 0,
-            'wrapper' => [
-               'width' => '',
-               'class' => '',
-               'id' => '',
-            ],
-            'return_format' => 'array',
-            'library' => 'all',
-            'min_width' => '',
-            'min_height' => '',
-            'min_size' => '',
-            'max_width' => '',
-            'max_height' => '',
-            'max_size' => '',
-            'mime_types' => '',
-            'preview_size' => 'medium',
-         ]
-      ]);
-
-      $AboutMe->add_fields_group([
-         [
-            'key' => 'field_6663a669fcf34',
-            'label' => 'Informações',
-            'name' => '',
-            'aria-label' => '',
-            'type' => 'tab',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => 0,
-            'wrapper' => [
-               'width' => '',
-               'class' => '',
-               'id' => '',
-            ],
-            'placement' => 'top',
-            'endpoint' => 0,
-         ],
-         [
-            'key' => 'field_6663a682fcf35',
-            'label' => 'Nome',
-            'name' => 'home_about_me_name',
-            'aria-label' => '',
-            'type' => 'text',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => 0,
-            'wrapper' => [
-               'width' => '',
-               'class' => '',
-               'id' => '',
-            ],
-            'default_value' => '',
-            'maxlength' => '',
-            'placeholder' => '',
-            'prepend' => '',
-            'append' => '',
-         ],
-         [
-            'key' => 'field_6663a692fcf36',
-            'label' => 'Cargo',
-            'name' => 'home_about_me_job',
-            'aria-label' => '',
-            'type' => 'text',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => 0,
-            'wrapper' => [
-               'width' => '',
-               'class' => '',
-               'id' => '',
-            ],
-            'default_value' => '',
-            'maxlength' => '',
-            'placeholder' => '',
-            'prepend' => '',
-            'append' => '',
-         ],
-         [
-            'key' => 'field_6663a6a1fcf37',
-            'label' => 'Descrição',
-            'name' => 'home_about_me_description',
-            'aria-label' => '',
-            'type' => 'textarea',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => 0,
-            'wrapper' => [
-               'width' => '',
-               'class' => '',
-               'id' => '',
-            ],
-            'default_value' => '',
-            'maxlength' => '',
-            'rows' => '',
-            'placeholder' => '',
-            'new_lines' => '',
-         ]
-      ]);
-
-      $AboutMe->register_field();
    }
 
-   public function register_home_services()
+   private function register_home_services()
    {
-      $Services = new ACF_Register();
+      if (!function_exists('acf_add_local_field_group')) {
+         return;
+      }
 
-      $Services->register_field_group([
+      acf_add_local_field_group([
          'key' => 'group_6668f7d156d3f',
-         'title' => 'Serviços',
+         'title' => __('Serviços', 'thunay'),
+         'fields' => [
+            [
+               'key' => 'field_6668f7d1b3ae2',
+               'label' => __('Texto', 'thunay'),
+               'name' => '',
+               'aria-label' => '',
+               'type' => 'tab',
+               'instructions' => '',
+               'required' => 0,
+               'conditional_logic' => 0,
+               'wrapper' => [
+                  'width' => '',
+                  'class' => '',
+                  'id' => '',
+               ],
+               'placement' => 'top',
+               'endpoint' => 0,
+            ],
+            [
+               'key' => 'field_6668f82ab3ae3',
+               'label' => __('Texto', 'thunay'),
+               'name' => 'home_services_text',
+               'aria-label' => '',
+               'type' => 'repeater',
+               'instructions' => '',
+               'required' => 0,
+               'conditional_logic' => 0,
+               'wrapper' => [
+                  'width' => '',
+                  'class' => '',
+                  'id' => '',
+               ],
+               'layout' => 'table',
+               'pagination' => 0,
+               'min' => 0,
+               'max' => 0,
+               'collapsed' => '',
+               'button_label' => __('Adicionar Linha', 'thunay'),
+               'rows_per_page' => 20,
+               'sub_fields' => [
+                  [
+                     'key' => 'field_666b828c790de',
+                     'label' => __('Parágrafo', 'thunay'),
+                     'name' => 'paragraph',
+                     'aria-label' => '',
+                     'type' => 'textarea',
+                     'instructions' => '',
+                     'required' => 0,
+                     'conditional_logic' => 0,
+                     'wrapper' => [
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                     ],
+                     'default_value' => '',
+                     'maxlength' => '',
+                     'rows' => '',
+                     'placeholder' => '',
+                     'new_lines' => '',
+                     'parent_repeater' => 'field_6668f82ab3ae3',
+                  ],
+               ],
+            ],
+            [
+               'key' => 'field_6668f867b3ae5',
+               'label' => __('Cards', 'thunay'),
+               'name' => '',
+               'aria-label' => '',
+               'type' => 'tab',
+               'instructions' => '',
+               'required' => 0,
+               'conditional_logic' => 0,
+               'wrapper' => [
+                  'width' => '',
+                  'class' => '',
+                  'id' => '',
+               ],
+               'placement' => 'top',
+               'endpoint' => 0,
+            ],
+            [
+               'key' => 'field_6668f885b3ae6',
+               'label' => __('Cards', 'thunay'),
+               'name' => 'home_services_cards',
+               'aria-label' => '',
+               'type' => 'repeater',
+               'instructions' => '',
+               'required' => 0,
+               'conditional_logic' => 0,
+               'wrapper' => [
+                  'width' => '',
+                  'class' => '',
+                  'id' => '',
+               ],
+               'layout' => 'table',
+               'pagination' => 0,
+               'min' => 0,
+               'max' => 0,
+               'collapsed' => '',
+               'button_label' => __('Adicionar Linha', 'thunay'),
+               'rows_per_page' => 20,
+               'sub_fields' => [
+                  [
+                     'key' => 'field_6668f89db3ae7',
+                     'label' => __('Imagem', 'thunay'),
+                     'name' => 'image',
+                     'aria-label' => '',
+                     'type' => 'image',
+                     'instructions' => '',
+                     'required' => 0,
+                     'conditional_logic' => 0,
+                     'wrapper' => [
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                     ],
+                     'return_format' => 'array',
+                     'library' => 'all',
+                     'min_width' => '',
+                     'min_height' => '',
+                     'min_size' => '',
+                     'max_width' => '',
+                     'max_height' => '',
+                     'max_size' => '',
+                     'mime_types' => '',
+                     'preview_size' => 'medium',
+                     'parent_repeater' => 'field_6668f885b3ae6',
+                  ],
+                  [
+                     'key' => 'field_6668f8b2b3ae8',
+                     'label' => __('Título', 'thunay'),
+                     'name' => 'title',
+                     'aria-label' => '',
+                     'type' => 'text',
+                     'instructions' => '',
+                     'required' => 0,
+                     'conditional_logic' => 0,
+                     'wrapper' => [
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                     ],
+                     'default_value' => '',
+                     'maxlength' => '',
+                     'placeholder' => '',
+                     'prepend' => '',
+                     'append' => '',
+                     'parent_repeater' => 'field_6668f885b3ae6',
+                  ],
+                  [
+                     'key' => 'field_6668f8beb3ae9',
+                     'label' => __('Descrição', 'thunay'),
+                     'name' => 'description',
+                     'aria-label' => '',
+                     'type' => 'textarea',
+                     'instructions' => '',
+                     'required' => 0,
+                     'conditional_logic' => 0,
+                     'wrapper' => [
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                     ],
+                     'default_value' => '',
+                     'maxlength' => '',
+                     'rows' => '',
+                     'placeholder' => '',
+                     'new_lines' => '',
+                     'parent_repeater' => 'field_6668f885b3ae6',
+                  ],
+               ],
+            ],
+         ],
          'location' => [
             [
                [
@@ -458,7 +637,7 @@ class ThemeOptionsRegister
                ],
             ],
          ],
-         'menu_order' => 2,
+         'menu_order' => 0,
          'position' => 'normal',
          'style' => 'default',
          'label_placement' => 'top',
@@ -468,195 +647,140 @@ class ThemeOptionsRegister
          'description' => '',
          'show_in_rest' => 0,
       ]);
-
-      $Services->add_fields_group([
-         [
-            'key' => 'field_6668f7d1b3ae2',
-            'label' => 'Texto',
-            'name' => '',
-            'aria-label' => '',
-            'type' => 'tab',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => 0,
-            'wrapper' => [
-               'width' => '',
-               'class' => '',
-               'id' => '',
-            ],
-            'placement' => 'top',
-            'endpoint' => 0,
-         ],
-         [
-            'key' => 'field_6668f82ab3ae3',
-            'label' => 'Texto',
-            'name' => 'home_services_text',
-            'aria-label' => '',
-            'type' => 'repeater',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => 0,
-            'wrapper' => [
-               'width' => '',
-               'class' => '',
-               'id' => '',
-            ],
-            'layout' => 'table',
-            'pagination' => 0,
-            'min' => 0,
-            'max' => 0,
-            'collapsed' => '',
-            'button_label' => 'Add Row',
-            'rows_per_page' => 20,
-            'sub_fields' => [
-               [
-                  'key' => 'field_666b828c790de',
-                  'label' => 'Parágrafo',
-                  'name' => 'paragraph',
-                  'aria-label' => '',
-                  'type' => 'textarea',
-                  'instructions' => '',
-                  'required' => 0,
-                  'conditional_logic' => 0,
-                  'wrapper' => [
-                     'width' => '',
-                     'class' => '',
-                     'id' => '',
-                  ],
-                  'default_value' => '',
-                  'maxlength' => '',
-                  'rows' => '',
-                  'placeholder' => '',
-                  'new_lines' => '',
-                  'parent_repeater' => 'field_6668f82ab3ae3',
-               ],
-            ],
-         ],
-      ]);
-
-      $Services->add_fields_group([
-         [
-            'key' => 'field_6668f867b3ae5',
-            'label' => 'Cards',
-            'name' => '',
-            'aria-label' => '',
-            'type' => 'tab',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => 0,
-            'wrapper' => [
-               'width' => '',
-               'class' => '',
-               'id' => '',
-            ],
-            'placement' => 'top',
-            'endpoint' => 0,
-         ],
-         [
-            'key' => 'field_6668f885b3ae6',
-            'label' => 'Cards',
-            'name' => 'home_services_cards',
-            'aria-label' => '',
-            'type' => 'repeater',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => 0,
-            'wrapper' => [
-               'width' => '',
-               'class' => '',
-               'id' => '',
-            ],
-            'layout' => 'table',
-            'pagination' => 0,
-            'min' => 0,
-            'max' => 0,
-            'collapsed' => '',
-            'button_label' => 'Add Row',
-            'rows_per_page' => 20,
-            'sub_fields' => [
-               [
-                  'key' => 'field_6668f89db3ae7',
-                  'label' => 'Imagem',
-                  'name' => 'image',
-                  'aria-label' => '',
-                  'type' => 'image',
-                  'instructions' => '',
-                  'required' => 0,
-                  'conditional_logic' => 0,
-                  'wrapper' => [
-                     'width' => '',
-                     'class' => '',
-                     'id' => '',
-                  ],
-                  'return_format' => 'array',
-                  'library' => 'all',
-                  'min_width' => '',
-                  'min_height' => '',
-                  'min_size' => '',
-                  'max_width' => '',
-                  'max_height' => '',
-                  'max_size' => '',
-                  'mime_types' => '',
-                  'preview_size' => 'medium',
-                  'parent_repeater' => 'field_6668f885b3ae6',
-               ],
-               [
-                  'key' => 'field_6668f8b2b3ae8',
-                  'label' => 'Título',
-                  'name' => 'title',
-                  'aria-label' => '',
-                  'type' => 'text',
-                  'instructions' => '',
-                  'required' => 0,
-                  'conditional_logic' => 0,
-                  'wrapper' => [
-                     'width' => '',
-                     'class' => '',
-                     'id' => '',
-                  ],
-                  'default_value' => '',
-                  'maxlength' => '',
-                  'placeholder' => '',
-                  'prepend' => '',
-                  'append' => '',
-                  'parent_repeater' => 'field_6668f885b3ae6',
-               ],
-               [
-                  'key' => 'field_6668f8beb3ae9',
-                  'label' => 'Descrição',
-                  'name' => 'description',
-                  'aria-label' => '',
-                  'type' => 'textarea',
-                  'instructions' => '',
-                  'required' => 0,
-                  'conditional_logic' => 0,
-                  'wrapper' => [
-                     'width' => '',
-                     'class' => '',
-                     'id' => '',
-                  ],
-                  'default_value' => '',
-                  'maxlength' => '',
-                  'rows' => '',
-                  'placeholder' => '',
-                  'new_lines' => '',
-                  'parent_repeater' => 'field_6668f885b3ae6',
-               ],
-            ],
-         ]
-      ]);
-
-      $Services->register_field();
    }
 
-   public function register_home_skills()
+   private function register_home_skills()
    {
+      if (! function_exists('acf_add_local_field_group')) {
+         return;
+      }
 
-      $Skills = new ACF_Register();
-
-      $Skills->register_field_group([
+      acf_add_local_field_group([
          'key' => 'group_6672a40402c31',
-         'title' => 'Habilidades',
+         'title' => __('Habilidades', 'thunay'),
+         'fields' => [
+            [
+               'key' => 'field_6672a43fc8208',
+               'label' => __('Texto', 'thunay'),
+               'name' => '',
+               'aria-label' => '',
+               'type' => 'tab',
+               'instructions' => '',
+               'required' => 0,
+               'conditional_logic' => 0,
+               'wrapper' => [
+                  'width' => '',
+                  'class' => '',
+                  'id' => '',
+               ],
+               'placement' => 'top',
+               'endpoint' => 0,
+            ],
+            [
+               'key' => 'field_6672a404c8207',
+               'label' => __('Descrição', 'thunay'),
+               'name' => 'home_skills_description',
+               'aria-label' => '',
+               'type' => 'textarea',
+               'instructions' => '',
+               'required' => 0,
+               'conditional_logic' => 0,
+               'wrapper' => [
+                  'width' => '',
+                  'class' => '',
+                  'id' => '',
+               ],
+               'default_value' => '',
+               'maxlength' => '',
+               'rows' => '',
+               'placeholder' => '',
+               'new_lines' => '',
+            ],
+            [
+               'key' => 'field_6672a452c8209',
+               'label' => __('Habilidades', 'thunay'),
+               'name' => '',
+               'aria-label' => '',
+               'type' => 'tab',
+               'instructions' => '',
+               'required' => 0,
+               'conditional_logic' => 0,
+               'wrapper' => [
+                  'width' => '',
+                  'class' => '',
+                  'id' => '',
+               ],
+               'placement' => 'top',
+               'endpoint' => 0,
+            ],
+            [
+               'key' => 'field_6672a466c820a',
+               'label' => __('Lista de habilidades', 'thunay'),
+               'name' => 'home_skills_skills_list',
+               'aria-label' => '',
+               'type' => 'repeater',
+               'instructions' => '',
+               'required' => 0,
+               'conditional_logic' => 0,
+               'wrapper' => [
+                  'width' => '',
+                  'class' => '',
+                  'id' => '',
+               ],
+               'layout' => 'table',
+               'pagination' => 0,
+               'min' => 0,
+               'max' => 0,
+               'collapsed' => '',
+               'button_label' => __('Adicionar Habilidade', 'thunay'),
+               'rows_per_page' => 20,
+               'sub_fields' => [
+                  [
+                     'key' => 'field_6672a48dc820b',
+                     'label' => __('Nome', 'thunay'),
+                     'name' => 'name',
+                     'aria-label' => '',
+                     'type' => 'text',
+                     'instructions' => '',
+                     'required' => 0,
+                     'conditional_logic' => 0,
+                     'wrapper' => [
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                     ],
+                     'default_value' => '',
+                     'maxlength' => '',
+                     'placeholder' => '',
+                     'prepend' => '',
+                     'append' => '',
+                     'parent_repeater' => 'field_6672a466c820a',
+                  ],
+                  [
+                     'key' => 'field_6672a49ac820c',
+                     'label' => __('Porcentagem', 'thunay'),
+                     'name' => 'percent',
+                     'aria-label' => '',
+                     'type' => 'range',
+                     'instructions' => '',
+                     'required' => 0,
+                     'conditional_logic' => 0,
+                     'wrapper' => [
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                     ],
+                     'default_value' => '',
+                     'min' => '',
+                     'max' => '',
+                     'step' => '',
+                     'prepend' => '',
+                     'append' => '%',
+                     'parent_repeater' => 'field_6672a466c820a',
+                  ],
+               ],
+            ],
+         ],
          'location' => [
             [
                [
@@ -666,7 +790,7 @@ class ThemeOptionsRegister
                ],
             ],
          ],
-         'menu_order' => 3,
+         'menu_order' => 0,
          'position' => 'normal',
          'style' => 'default',
          'label_placement' => 'top',
@@ -676,144 +800,181 @@ class ThemeOptionsRegister
          'description' => '',
          'show_in_rest' => 0,
       ]);
-
-      $Skills->add_fields_group([
-         [
-            'key' => 'field_6672a43fc8208',
-            'label' => 'Texto',
-            'name' => '',
-            'aria-label' => '',
-            'type' => 'tab',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => 0,
-            'wrapper' => [
-               'width' => '',
-               'class' => '',
-               'id' => '',
-            ],
-            'placement' => 'top',
-            'endpoint' => 0,
-         ],
-         [
-            'key' => 'field_6672a404c8207',
-            'label' => 'Descrição',
-            'name' => 'home_skills_description',
-            'aria-label' => '',
-            'type' => 'textarea',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => 0,
-            'wrapper' => [
-               'width' => '',
-               'class' => '',
-               'id' => '',
-            ],
-            'default_value' => '',
-            'maxlength' => '',
-            'rows' => '',
-            'placeholder' => '',
-            'new_lines' => '',
-         ],
-      ]);
-
-      $Skills->add_fields_group([
-         [
-            'key' => 'field_6672a452c8209',
-            'label' => 'Habilidades',
-            'name' => '',
-            'aria-label' => '',
-            'type' => 'tab',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => 0,
-            'wrapper' => [
-               'width' => '',
-               'class' => '',
-               'id' => '',
-            ],
-            'placement' => 'top',
-            'endpoint' => 0,
-         ],
-         [
-            'key' => 'field_6672a466c820a',
-            'label' => 'Lista de habilidades',
-            'name' => 'home_skills_skills_list',
-            'aria-label' => '',
-            'type' => 'repeater',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => 0,
-            'wrapper' => [
-               'width' => '',
-               'class' => '',
-               'id' => '',
-            ],
-            'layout' => 'table',
-            'pagination' => 0,
-            'min' => 0,
-            'max' => 0,
-            'collapsed' => '',
-            'button_label' => 'Add Row',
-            'rows_per_page' => 20,
-            'sub_fields' => [
-               [
-                  'key' => 'field_6672a48dc820b',
-                  'label' => 'Nome',
-                  'name' => 'name',
-                  'aria-label' => '',
-                  'type' => 'text',
-                  'instructions' => '',
-                  'required' => 0,
-                  'conditional_logic' => 0,
-                  'wrapper' => [
-                     'width' => '',
-                     'class' => '',
-                     'id' => '',
-                  ],
-                  'default_value' => '',
-                  'maxlength' => '',
-                  'placeholder' => '',
-                  'prepend' => '',
-                  'append' => '',
-                  'parent_repeater' => 'field_6672a466c820a',
-               ],
-               [
-                  'key' => 'field_6672a49ac820c',
-                  'label' => 'Porcentagem',
-                  'name' => 'percent',
-                  'aria-label' => '',
-                  'type' => 'range',
-                  'instructions' => '',
-                  'required' => 0,
-                  'conditional_logic' => 0,
-                  'wrapper' => [
-                     'width' => '',
-                     'class' => '',
-                     'id' => '',
-                  ],
-                  'default_value' => '',
-                  'min' => '',
-                  'max' => '',
-                  'step' => '',
-                  'prepend' => '',
-                  'append' => '%',
-                  'parent_repeater' => 'field_6672a466c820a',
-               ],
-            ],
-         ],
-      ]);
-
-      $Skills->register_field();
    }
 
-   public function register_home_experience()
+   private function register_home_experience()
    {
-      $Experience = new ACF_Register();
+      if (! function_exists('acf_add_local_field_group')) {
+         return;
+      }
 
-      $Experience->register_field_group([
+      acf_add_local_field_group([
          'key' => 'group_6674d37fa8b07',
-         'title' => 'Experiência',
+         'title' => __('Experiência', 'thunay'),
+         'fields' => [
+            [
+               'key' => 'field_6674d37f8cb57',
+               'label' => __('Texto', 'thunay'),
+               'name' => '',
+               'aria-label' => '',
+               'type' => 'tab',
+               'instructions' => '',
+               'required' => 0,
+               'conditional_logic' => 0,
+               'wrapper' => [
+                  'width' => '',
+                  'class' => '',
+                  'id' => '',
+               ],
+               'placement' => 'top',
+               'endpoint' => 0,
+            ],
+            [
+               'key' => 'field_6674d39a8cb58',
+               'label' => __('Descrição', 'thunay'),
+               'name' => 'home_experience_text',
+               'aria-label' => '',
+               'type' => 'textarea',
+               'instructions' => '',
+               'required' => 0,
+               'conditional_logic' => 0,
+               'wrapper' => [
+                  'width' => '',
+                  'class' => '',
+                  'id' => '',
+               ],
+               'default_value' => '',
+               'maxlength' => '',
+               'rows' => '',
+               'placeholder' => '',
+               'new_lines' => '',
+            ],
+            [
+               'key' => 'field_6674d3c58cb59',
+               'label' => __('Experiência', 'thunay'),
+               'name' => '',
+               'aria-label' => '',
+               'type' => 'tab',
+               'instructions' => '',
+               'required' => 0,
+               'conditional_logic' => 0,
+               'wrapper' => [
+                  'width' => '',
+                  'class' => '',
+                  'id' => '',
+               ],
+               'placement' => 'top',
+               'endpoint' => 0,
+            ],
+            [
+               'key' => 'field_6674d3dd8cb5a',
+               'label' => __('Timeline', 'thunay'),
+               'name' => 'home_experience_timeline',
+               'aria-label' => '',
+               'type' => 'repeater',
+               'instructions' => '',
+               'required' => 0,
+               'conditional_logic' => 0,
+               'wrapper' => [
+                  'width' => '',
+                  'class' => '',
+                  'id' => '',
+               ],
+               'layout' => 'table',
+               'pagination' => 0,
+               'min' => 0,
+               'max' => 0,
+               'collapsed' => '',
+               'button_label' => __('Adicionar Experiência', 'thunay'),
+               'rows_per_page' => 20,
+               'sub_fields' => [
+                  [
+                     'key' => 'field_6674d3f28cb5b',
+                     'label' => __('Profissão', 'thunay'),
+                     'name' => 'profission',
+                     'aria-label' => '',
+                     'type' => 'text',
+                     'instructions' => '',
+                     'required' => 0,
+                     'conditional_logic' => 0,
+                     'wrapper' => [
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                     ],
+                     'default_value' => '',
+                     'maxlength' => '',
+                     'placeholder' => '',
+                     'prepend' => '',
+                     'append' => '',
+                     'parent_repeater' => 'field_6674d3dd8cb5a',
+                  ],
+                  [
+                     'key' => 'field_6674d4148cb5c',
+                     'label' => __('Empresa', 'thunay'),
+                     'name' => 'company',
+                     'aria-label' => '',
+                     'type' => 'text',
+                     'instructions' => '',
+                     'required' => 0,
+                     'conditional_logic' => 0,
+                     'wrapper' => [
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                     ],
+                     'default_value' => '',
+                     'maxlength' => '',
+                     'placeholder' => '',
+                     'prepend' => '',
+                     'append' => '',
+                     'parent_repeater' => 'field_6674d3dd8cb5a',
+                  ],
+                  [
+                     'key' => 'field_6674d42e8cb5d',
+                     'label' => __('Tempo de experiência', 'thunay'),
+                     'name' => 'experience_time',
+                     'aria-label' => '',
+                     'type' => 'text',
+                     'instructions' => '',
+                     'required' => 0,
+                     'conditional_logic' => 0,
+                     'wrapper' => [
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                     ],
+                     'default_value' => '',
+                     'maxlength' => '',
+                     'placeholder' => '',
+                     'prepend' => '',
+                     'append' => '',
+                     'parent_repeater' => 'field_6674d3dd8cb5a',
+                  ],
+                  [
+                     'key' => 'field_6674d4488cb5e',
+                     'label' => __('Descrição do trabalho', 'thunay'),
+                     'name' => 'job_description',
+                     'aria-label' => '',
+                     'type' => 'textarea',
+                     'instructions' => '',
+                     'required' => 0,
+                     'conditional_logic' => 0,
+                     'wrapper' => [
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                     ],
+                     'default_value' => '',
+                     'maxlength' => '',
+                     'rows' => '',
+                     'placeholder' => '',
+                     'new_lines' => '',
+                     'parent_repeater' => 'field_6674d3dd8cb5a',
+                  ],
+               ],
+            ],
+         ],
          'location' => [
             [
                [
@@ -823,7 +984,7 @@ class ThemeOptionsRegister
                ],
             ],
          ],
-         'menu_order' => 4,
+         'menu_order' => 0,
          'position' => 'normal',
          'style' => 'default',
          'label_placement' => 'top',
@@ -833,176 +994,6 @@ class ThemeOptionsRegister
          'description' => '',
          'show_in_rest' => 0,
       ]);
-
-      $Experience->add_fields_group([
-         [
-            'key' => 'field_6674d37f8cb57',
-            'label' => 'Texto',
-            'name' => '',
-            'aria-label' => '',
-            'type' => 'tab',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => 0,
-            'wrapper' => [
-               'width' => '',
-               'class' => '',
-               'id' => '',
-            ],
-            'placement' => 'top',
-            'endpoint' => 0,
-         ],
-         [
-            'key' => 'field_6674d39a8cb58',
-            'label' => 'Descrição',
-            'name' => 'home_experience_text',
-            'aria-label' => '',
-            'type' => 'textarea',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => 0,
-            'wrapper' => [
-               'width' => '',
-               'class' => '',
-               'id' => '',
-            ],
-            'default_value' => '',
-            'maxlength' => '',
-            'rows' => '',
-            'placeholder' => '',
-            'new_lines' => '',
-         ]
-      ]);
-
-      $Experience->add_fields_group([
-         [
-            'key' => 'field_6674d3c58cb59',
-            'label' => 'Experiência',
-            'name' => '',
-            'aria-label' => '',
-            'type' => 'tab',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => 0,
-            'wrapper' => [
-               'width' => '',
-               'class' => '',
-               'id' => '',
-            ],
-            'placement' => 'top',
-            'endpoint' => 0,
-         ],
-         [
-            'key' => 'field_6674d3dd8cb5a',
-            'label' => 'Timeline',
-            'name' => 'home_experience_timeline',
-            'aria-label' => '',
-            'type' => 'repeater',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => 0,
-            'wrapper' => [
-               'width' => '',
-               'class' => '',
-               'id' => '',
-            ],
-            'layout' => 'table',
-            'pagination' => 0,
-            'min' => 0,
-            'max' => 0,
-            'collapsed' => '',
-            'button_label' => 'Add Row',
-            'rows_per_page' => 20,
-            'sub_fields' => [
-               [
-                  'key' => 'field_6674d3f28cb5b',
-                  'label' => 'Profissão',
-                  'name' => 'profission',
-                  'aria-label' => '',
-                  'type' => 'text',
-                  'instructions' => '',
-                  'required' => 0,
-                  'conditional_logic' => 0,
-                  'wrapper' => [
-                     'width' => '',
-                     'class' => '',
-                     'id' => '',
-                  ],
-                  'default_value' => '',
-                  'maxlength' => '',
-                  'placeholder' => '',
-                  'prepend' => '',
-                  'append' => '',
-                  'parent_repeater' => 'field_6674d3dd8cb5a',
-               ],
-               [
-                  'key' => 'field_6674d4148cb5c',
-                  'label' => 'Empresa',
-                  'name' => 'company',
-                  'aria-label' => '',
-                  'type' => 'text',
-                  'instructions' => '',
-                  'required' => 0,
-                  'conditional_logic' => 0,
-                  'wrapper' => [
-                     'width' => '',
-                     'class' => '',
-                     'id' => '',
-                  ],
-                  'default_value' => '',
-                  'maxlength' => '',
-                  'placeholder' => '',
-                  'prepend' => '',
-                  'append' => '',
-                  'parent_repeater' => 'field_6674d3dd8cb5a',
-               ],
-               [
-                  'key' => 'field_6674d42e8cb5d',
-                  'label' => 'Tempo de experiência',
-                  'name' => 'experience_time',
-                  'aria-label' => '',
-                  'type' => 'text',
-                  'instructions' => '',
-                  'required' => 0,
-                  'conditional_logic' => 0,
-                  'wrapper' => [
-                     'width' => '',
-                     'class' => '',
-                     'id' => '',
-                  ],
-                  'default_value' => '',
-                  'maxlength' => '',
-                  'placeholder' => '',
-                  'prepend' => '',
-                  'append' => '',
-                  'parent_repeater' => 'field_6674d3dd8cb5a',
-               ],
-               [
-                  'key' => 'field_6674d4488cb5e',
-                  'label' => 'Descrição do trabalho',
-                  'name' => 'job_description',
-                  'aria-label' => '',
-                  'type' => 'textarea',
-                  'instructions' => '',
-                  'required' => 0,
-                  'conditional_logic' => 0,
-                  'wrapper' => [
-                     'width' => '',
-                     'class' => '',
-                     'id' => '',
-                  ],
-                  'default_value' => '',
-                  'maxlength' => '',
-                  'rows' => '',
-                  'placeholder' => '',
-                  'new_lines' => '',
-                  'parent_repeater' => 'field_6674d3dd8cb5a',
-               ],
-            ],
-         ],
-      ]);
-
-      $Experience->register_field();
    }
 }
 

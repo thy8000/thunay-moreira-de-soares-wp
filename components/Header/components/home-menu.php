@@ -4,8 +4,7 @@ if (!defined('ABSPATH')) {
    exit;
 }
 
-$Menu = new Menu();
-$menu_items = $Menu->get_menu_items();
+$menu_items = wp_get_nav_menu_items('home-menu');
 
 if (empty($menu_items)) {
    return;

@@ -1,10 +1,9 @@
 <?php
 
 if (!defined('ABSPATH')) {
-    exit;
+   exit;
 }
 
 require_once __DIR__ . DIRECTORY_SEPARATOR . '_Register.php';
-require_once __DIR__ . DIRECTORY_SEPARATOR . 'ACF_Register.php';
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'Project.php';
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'Utils.php';

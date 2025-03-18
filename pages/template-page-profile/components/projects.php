@@ -55,6 +55,8 @@ $projects_posts = Project_Utils::get_projects();
             <div class="projects-grid fade-in-2 grid grid-cols-1 lg:grid-cols-3 gap-4">
                <?php
 
+               $page_ID = get_the_ID();
+
                foreach ($projects_posts as $project) {
                   $Project = new Project($project);
 
@@ -69,7 +71,7 @@ $projects_posts = Project_Utils::get_projects();
                            <h3 class="text-white text-lg font-bold font-poppins"><?php esc_html_e($Project->get_title()); ?></h3>
 
                            <div class="text-neutral-300">
-                              <p><?php esc_html_e($Project->get_excerpt()); ?></p>
+                              <p><?php esc_html_e($Project->get_custom_content($page_ID)); ?></p>
                            </div>
                         </div>
 

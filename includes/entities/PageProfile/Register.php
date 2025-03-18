@@ -4,41 +4,19 @@ if (!defined('ABSPATH')) {
    exit;
 }
 
-class ThemeOptionsRegister
+class PageProfileRegister
 {
    function __construct()
    {
-      add_action('acf/init', [$this, 'register_parent_page']);
-      add_action('acf/init', [$this, 'register_home_page']);
+      add_action('acf/init', [$this, 'register_custom_fields']);
+      add_filter('use_block_editor_for_post', [$this, 'disable_gutenberg'], 10, 2);
    }
 
-   public function register_parent_page()
+   public function register_custom_fields()
    {
       if (!function_exists('acf_add_options_page')) {
          return;
       }
-
-      acf_add_options_page([
-         'page_title' => __('Opções do Tema', 'thunay'),
-         'menu_title' => __('Opções do tema', 'thunay'),
-         'menu_slug'  => 'theme-options',
-         'redirect'   => true,
-         'position'   => 2,
-      ]);
-   }
-
-   public function register_home_page()
-   {
-      if (!function_exists('acf_add_options_page')) {
-         return;
-      }
-
-      acf_add_options_page([
-         'page_title' => __('Home', 'thunay'),
-         'menu_title' => __('Home', 'thunay'),
-         'menu_slug' => 'theme-options-home',
-         'parent_slug' => 'theme-options',
-      ]);
 
       $this->register_home_hero();
       $this->register_home_about_me();
@@ -231,55 +209,13 @@ class ThemeOptionsRegister
                'prepend' => '',
                'append' => '',
             ],
-            [
-               'key' => 'field_665676efbf8d8',
-               'label' => __('Imagem destacada', 'thunay'),
-               'name' => '',
-               'aria-label' => '',
-               'type' => 'tab',
-               'instructions' => '',
-               'required' => 0,
-               'conditional_logic' => 0,
-               'wrapper' => [
-                  'width' => '',
-                  'class' => '',
-                  'id' => '',
-               ],
-               'placement' => 'top',
-               'endpoint' => 0,
-            ],
-            [
-               'key' => 'field_665676be28d35',
-               'label' => __('Imagem', 'thunay'),
-               'name' => 'home_hero_featured_image',
-               'aria-label' => '',
-               'type' => 'image',
-               'instructions' => '',
-               'required' => 0,
-               'conditional_logic' => 0,
-               'wrapper' => [
-                  'width' => '',
-                  'class' => '',
-                  'id' => '',
-               ],
-               'return_format' => 'url',
-               'library' => 'all',
-               'min_width' => '',
-               'min_height' => '',
-               'min_size' => '',
-               'max_width' => '',
-               'max_height' => '',
-               'max_size' => '',
-               'mime_types' => '',
-               'preview_size' => 'medium',
-            ],
          ],
          'location' => [
             [
                [
-                  'param' => 'options_page',
+                  'param' => 'page_template',
                   'operator' => '==',
-                  'value' => 'theme-options-home',
+                  'value' => 'template-page-profile.php',
                ],
             ],
          ],
@@ -288,7 +224,18 @@ class ThemeOptionsRegister
          'style' => 'default',
          'label_placement' => 'top',
          'instruction_placement' => 'label',
-         'hide_on_screen' => '',
+         'hide_on_screen' => [
+            0 => 'the_content',
+            1 => 'excerpt',
+            2 => 'discussion',
+            3 => 'comments',
+            4 => 'format',
+            5 => 'page_attributes',
+            6 => 'featured_image',
+            7 => 'categories',
+            8 => 'tags',
+            9 => 'send-trackbacks',
+         ],
          'active' => true,
          'description' => '',
          'show_in_rest' => 0,
@@ -428,18 +375,29 @@ class ThemeOptionsRegister
          'location' => [
             [
                [
-                  'param' => 'options_page',
+                  'param' => 'page_template',
                   'operator' => '==',
-                  'value' => 'theme-options-home',
+                  'value' => 'template-page-profile.php',
                ],
             ],
          ],
-         'menu_order' => 0,
+         'menu_order' => 1,
          'position' => 'normal',
          'style' => 'default',
          'label_placement' => 'top',
          'instruction_placement' => 'label',
-         'hide_on_screen' => '',
+         'hide_on_screen' => [
+            0 => 'the_content',
+            1 => 'excerpt',
+            2 => 'discussion',
+            3 => 'comments',
+            4 => 'format',
+            5 => 'page_attributes',
+            6 => 'featured_image',
+            7 => 'categories',
+            8 => 'tags',
+            9 => 'send-trackbacks',
+         ],
          'active' => true,
          'description' => '',
          'show_in_rest' => 0,
@@ -631,18 +589,29 @@ class ThemeOptionsRegister
          'location' => [
             [
                [
-                  'param' => 'options_page',
+                  'param' => 'page_template',
                   'operator' => '==',
-                  'value' => 'theme-options-home',
+                  'value' => 'template-page-profile.php',
                ],
             ],
          ],
-         'menu_order' => 0,
+         'menu_order' => 2,
          'position' => 'normal',
          'style' => 'default',
          'label_placement' => 'top',
          'instruction_placement' => 'label',
-         'hide_on_screen' => '',
+         'hide_on_screen' => [
+            0 => 'the_content',
+            1 => 'excerpt',
+            2 => 'discussion',
+            3 => 'comments',
+            4 => 'format',
+            5 => 'page_attributes',
+            6 => 'featured_image',
+            7 => 'categories',
+            8 => 'tags',
+            9 => 'send-trackbacks',
+         ],
          'active' => true,
          'description' => '',
          'show_in_rest' => 0,
@@ -784,18 +753,29 @@ class ThemeOptionsRegister
          'location' => [
             [
                [
-                  'param' => 'options_page',
+                  'param' => 'page_template',
                   'operator' => '==',
-                  'value' => 'theme-options-home',
+                  'value' => 'template-page-profile.php',
                ],
             ],
          ],
-         'menu_order' => 0,
+         'menu_order' => 3,
          'position' => 'normal',
          'style' => 'default',
          'label_placement' => 'top',
          'instruction_placement' => 'label',
-         'hide_on_screen' => '',
+         'hide_on_screen' => [
+            0 => 'the_content',
+            1 => 'excerpt',
+            2 => 'discussion',
+            3 => 'comments',
+            4 => 'format',
+            5 => 'page_attributes',
+            6 => 'featured_image',
+            7 => 'categories',
+            8 => 'tags',
+            9 => 'send-trackbacks',
+         ],
          'active' => true,
          'description' => '',
          'show_in_rest' => 0,
@@ -978,23 +958,47 @@ class ThemeOptionsRegister
          'location' => [
             [
                [
-                  'param' => 'options_page',
+                  'param' => 'page_template',
                   'operator' => '==',
-                  'value' => 'theme-options-home',
+                  'value' => 'template-page-profile.php',
                ],
             ],
          ],
-         'menu_order' => 0,
+         'menu_order' => 4,
          'position' => 'normal',
          'style' => 'default',
          'label_placement' => 'top',
          'instruction_placement' => 'label',
-         'hide_on_screen' => '',
+         'hide_on_screen' => [
+            0 => 'the_content',
+            1 => 'excerpt',
+            2 => 'discussion',
+            3 => 'comments',
+            4 => 'format',
+            5 => 'page_attributes',
+            6 => 'featured_image',
+            7 => 'categories',
+            8 => 'tags',
+            9 => 'send-trackbacks',
+         ],
          'active' => true,
          'description' => '',
          'show_in_rest' => 0,
       ]);
    }
+
+   function disable_gutenberg($use_block_editor, $post)
+   {
+      if (!$post) {
+         return $use_block_editor;
+      }
+
+      if (get_page_template_slug($post->ID) == 'template-page-profile.php') {
+         return false;
+      }
+
+      return $use_block_editor;
+   }
 }
 
-new ThemeOptionsRegister();
+new PageProfileRegister();

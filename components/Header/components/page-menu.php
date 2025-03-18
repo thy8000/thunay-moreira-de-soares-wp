@@ -1,25 +1,27 @@
 <?php
 
 if (!defined('ABSPATH')) {
-    exit;
+   exit;
 }
 
-$Menu = new Menu();
-$menu_items = $Menu->get_menu_items();
+$menu_items = wp_get_nav_menu_items('home-menu');
+
+if (empty($menu_items)) {
+   return;
+}
 
 ?>
 
 <ul class="flex flex-col items-center gap-8">
-    <?php
+   <?php
 
-    foreach ($menu_items as $menu_item) {
-        $MenuItem = new MenuItem($menu_item);
+   foreach ($menu_items as $menu_item) {
 
-    ?>
-        <a id="<?php echo esc_attr($MenuItem->get_slug()); ?>" href="<?php echo esc_url($MenuItem->get_link()); ?>" class="font-semibold text-3xl text-white hover:scale-150 transition-all duration-500 ease-linear"><?php esc_html_e($MenuItem->get_title()); ?></a>
-    <?php
+   ?>
+      <button id="<?php echo esc_attr($menu_item->post_name); ?>" class="font-semibold text-3xl text-white hover:scale-150 transition-all duration-500 ease-linear" x-on:click="goToElement('<?php esc_attr_e(get_field('home_menu_element_ID', $menu_item->ID)); ?>')"><?php esc_html_e($menu_item->post_title); ?></button>
+   <?php
 
-    }
+   }
 
-    ?>
+   ?>
 </ul>

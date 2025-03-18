@@ -4,39 +4,39 @@ if (!defined('ABSPATH')) {
    exit;
 }
 
-class ThemeOptionsHome
+class PageProfile
 {
    public function get_title()
    {
-      return get_field('home_hero_title', 'option');
+      return get_field('home_hero_title');
    }
 
    public function get_description()
    {
-      return get_field('home_hero_description', 'option');
+      return get_field('home_hero_description');
    }
 
    public function get_social_share()
    {
       $social_media_list = [
          'github' => [
-            'link' =>  get_field('home_hero_github', 'option'),
+            'link' =>  get_field('home_hero_github'),
             'image' => get_template_directory_uri() . '/assets/images/github.svg',
          ],
          'linkedin' => [
-            'link' => get_field('home_hero_linkedin', 'option'),
+            'link' => get_field('home_hero_linkedin'),
             'image' => get_template_directory_uri() . '/assets/images/linkedin.svg',
          ],
          'email' => [
-            'link' => get_field('home_hero_email', 'option'),
+            'link' => get_field('home_hero_email'),
             'image' => get_template_directory_uri() . '/assets/images/mail.svg',
          ],
          'curriculum' => [
-            'link' => get_field('home_hero_curriculum', 'option'),
+            'link' => get_field('home_hero_curriculum'),
             'image' => get_template_directory_uri() . '/assets/images/cv.svg',
          ],
          'whatsapp' => [
-            'link' => get_field('home_hero_whatsapp', 'option'),
+            'link' => get_field('home_hero_whatsapp'),
             'image' => get_template_directory_uri() . '/assets/images/whatsapp.svg',
          ],
       ];
@@ -66,51 +66,51 @@ class ThemeOptionsHome
 
    public function get_about_me_photo()
    {
-      return get_field('home_about_me_photo', 'option');
+      return get_field('home_about_me_photo');
    }
 
    public function get_about_me_name()
    {
-      return get_field('home_about_me_name', 'option');
+      return get_field('home_about_me_name');
    }
 
    public function get_about_me_job()
    {
-      return get_field('home_about_me_job', 'option');
+      return get_field('home_about_me_job');
    }
 
    public function get_about_me_description()
    {
-      return get_field('home_about_me_description', 'option');
+      return get_field('home_about_me_description');
    }
 
    public function get_services_text()
    {
-      return get_field('home_services_text', 'option');
+      return get_field('home_services_text');
    }
 
    public function get_services_cards()
    {
-      return get_field('home_services_cards', 'option');
+      return get_field('home_services_cards');
    }
 
    public function get_skills_description()
    {
-      return get_field('home_skills_description', 'option');
+      return get_field('home_skills_description');
    }
 
    public function get_skills_list()
    {
-      return get_field('home_skills_skills_list', 'option');
+      return get_field('home_skills_skills_list');
    }
 
    public function get_experience_text()
    {
-      return get_field('home_experience_text', 'option');
+      return get_field('home_experience_text');
    }
 
    public function get_experience_timeline()
    {
-      return get_field('home_experience_timeline', 'option');
+      return get_field('home_experience_timeline');
    }
 }

@@ -1,8 +1,8 @@
 <?php
 
 if (!defined('ABSPATH')) {
-    exit;
+   exit;
 }
 
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'Register.php';
-require_once __DIR__ . DIRECTORY_SEPARATOR . 'Home.php';
+require_once __DIR__ . DIRECTORY_SEPARATOR . 'PageProfile.php';

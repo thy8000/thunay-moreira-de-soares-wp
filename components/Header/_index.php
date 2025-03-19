@@ -62,9 +62,9 @@ if (!defined('ABSPATH')) {
             <?php
 
             if (is_home()) {
-               get_template_part('components/header/components/home-menu');
+               get_template_part('components/Header/components/home-menu');
             } else {
-               get_template_part('components/header/components/page-menu');
+               get_template_part('components/Header/components/page-menu');
             }
 
             ?>

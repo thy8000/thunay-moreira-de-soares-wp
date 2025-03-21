@@ -8,11 +8,11 @@ $PageProfile = new PageProfile();
 
 ?>
 
-<section id="skills" x-data="skills">
+<section id="<?php echo $PageProfile->get_skills_title_ID() ?? esc_attr('skills'); ?>" x-data="skills">
    <div class="custom-container py-[10%] lg:py-[5%] flex flex-col gap-12">
       <div class="flex flex-col justify-center items-center gap-4">
          <h2 class="fade-in text-5xl font-poppins font-semibold text-green-500">
-            Habilidades
+            <?php echo $PageProfile->get_skills_h2_title() ?? esc_html__('Habilidades', 'thunay'); ?>
          </h2>
 
          <?php
@@ -34,7 +34,7 @@ $PageProfile = new PageProfile();
          <div class="flex flex-col gap-8 w-full">
             <div>
                <h4 class="fade-in text-white text-3xl">
-                  Conhecimento Técnico
+                  <?php echo $PageProfile->get_skills_h3_title() ?? esc_html__('Conhecimento Técnico', 'thunay'); ?>
                </h4>
             </div>
 

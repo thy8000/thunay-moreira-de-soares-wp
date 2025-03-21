@@ -64,6 +64,16 @@ class PageProfile
       return "<div class='fade-in-3 transition duration-[4500ms] flex flex-wrap justify-center items-center gap-8'>" . $output . "</div>";
    }
 
+   public function get_about_me_h2_title()
+   {
+      return get_field('home_about_me_h2_title');
+   }
+
+   public function get_about_me_title_ID()
+   {
+      return get_field('home_about_me_title_ID');
+   }
+
    public function get_about_me_photo()
    {
       return get_field('home_about_me_photo');
@@ -94,6 +104,16 @@ class PageProfile
       return get_field('home_services_cards');
    }
 
+   public function get_services_h2_title()
+   {
+      return get_field('home_services_h2_title');
+   }
+
+   public function get_services_title_ID()
+   {
+      return get_field('home_services_title_ID');
+   }
+
    public function get_skills_description()
    {
       return get_field('home_skills_description');
@@ -104,6 +124,21 @@ class PageProfile
       return get_field('home_skills_skills_list');
    }
 
+   public function get_skills_h2_title()
+   {
+      return get_field('home_skills_h2_title');
+   }
+
+   public function get_skills_h3_title()
+   {
+      return get_field('home_skills_h3_title');
+   }
+
+   public function get_skills_title_ID()
+   {
+      return get_field('home_skills_title_ID');
+   }
+
    public function get_experience_text()
    {
       return get_field('home_experience_text');
@@ -112,5 +147,15 @@ class PageProfile
    public function get_experience_timeline()
    {
       return get_field('home_experience_timeline');
+   }
+
+   public function get_experience_h2_title()
+   {
+      return get_field('home_experience_h2_title');
+   }
+
+   public function get_experience_title_ID()
+   {
+      return get_field('home_experience_title_ID');
    }
 }

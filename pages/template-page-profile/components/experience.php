@@ -8,12 +8,12 @@ $PageProfile = new PageProfile();
 
 ?>
 
-<section id="experience">
+<section id="<?php echo $PageProfile->get_experience_title_ID() ?? esc_attr('experience'); ?>">
    <div class="custom-container py-[10%] lg:py-[5%]">
       <div class="flex lg:flex-row-reverse flex-col gap-20">
          <div class="w-full lg:w-1/2 flex flex-col gap-8">
             <h2 class="fade-in text-5xl font-poppins font-semibold text-green-500">
-               Experiência Profissional
+               <?php echo $PageProfile->get_experience_h2_title() ?? esc_html__('Experiência Profissional', 'thunay'); ?>
             </h2>
 
             <?php

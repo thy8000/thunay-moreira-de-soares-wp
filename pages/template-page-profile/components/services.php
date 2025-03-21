@@ -8,12 +8,12 @@ $PageProfile = new PageProfile();
 
 ?>
 
-<section id="services">
+<section id="<?php echo $PageProfile->get_services_title_ID() ?? esc_attr('services'); ?>">
    <div class="custom-container py-[10%] lg:py-[5%] mx-auto max-w-[1140px] flex justify-center flex-col lg:flex-row gap-20">
       <div class="w-full lg:w-5/12">
          <div class="services-content flex flex-col gap-8">
             <h1 class="fade-in text-5xl font-poppins font-semibold text-green-500">
-               Serviços
+               <?php echo $PageProfile->get_services_h2_title() ?? esc_html__('Serviços', 'thunay'); ?>
             </h1>
 
             <?php

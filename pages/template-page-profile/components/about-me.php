@@ -8,7 +8,7 @@ $PageProfile = new PageProfile();
 
 ?>
 
-<section id="about-me" class="w-full">
+<section id="<?php echo $PageProfile->get_about_me_title_ID() ?? esc_attr('about-me'); ?>" class="w-full">
    <div class="custom-container py-[10%] lg:py-[5%]">
       <div class="flex justify-center items-center lg:flex-row flex-col gap-8 border border-neutral-700 rounded p-8 bg-neutral-800">
          <?php
@@ -25,7 +25,8 @@ $PageProfile = new PageProfile();
 
          <span class="fade-in flex flex-col gap-4">
             <h2 class="text-xl font-semibold font-poppins text-green-500">
-               Sobre mim
+               <?php debug($PageProfile->get_about_me_h2_title()); ?>
+               <?php echo $PageProfile->get_about_me_h2_title() ?? esc_html__('Sobre mim', 'thunay'); ?>
             </h2>
             <?php
 

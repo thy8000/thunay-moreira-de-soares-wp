@@ -158,4 +158,19 @@ class PageProfile
    {
       return get_field('home_experience_title_ID');
    }
+
+   public function get_projects_h2_title()
+   {
+      return get_field('home_projects_h2_title');
+   }
+
+   public function get_projects_h3_title()
+   {
+      return get_field('home_projects_h3_title');
+   }
+
+   public function get_projects_title_ID()
+   {
+      return get_field('home_projects_title_ID');
+   }
 }

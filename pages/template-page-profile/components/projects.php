@@ -7,21 +7,27 @@ $projects_categories = Projects_Category_Utils::get_projects_categories();
 
 $projects_posts = Project_Utils::get_projects();
 
+$page_profile = new PageProfile();
+
+$projects_title_ID = $page_profile->get_projects_title_ID();
+$projects_h2_title = $page_profile->get_projects_h2_title();
+$projects_h3_title = $page_profile->get_projects_h3_title();
+
 ?>
 
-<section id="projects" x-data="projects">
+<section id="<?php echo esc_attr($projects_title_ID ?: 'projects'); ?>" x-data="projects">
    <div class="custom-container py-[10%] lg:py-[5%]">
       <div class="flex flex-col">
          <div class="projects-title fade-in-2 flex flex-col justify-center items-center gap-4 text-center w-full">
             <h2 class="text-5xl font-poppins font-semibold text-green-500">
-               Projetos
+               <?php echo esc_html($projects_h2_title) ?: esc_html__('Projetos', 'thunay'); ?>
             </h2>
 
             <h3 class="max-w-prose text-gray-300 text-lg leading-7">
-               Confira meus projetos pessoais e sites que desenvolvi ao longo
-               da minha carreira.
+               <?php echo esc_html($projects_h3_title) ?: esc_html__('Confira meus projetos pessoais e sites que desenvolvi ao longo da minha carreira.', 'thunay'); ?>
             </h3>
          </div>
+
          <?php
 
          if (!empty($projects_categories)) {

@@ -25,9 +25,9 @@ $PageProfile = new PageProfile();
 
          <span class="fade-in flex flex-col gap-4">
             <h2 class="text-xl font-semibold font-poppins text-green-500">
-               <?php debug($PageProfile->get_about_me_h2_title()); ?>
                <?php echo $PageProfile->get_about_me_h2_title() ?? esc_html__('Sobre mim', 'thunay'); ?>
             </h2>
+
             <?php
 
             if (!empty($PageProfile->get_about_me_name())) {

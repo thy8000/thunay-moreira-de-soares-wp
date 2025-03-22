@@ -23,6 +23,7 @@ class PageProfileRegister
       $this->register_home_services();
       $this->register_home_skills();
       $this->register_home_experience();
+      $this->register_home_projects();
    }
 
    private function register_home_hero()
@@ -1233,6 +1234,126 @@ class PageProfileRegister
          'description' => '',
          'show_in_rest' => 0,
       ]);
+   }
+
+   private function register_home_projects()
+   {
+      if (! function_exists('acf_add_local_field_group')) {
+         return;
+      }
+
+   acf_add_local_field_group([
+      'key' => 'group_6672a40402c32',
+      'title' => __('Projetos', 'thunay'),
+      'fields' => [
+         [
+            'key' => 'field_G5xF8bLpT1wZ',
+            'label' => __('Título H2 e ID title', 'thunay'),
+            'name' => '',
+            'aria-label' => '',
+            'type' => 'tab',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => [
+               'width' => '',
+               'class' => '',
+               'id' => '',
+            ],
+            'placement' => 'top',
+            'endpoint' => 0,
+         ],
+         [
+            'key' => 'field_kD3qL7mTz2Xv',
+            'label' => __('Título H2', 'thunay'),
+            'name' => 'home_projects_h2_title',
+            'aria-label' => '',
+            'type' => 'text',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => [
+               'width' => '',
+               'class' => '',
+               'id' => '',
+            ],
+            'default_value' => '',
+            'maxlength' => '',
+            'placeholder' => '',
+            'prepend' => '',
+            'append' => '',
+         ],
+         [
+            'key' => 'field_W9bNc6RyUaP4',
+            'label' => __('Título H3', 'thunay'),
+            'name' => 'home_projects_h3_title',
+            'aria-label' => '',
+            'type' => 'text',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => [
+               'width' => '',
+               'class' => '',
+               'id' => '',
+            ],
+            'default_value' => '',
+            'maxlength' => '',
+            'placeholder' => '',
+            'prepend' => '',
+            'append' => '',
+         ],
+         [
+            'key' => 'field_X7pQa2LmV9dE',
+            'label' => __('ID title', 'thunay'),
+            'name' => 'home_projects_title_ID',
+            'aria-label' => '',
+            'type' => 'text',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => [
+               'width' => '',
+               'class' => '',
+               'id' => '',
+            ],
+            'default_value' => '',
+            'maxlength' => '',
+            'placeholder' => '',
+            'prepend' => '',
+            'append' => '',
+         ],
+      ],
+      'location' => [
+         [
+            [
+               'param' => 'page_template',
+               'operator' => '==',
+               'value' => 'template-page-profile.php',
+            ],
+         ],
+      ],
+      'menu_order' => 5,
+      'position' => 'normal',
+      'style' => 'default',
+      'label_placement' => 'top',
+      'instruction_placement' => 'label',
+      'hide_on_screen' => [
+         0 => 'the_content',
+         1 => 'excerpt',
+         2 => 'discussion',
+         3 => 'comments',
+         4 => 'format',
+         5 => 'page_attributes',
+         6 => 'featured_image',
+         7 => 'categories',
+         8 => 'tags',
+         9 => 'send-trackbacks',
+      ],
+      'active' => true,
+      'description' => '',
+      'show_in_rest' => 0,
+   ]);
    }
 
    function disable_gutenberg($use_block_editor, $post)

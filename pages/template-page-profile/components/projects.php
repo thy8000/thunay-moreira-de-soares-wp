@@ -9,6 +9,8 @@ $projects_posts = Project_Utils::get_projects();
 
 $page_profile = new PageProfile();
 
+$page_ID = get_the_ID();
+
 $projects_title_ID = $page_profile->get_projects_title_ID();
 $projects_h2_title = $page_profile->get_projects_h2_title();
 $projects_h3_title = $page_profile->get_projects_h3_title();
@@ -43,7 +45,15 @@ $projects_h3_title = $page_profile->get_projects_h3_title();
 
                ?>
                   <a href="#" class="personal-projects__button py-4 px-6 border-2 border-green-500 rounded-full cursor-pointer" x-bind:class="{ 'personal-projects__button__active' : tab === '<?php echo esc_attr($project_category->slug); ?>' }" x-on:click.prevent="tab = '<?php echo esc_attr($project_category->slug); ?>'">
-                     <span class="text-white"><?php echo esc_attr($project_category->name); ?></span>
+                     <span class="text-white">
+                        <?php
+
+                        $project_category_name_list = Projects_Category_Utils::get_project_category_name_list($project_category, $page_ID);
+
+                        echo esc_html($project_category_name_list);
+
+                        ?>
+                     </span>
                   </a>
                <?php
 
@@ -60,8 +70,6 @@ $projects_h3_title = $page_profile->get_projects_h3_title();
          ?>
             <div class="projects-grid fade-in-2 grid grid-cols-1 lg:grid-cols-3 gap-4">
                <?php
-
-               $page_ID = get_the_ID();
 
                foreach ($projects_posts as $project) {
                   $Project = new Project($project);

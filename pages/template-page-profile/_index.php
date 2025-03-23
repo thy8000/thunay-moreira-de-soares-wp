@@ -18,4 +18,4 @@ get_template_part('pages/template-page-profile/components/experience');
 
 get_template_part('pages/template-page-profile/components/projects');
 
-get_template_part('components/footer/_index');
+get_template_part('components/footer');

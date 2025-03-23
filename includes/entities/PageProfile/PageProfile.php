@@ -173,4 +173,9 @@ class PageProfile
    {
       return get_field('home_projects_title_ID');
    }
+
+   public function get_projects_first_category_name()
+   {
+      return get_field('home_projects_first_category_name');
+   }
 }

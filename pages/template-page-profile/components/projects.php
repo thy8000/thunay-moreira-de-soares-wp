@@ -37,7 +37,15 @@ $projects_h3_title = $page_profile->get_projects_h3_title();
          ?>
             <div class="projects-buttons fade-in-2 flex justify-center items-center flex-wrap gap-4 py-10">
                <a href="#" class="personal-projects__button py-4 px-6 border-2 border-green-500 rounded-full cursor-pointer" x-bind:class="{ 'personal-projects__button__active' : tab === 'all' }" x-on:click.prevent="tab = 'all'">
-                  <span class="text-white"><?php esc_html_e('Tudo', 'thunay'); ?></span>
+                  <span class="text-white">
+                     <?php
+
+                     $first_category_name = $page_profile->get_projects_first_category_name();
+
+                     echo esc_html($first_category_name) ?: esc_html__('Todos', 'thunay');
+
+                     ?>
+                  </span>
                </a>
                <?php
 

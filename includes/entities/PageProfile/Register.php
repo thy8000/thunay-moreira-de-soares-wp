@@ -1323,6 +1323,26 @@ class PageProfileRegister
             'prepend' => '',
             'append' => '',
          ],
+         [
+            'key' => 'field_mE0wR7fY9Kq3',
+            'label' => __('Nome alternativo da primeira categoria', 'thunay'),
+            'name' => 'home_projects_first_category_name',
+            'aria-label' => '',
+            'type' => 'text',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => [
+               'width' => '',
+               'class' => '',
+               'id' => '',
+            ],
+            'default_value' => '',
+            'maxlength' => '',
+            'placeholder' => '',
+            'prepend' => '',
+            'append' => '',
+         ],
       ],
       'location' => [
          [

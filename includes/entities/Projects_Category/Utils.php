@@ -23,7 +23,7 @@ class Projects_Category_Utils
             return $project_category->name;
         }
 
-        $project_category_custom_name = Project_Utils::get_page_item($project_category_name_list, $page_ID);
+        $project_category_custom_name = thunay_get_page_item($project_category_name_list, $page_ID);
 
         if (empty($project_category_custom_name)) {
             return $project_category->name;

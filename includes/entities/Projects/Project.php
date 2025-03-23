@@ -47,7 +47,7 @@ class Project extends Singular
          return $this->get_content();
       }
 
-      $page_custom_content = Project_Utils::get_page_item($description_list, $page_ID);
+      $page_custom_content = thunay_get_page_item($description_list, $page_ID);
 
       if (empty($page_custom_content)) {
          return $this->get_content();

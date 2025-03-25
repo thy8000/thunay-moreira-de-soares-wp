@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-   if (!document.body.classList.contains('home')) {
+   if (!document.body.classList.contains('page-template-template-page-profile')) {
       return
    }
 

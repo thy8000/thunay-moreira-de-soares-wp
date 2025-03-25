@@ -139,6 +139,11 @@ class PageProfile
       return get_field('home_skills_title_ID');
    }
 
+   public function get_skills_level_list()
+   {
+      return get_field('home_skills_levels_list');
+   }
+
    public function get_experience_text()
    {
       return get_field('home_experience_text');

@@ -44,7 +44,7 @@ class PageProfile
       $output = '';
 
       $social_media_output = array_map(function ($social_media) {
-         if (empty($social_media)) {
+         if (empty($social_media['link'])) {
             return '';
          }
 

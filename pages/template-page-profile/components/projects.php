@@ -85,7 +85,7 @@ $projects_h3_title = $page_profile->get_projects_h3_title();
                ?>
                   <div class="flex flex-col gap-8 p-5 bg-neutral-800 border border-neutral-700 rounded" x-show="tab === '<?php echo esc_attr($Project->get_project_category()); ?>' || tab === 'all'">
                      <div>
-                        <img class="w-full object-cover aspect-[300/180]" src="<?php echo esc_url($Project->get_thumbnail_URL()); ?>" />
+                        <img class="w-full object-cover aspect-[300/180]" src="<?php echo esc_url($Project->get_thumbnail_URL('large')); ?>" />
                      </div>
 
                      <div class="flex flex-col gap-6 min-h-52">
